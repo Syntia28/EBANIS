@@ -113,34 +113,60 @@ export default function Contact() {
 
           {/* Styled Map Box */}
           <div className="glass-panel" style={{
-            height: "200px",
-            width: "100%",
-            borderRadius: "4px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            border: "1px solid var(--card-border)",
-            background: "radial-gradient(circle at center, #1b1916 0%, #0c0b0a 100%)",
             position: "relative",
-            overflow: "hidden"
+            width: "100%",
+            height: "300px",
+            borderRadius: "6px",
+            overflow: "hidden",
+            border: "1px solid var(--card-border)",
+            background: "#0c0b0a",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
           }}>
-            <div style={{ zIndex: 2, textAlign: "center", padding: "20px" }}>
-              <MapPin size={32} style={{ color: "var(--gold-primary)", marginBottom: "10px" }} />
-              <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Cajamarca, Perú</h4>
-              <p style={{ fontSize: "0.75rem", color: "hsl(0,0%,60%)" }}>Atelier de Diseño Ebanis Soluciones</p>
-            </div>
-            {/* Fake grid map elements */}
-            <div style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              opacity: 0.15,
-              backgroundImage: "linear-gradient(rgba(197,165,95,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(197,165,95,0.3) 1px, transparent 1px)",
-              backgroundSize: "20px 20px"
-            }} />
+            <iframe
+              src="https://maps.google.com/maps?q=Atelier%20de%20Dise%C3%B1o%20Ebanis%20Soluciones,%20Psje.%20San%20Isidro%20392,%20Cajamarca%2006003,%20Peru&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{
+                border: 0,
+                display: "block"
+              }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="map-iframe"
+              title="Atelier de Diseño Ebanis Soluciones"
+            ></iframe>
+            
+            {/* Float badge to open map directly */}
+            <a 
+              href="https://maps.google.com/?q=Atelier+de+Dise%C3%B1o+Ebanis+Soluciones,+Psje.+San+Isidro+392,+Cajamarca+06003,+Peru"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                position: "absolute",
+                bottom: "15px",
+                right: "15px",
+                background: "rgba(10, 10, 10, 0.85)",
+                backdropFilter: "blur(4px)",
+                border: "1px solid var(--gold-primary)",
+                color: "var(--gold-primary)",
+                padding: "8px 16px",
+                fontSize: "0.75rem",
+                fontFamily: "var(--font-serif)",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                borderRadius: "4px",
+                transition: "all 0.3s ease",
+                zIndex: 5
+              }}
+              className="map-badge"
+            >
+              <MapPin size={12} /> Ver en Google Maps
+            </a>
           </div>
         </div>
 
@@ -272,6 +298,20 @@ export default function Contact() {
       </div>
 
       <style jsx>{`
+        .map-iframe {
+          filter: grayscale(1) invert(0.92) contrast(1.15) opacity(0.7);
+          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .map-iframe:hover {
+          filter: grayscale(0.15) invert(0) contrast(1) opacity(1);
+        }
+        .map-badge:hover {
+          color: #000 !important;
+          border-color: transparent !important;
+          background: var(--gold-metallic) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(197, 165, 95, 0.35);
+        }
         @media (min-width: 992px) {
           .contact-grid {
             grid-template-columns: 1fr 1fr !important;

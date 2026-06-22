@@ -1,57 +1,51 @@
 "use client";
 
 import React from "react";
-import FurnitureViewer from "./FurnitureViewer";
 
 export default function Hero() {
   return (
     <section 
-      id="hero" 
+      id="inicio" 
       style={{
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "120px 20px 60px 20px",
+        padding: "120px 20px 80px 20px",
         position: "relative",
-        overflow: "hidden"
+        overflow: "hidden",
+        backgroundImage: "url('/galeria/hero_bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
       }}
     >
-      {/* Decorative subtle background glows */}
+      {/* Immersive overlay for text legibility */}
+      <div className="hero-overlay" />
+
+      {/* Decorative gold subtle glow in the left background */}
       <div style={{
         position: "absolute",
-        top: "20%",
-        left: "10%",
+        top: "25%",
+        left: "5%",
         width: "300px",
         height: "300px",
-        background: "rgba(197, 165, 95, 0.04)",
+        background: "rgba(197, 165, 95, 0.06)",
         borderRadius: "50%",
-        filter: "blur(80px)",
-        pointerEvents: "none"
-      }} />
-      <div style={{
-        position: "absolute",
-        bottom: "15%",
-        right: "5%",
-        width: "400px",
-        height: "400px",
-        background: "rgba(197, 165, 95, 0.03)",
-        borderRadius: "50%",
-        filter: "blur(100px)",
-        pointerEvents: "none"
+        filter: "blur(90px)",
+        pointerEvents: "none",
+        zIndex: 1
       }} />
 
       <div style={{
         width: "100%",
         maxWidth: "1200px",
         margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "40px",
-        alignItems: "center"
-      }} className="hero-grid">
+        position: "relative",
+        zIndex: 2
+      }}>
         
-        {/* Left Column: Brand Statement */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        {/* Brand Statement Column (max-width keeps it left-aligned) */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "650px" }}>
           <div>
             <span style={{ 
               fontFamily: "var(--font-serif)", 
@@ -65,9 +59,11 @@ export default function Hero() {
               Ebanistería y Diseño Exclusivo
             </span>
             <h1 style={{ 
-              fontSize: "clamp(2.5rem, 5vw, 4rem)", 
+              fontSize: "clamp(2.5rem, 5.5vw, 4rem)", 
               lineHeight: 1.1,
-              marginBottom: "15px"
+              marginBottom: "15px",
+              fontFamily: "var(--font-serif)",
+              fontWeight: 500
             }}>
               Muebles que <br />
               <span className="gold-text">Transforman</span> <br />
@@ -76,9 +72,9 @@ export default function Hero() {
             <p style={{
               fontSize: "1.05rem",
               lineHeight: "1.7",
-              color: "hsl(0, 0%, 75%)",
+              color: "hsl(24, 20%, 28%)",
               fontWeight: 300,
-              maxWidth: "500px"
+              maxWidth: "520px"
             }}>
               Creamos piezas únicas de ebanistería fina que fusionan arte y funcionalidad. 
               Cada diseño de Ebanis Soluciones es elaborado con maderas nobles seleccionadas 
@@ -99,7 +95,8 @@ export default function Hero() {
             gap: "20px", 
             marginTop: "20px",
             borderTop: "1px solid var(--card-border)",
-            paddingTop: "25px"
+            paddingTop: "25px",
+            maxWidth: "520px"
           }}>
             <div>
               <span style={{ 
@@ -109,7 +106,7 @@ export default function Hero() {
                 fontWeight: 600,
                 display: "block"
               }}>5+</span>
-              <span style={{ fontSize: "0.7rem", color: "hsl(0, 0%, 55%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Años de Trayectoria</span>
+              <span style={{ fontSize: "0.7rem", color: "hsl(24, 18%, 38%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Años de Trayectoria</span>
             </div>
             <div>
               <span style={{ 
@@ -119,7 +116,7 @@ export default function Hero() {
                 fontWeight: 600,
                 display: "block"
               }}>100%</span>
-              <span style={{ fontSize: "0.7rem", color: "hsl(0, 0%, 55%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Madera Certificada</span>
+              <span style={{ fontSize: "0.7rem", color: "hsl(24, 18%, 38%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Madera Certificada</span>
             </div>
             <div>
               <span style={{ 
@@ -129,35 +126,27 @@ export default function Hero() {
                 fontWeight: 600,
                 display: "block"
               }}>200+</span>
-              <span style={{ fontSize: "0.7rem", color: "hsl(0, 0%, 55%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Espacios Transformados</span>
+              <span style={{ fontSize: "0.7rem", color: "hsl(24, 18%, 38%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Espacios Transformados</span>
             </div>
           </div>
-        </div>
-
-        {/* Right Column: 3D Configurator */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px", width: "100%" }}>
-          <div style={{
-            textAlign: "center",
-            marginBottom: "10px"
-          }}>
-            <span style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.75rem",
-              color: "hsl(0, 0%, 45%)",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase"
-            }}>Estudio de Materiales Interactivos (Twinbru 3D)</span>
-          </div>
-          <FurnitureViewer />
         </div>
 
       </div>
 
       <style jsx>{`
-        @media (min-width: 992px) {
-          .hero-grid {
-            grid-template-columns: 1.1fr 0.9fr !important;
-            gap: 60px !important;
+        .hero-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, rgba(240, 230, 210, 0.96) 0%, rgba(238, 226, 200, 0.82) 40%, rgba(235, 220, 190, 0.3) 100%);
+          z-index: 1;
+          pointer-events: none;
+        }
+        @media (max-width: 768px) {
+          .hero-overlay {
+            background: linear-gradient(180deg, rgba(240, 230, 210, 0.97) 0%, rgba(238, 226, 200, 0.98) 100%);
           }
         }
       `}</style>

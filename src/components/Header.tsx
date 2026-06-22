@@ -24,52 +24,47 @@ export default function Header() {
       width: "100%",
       zIndex: 1000,
       borderBottom: "1px solid var(--card-border)",
-      background: "rgba(5, 5, 5, 0.8)",
-      backdropFilter: "blur(16px)",
-      WebkitBackdropFilter: "blur(16px)"
+      background: "rgba(248, 242, 228, 0.88)",
+      backdropFilter: "blur(18px)",
+      WebkitBackdropFilter: "blur(18px)"
     }}>
       <div className="nav-container" style={{ padding: "0 20px" }}>
         {/* LOGO */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-          <svg width="45" height="45" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Background circle or subtle glow */}
-            <circle cx="250" cy="250" r="230" stroke="url(#goldGrad)" strokeWidth="4" strokeOpacity="0.3" />
-            
-            {/* Elegant Monogram EB */}
-            {/* E Part */}
-            <path d="M180 150H260V180H215V230H255V260H215V320H265V350H180V150Z" fill="url(#goldGrad)" />
-            {/* B Part */}
-            <path d="M260 150H320C345 150 365 165 365 190C365 210 350 225 330 230C355 235 370 255 370 280C370 310 345 350 310 350H260V150ZM310 230C325 230 335 220 335 205C335 190 325 180 310 180H285V230H310ZM310 320C328 320 340 305 340 285C340 265 328 250 310 250H285V320H310Z" fill="url(#goldGrad)" />
-            
-            {/* Mini chair outline inside B */}
-            <path d="M295 265H330V290H295V265Z" stroke="url(#goldGrad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.8" />
-            <path d="M295 290V310M330 290V310" stroke="url(#goldGrad)" strokeWidth="3" strokeLinecap="round" />
-            <path d="M305 265V255M320 265V255" stroke="url(#goldGrad)" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="312.5" cy="240" r="3" fill="url(#goldGrad)" />
-
-            <defs>
-              <linearGradient id="goldGrad" x1="180" y1="150" x2="370" y2="350" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#dfba73" />
-                <stop offset="50%" stopColor="#c5a55f" />
-                <stop offset="100%" stopColor="#9a7e44" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <div style={{
+            position: "relative",
+            width: "45px",
+            height: "45px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <img
+              src="/logo/ebanis.png"
+              alt="Ebanis Logo"
+              style={{
+                width: "auto",
+                height: "100%",
+                objectFit: "contain",
+                maxHeight: "45px"
+              }}
+            />
+          </div>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <span style={{ 
-              fontFamily: "var(--font-serif)", 
-              fontSize: "1.2rem", 
-              letterSpacing: "0.15em", 
+            <span style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "1.2rem",
+              letterSpacing: "0.15em",
               fontWeight: 700,
               background: "var(--gold-metallic)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               lineHeight: 1
             }}>EBANIS</span>
-            <span style={{ 
-              fontSize: "0.55rem", 
-              letterSpacing: "0.45em", 
-              color: "#a1a1a1", 
+            <span style={{
+              fontSize: "0.55rem",
+              letterSpacing: "0.45em",
+              color: "hsl(24, 15%, 45%)",
               fontWeight: 500,
               marginTop: "2px"
             }}>SOLUCIONES</span>
@@ -81,7 +76,7 @@ export default function Header() {
           <ul className="nav-links" style={{ display: "none" }}>
             {/* HOME */}
             <li className="nav-item">
-              <Link href="#hero" className="nav-link">Inicio</Link>
+              <Link href="/#inicio" className="nav-link">Inicio</Link>
             </li>
 
             {/* PRODUCTOS / COLECCIONES (Dropdown) */}
@@ -129,7 +124,7 @@ export default function Header() {
             {/* PROYECTOS A MEDIDA (Dropdown) */}
             <li className="nav-item">
               <span className="nav-link">A Medida <ChevronDown size={14} style={{ marginLeft: "4px", color: "var(--gold-primary)" }} /></span>
-              <div className="dropdown-menu" style={{ width: "500px", gridTemplateColumns: "repeat(2, 1fr)" }}>
+              <div className="dropdown-menu" style={{ width: "720px", gridTemplateColumns: "repeat(3, 1fr)" }}>
                 <div className="dropdown-col">
                   <h4>
                     <ShieldCheck size={12} style={{ marginRight: "6px", display: "inline", verticalAlign: "middle" }} />
@@ -144,12 +139,22 @@ export default function Header() {
                 <div className="dropdown-col">
                   <h4>
                     <ShieldCheck size={12} style={{ marginRight: "6px", display: "inline", verticalAlign: "middle" }} />
-                    Walk-in Closets
+                    Closets
                   </h4>
                   <ul>
-                    <li><Link href="/collections/vestidores">Vestidores Personalizados</Link></li>
-                    <li><Link href="/collections/organizadores">Isletas Centrales</Link></li>
+
                     <li><Link href="/collections/tocadores">Tocadores Premium</Link></li>
+                  </ul>
+                </div>
+                <div className="dropdown-col">
+                  <h4>
+                    <ShieldCheck size={12} style={{ marginRight: "6px", display: "inline", verticalAlign: "middle" }} />
+                    Carpintería Fina
+                  </h4>
+                  <ul>
+                    <li><Link href="/collections/puertas">Puertas Principales e Interiores</Link></li>
+                    <li><Link href="/collections/escaleras">Escaleras de Madera</Link></li>
+                    <li><Link href="/collections/ventanas">Ventanas a Medida</Link></li>
                   </ul>
                 </div>
               </div>
@@ -168,6 +173,8 @@ export default function Header() {
                     <li><Link href="/services/diseno-3d">Modelado y Diseño 3D</Link></li>
                     <li><Link href="/services/ebanisteria">Ebanistería de Precisión</Link></li>
                     <li><Link href="/services/instalacion">Instalación Profesional</Link></li>
+                    <li><Link href="/services/personalizados">trabajos Personalizados</Link></li>
+                    <li><Link href="/services/adaptaciones">adaptación a diseños de arquitectos</Link></li>
                   </ul>
                 </div>
               </div>
@@ -175,23 +182,23 @@ export default function Header() {
 
             {/* HISTORIA (2021) */}
             <li className="nav-item">
-              <Link href="#about" className="nav-link">Historia</Link>
+              <Link href="/historia" className="nav-link">Historia</Link>
             </li>
 
             {/* CONTACT */}
             <li className="nav-item">
-              <Link href="#contact" className="nav-link">Contacto</Link>
+              <Link href="/contacto" className="nav-link">Contacto</Link>
             </li>
           </ul>
         </nav>
 
         {/* Action Button */}
         <div style={{ display: "none" }} className="desktop-btn">
-          <Link href="#contact" className="btn-gold" style={{ fontSize: "0.75rem", padding: "10px 20px" }}>Presupuesto</Link>
+          <a href="https://wa.me/51945876123?text=Hola%20Ebanis%20Soluciones,%20deseo%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ fontSize: "0.75rem", padding: "10px 20px", textDecoration: 'none' }}>Presupuesto</a>
         </div>
 
         {/* Mobile Menu Icon */}
-        <button 
+        <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{
             background: "none",
@@ -213,7 +220,7 @@ export default function Header() {
           top: "80px",
           left: 0,
           width: "100%",
-          background: "rgba(8, 8, 8, 0.98)",
+          background: "rgba(250, 245, 235, 0.98)",
           backdropFilter: "blur(20px)",
           borderBottom: "1px solid var(--card-border)",
           padding: "20px",
@@ -222,12 +229,12 @@ export default function Header() {
           gap: "16px",
           zIndex: 999
         }}>
-          <Link href="#hero" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", borderBottom: "1px solid #1a1a1a", paddingBottom: "10px" }}>Inicio</Link>
-          
+          <Link href="/#inicio" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", borderBottom: "1px solid var(--card-border)", paddingBottom: "10px", color: "var(--foreground)" }}>Inicio</Link>
+
           {/* Dropdown 1 */}
           <div>
-            <div 
-              onClick={() => toggleMobileDropdown("colecciones")} 
+            <div
+              onClick={() => toggleMobileDropdown("colecciones")}
               style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", borderBottom: "1px solid #1a1a1a", paddingBottom: "10px" }}
             >
               <span style={{ fontFamily: "var(--font-serif)", fontSize: "1rem" }}>Colecciones</span>
@@ -244,9 +251,9 @@ export default function Header() {
 
           {/* Dropdown 2 */}
           <div>
-            <div 
-              onClick={() => toggleMobileDropdown("medida")} 
-              style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", borderBottom: "1px solid #1a1a1a", paddingBottom: "10px" }}
+            <div
+              onClick={() => toggleMobileDropdown("medida")}
+              style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", borderBottom: "1px solid var(--card-border)", paddingBottom: "10px" }}
             >
               <span style={{ fontFamily: "var(--font-serif)", fontSize: "1rem" }}>A Medida</span>
               <ChevronDown size={16} style={{ transform: activeMobileDropdown === "medida" ? "rotate(180deg)" : "rotate(0)", transition: "0.3s" }} />
@@ -255,13 +262,15 @@ export default function Header() {
               <div style={{ paddingLeft: "15px", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
                 <Link href="/collections/cocinas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Cocinas de Lujo</Link>
                 <Link href="/collections/vestidores" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Walk-in Closets</Link>
+                <Link href="/collections/puertas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Puertas de Madera & Melamina</Link>
+                <Link href="/collections/ventanas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Ventanas a Medida</Link>
               </div>
             )}
           </div>
 
-          <Link href="#about" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", borderBottom: "1px solid #1a1a1a", paddingBottom: "10px" }}>Historia</Link>
-          <Link href="#contact" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", borderBottom: "1px solid #1a1a1a", paddingBottom: "10px" }}>Contacto</Link>
-          <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="btn-gold" style={{ textAlign: "center", marginTop: "10px" }}>Presupuesto</Link>
+          <Link href="/historia" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", borderBottom: "1px solid var(--card-border)", paddingBottom: "10px", color: "var(--foreground)" }}>Historia</Link>
+          <Link href="/contacto" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", borderBottom: "1px solid var(--card-border)", paddingBottom: "10px", color: "var(--foreground)" }}>Contacto</Link>
+          <a href="https://wa.me/51945876123?text=Hola%20Ebanis%20Soluciones,%20deseo%20cotizar%20un%20proyecto" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ textAlign: "center", marginTop: "10px", display: 'inline-block', textDecoration: 'none' }}>Presupuesto</a>
         </div>
       )}
 

@@ -3,34 +3,68 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
+const categoryLabels: Record<string, string> = {
+  "puertas-ventanas": "Puertas & Ventanas",
+  "cocinas": "Cocinas",
+  "dormitorios-closets": "Dormitorios & Closets",
+  "oficina-otros": "Oficinas & Otros"
+};
+
 const PROJECTS = [
   {
     id: 1,
-    title: "Dormitorio Royal Oak",
-    category: "bedroom",
-    wood: "Roble Natural y Ébano",
-    fabric: "Lino Crema (Twinbru Linen)",
-    image: "/bedroom.png",
-    description: "Cama y mesas de noche integradas con acentos dorados y cabecera de lino premium texturizada.",
+    title: "Puerta Principal Pivotante",
+    category: "puertas-ventanas",
+    wood: "Cedro Andino Seleccionado",
+    fabric: "Herrajes de Acero Inoxidable Mate",
+    image: "/galeria/puerta.jpeg",
+    description: "Puerta de gran formato pivotante fabricada en cedro macizo para entrada principal de residencia.",
   },
   {
     id: 2,
-    title: "Cocina Charcoal Elegance",
-    category: "kitchen",
-    wood: "Ébano Carbonizado",
-    fabric: "Acero y Latón Pulido",
-    image: "/kitchen.png",
-    description: "Gabinetes minimalistas de roble oscuro con iluminación LED cálida y tiradores de oro pulido.",
+    title: "Cocina Integral Premium",
+    category: "cocinas",
+    wood: "Melamina Pelíkan Gris y Madera",
+    fabric: "Bisagras y Correderas de Cierre Suave",
+    image: "/galeria/cosina.jpeg",
+    description: "Mobiliario de cocina moderno con gabinetes de alta capacidad, optimizado según diseño de arquitecto.",
   },
   {
     id: 3,
-    title: "Sillón Emerald Accent",
-    category: "living",
-    wood: "Nogal Macizo",
-    fabric: "Terciopelo Esmeralda (Twinbru Velvet)",
-    image: "/armchair.png",
-    description: "Sillón de lectura ergonómico con patas estilizadas de nogal y puntas de bronce torneadas a mano.",
+    title: "Armarios y Closets Empotrados",
+    category: "dormitorios-closets",
+    wood: "Melamina de Alta Densidad",
+    fabric: "Tiradores de Perfil de Aluminio Anodizado",
+    image: "/galeria/armario_closet.png",
+    description: "Organización de closet a medida con cajoneras ocultas y zapateras integradas en dormitorio principal.",
   },
+  {
+    id: 4,
+    title: "Detalles de Acabado e Instalación",
+    category: "oficina-otros",
+    wood: "Roble y Melamina Texturizada",
+    fabric: "Poliuretano de Alta Resistencia",
+    image: "/galeria/acabados.png",
+    description: "Instalación milimétrica en obra de muebles de oficina y estanterías con acabados de alta costura.",
+  },
+  {
+    id: 5,
+    title: "Escalera en Madera Maciza",
+    category: "oficina-otros",
+    wood: "Madera Maciza Tratada",
+    fabric: "Pasamanos Ergonómico Integrado",
+    image: "/galeria/escalera.jpeg",
+    description: "Escalera autoportante de ebanistería fina con ensamble tradicional y estructura sólida.",
+  },
+  {
+    id: 6,
+    title: "Balcón y Ventanales Residenciales",
+    category: "puertas-ventanas",
+    wood: "Madera Tornillo Estufada",
+    fabric: "Barniz Marino con Protección Filtro UV",
+    image: "/galeria/balcon.jpeg",
+    description: "Estructuras de marcos para ventanas y balcones resistentes a la intemperie.",
+  }
 ];
 
 export default function Gallery() {
@@ -89,9 +123,10 @@ export default function Gallery() {
       }}>
         {[
           { key: "all", label: "Todos" },
-          { key: "bedroom", label: "Dormitorio" },
-          { key: "kitchen", label: "Cocina" },
-          { key: "living", label: "Sala de Estar" }
+          { key: "puertas-ventanas", label: "Puertas y Ventanas" },
+          { key: "cocinas", label: "Cocinas" },
+          { key: "dormitorios-closets", label: "Dormitorios y Closets" },
+          { key: "oficina-otros", label: "Oficinas y Otros" }
         ].map((btn) => (
           <button
             key={btn.key}
@@ -163,7 +198,7 @@ export default function Gallery() {
                 letterSpacing: "0.1em",
                 textTransform: "uppercase"
               }}>
-                {project.category === "bedroom" ? "Dormitorio" : project.category === "kitchen" ? "Cocina" : "Sala"}
+                {categoryLabels[project.category] || project.category}
               </span>
             </div>
 

@@ -1,3 +1,4 @@
+import bar from "../../public/galeria/terminados.jpeg"
 export interface ProductDetails {
   title: string;
   category: string;
@@ -7,6 +8,8 @@ export interface ProductDetails {
   finishes: string[];
   features: string[];
   image: string;
+  images?: string[];
+  imageCaptions?: string[];
 }
 
 export interface ServiceDetails {
@@ -37,7 +40,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Nogal Negro", "Roble Estufado", "Cedro"],
     finishes: ["Barniz de poliuretano mate", "Acabado al aceite natural"],
     features: ["Telas certificadas Twinbru resistentes a manchas", "Detalles de capitoné cosidos a mano", "Aislamiento acústico integrado para el cabecero"],
-    image: "/bedroom.png"
+    image: "/galeria/cabecera_tapizada.png"
   },
   "mesas-noche": {
     title: "Mesas de Noche de Ébano",
@@ -47,7 +50,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Ébano Macizo", "Nogal Selecto", "Roble Ahumado"],
     finishes: ["Laca satinada negra", "Aceite danés natural", "Pulido espejo en frentes de cajón"],
     features: ["Cajones con uniones cola de milano", "Carga inalámbrica oculta opcional en superficie", "Interiores de cajones forrados en terciopelo"],
-    image: "/bedroom.png"
+    image: "/galeria/mesa_noche_ebano.png"
   },
   "closets": {
     title: "Armarios & Closets",
@@ -57,7 +60,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Cedro de Olor (interiores)", "Roble", "Alerce"],
     finishes: ["Poliuretano texturizado", "Laca transparente de poro abierto"],
     features: ["Iluminación LED inteligente integrada con sensores de apertura", "Herrajes italianos Blum con garantía de por vida", "Pantaloneros y corbateros extraíbles de precisión"],
-    image: "/bedroom.png"
+    image: "/galeria/armario_closet.png"
   },
   "mesas-centro": {
     title: "Mesas de Centro Esculturales",
@@ -67,7 +70,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Nogal Negro", "Troncos de Olivo", "Caoba Peruana"],
     finishes: ["Resina epóxica cristalina (opcional)", "Aceite de linaza y tung", "Laca satinada mate"],
     features: ["Cortes transversales de troncos únicos (Live Edge)", "Estructuras de soporte invisibles", "Tratamiento térmico para estabilidad de la madera"],
-    image: "/armchair.png"
+    image: "/galeria/mesa_centro_escultural.png"
   },
   "consolas": {
     title: "Consolas y Aparadores",
@@ -77,7 +80,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Roble Francés", "Cedro Rojo", "Nogal"],
     finishes: ["Barniz mate texturizado", "Patina de oro sobre veta (cerusa)", "Laca mate"],
     features: ["Puertas con sistema push-to-open", "Repisas internas de vidrio templado regulables", "Estructura elevada para facilitar la limpieza"],
-    image: "/armchair.png"
+    image: "/galeria/aparador_consola.png"
   },
   "comedores": {
     title: "Juegos de Comedor de Lujo",
@@ -87,7 +90,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Nogal Americano", "Teca", "Caoba"],
     finishes: ["Poliuretano de alta resistencia al calor y líquidos", "Barniz acrílico mate"],
     features: ["Capacidad personalizada de 6 hasta 14 comensales", "Tableros de una sola pieza o biselados", "Niveladores ocultos para superficies irregulares"],
-    image: "/kitchen.png"
+    image: "/galeria/comedor_lujo.png"
   },
   "sillas": {
     title: "Sillas de Colección",
@@ -97,7 +100,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Fresno", "Nogal", "Cerezo"],
     finishes: ["Aceite de tung", "Laca mate natural"],
     features: ["Uniones tradicionales acuñadas expuestas", "Asientos tapizados con espumas de alta resiliencia", "Protectores de piso de cuero natural integrados"],
-    image: "/armchair.png"
+    image: "/galeria/silla_diseno.png"
   },
   "escritorios": {
     title: "Escritorios Ejecutivos",
@@ -107,7 +110,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Nogal Negro", "Caoba", "Ébano de Macasar"],
     finishes: ["Laca de poliuretano de alta resistencia a rayaduras", "Pulido a la cera"],
     features: ["Superficie de cuero natural de grano entero integrada", "Gestión de cables magnética oculta en las patas", "Cajones con amortiguación de impacto"],
-    image: "/armchair.png"
+    image: "/galeria/escritorio_ejecutivo.png"
   },
   "libreros": {
     title: "Libreros Integrados",
@@ -117,7 +120,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Roble Americano", "Cedro Andino", "Pino Oregón"],
     finishes: ["Laca transparente mate", "Acabado envejecido a la pátina"],
     features: ["Repisas reforzadas con alma de acero interna para evitar flexiones", "Escaleras de madera deslizantes sobre riel de latón opcionales", "Módulos de iluminación LED indirecta empotrados"],
-    image: "/armchair.png"
+    image: "/galeria/librero_integrado.png"
   },
   "paneles": {
     title: "Paneles Acústicos de Madera",
@@ -127,7 +130,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Roble", "Pino Radiata seleccionado", "Fresno"],
     finishes: ["Ignífugo mate certificado", "Barniz ecológico base agua"],
     features: ["Fieltro acústico de PET reciclado integrado", "Instalación modular limpia sin tornillos expuestos", "Mejora del aislamiento sonoro en hasta un 45%"],
-    image: "/armchair.png"
+    image: "/galeria/paneles_acusticos.png"
   },
   "cocinas": {
     title: "Muebles de Cocina Premium",
@@ -137,7 +140,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Roble Tratado", "Nogal", "Eucalipto Ahumado"],
     finishes: ["Lacas hidrófugas y antihuellas", "Aceites endurecedores resistentes al agua"],
     features: ["Frentes de cajón acoplados con veta continua", "Bisagras y rieles Blum Legrabox con cierre magnético", "Módulos de basura y reciclaje integrados de extracción total"],
-    image: "/kitchen.png"
+    image: "/galeria/cosina.jpeg"
   },
   "barras": {
     title: "Barras & Desayunadores",
@@ -147,7 +150,12 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Teca", "Roble Estufado", "Nogal"],
     finishes: ["Poliuretano de grado alimentario resistente a manchas de alcohol y café", "Aceite cera"],
     features: ["Tableros de barra con bordes orgánicos naturales", "Cavas integradas personalizadas", "Estructuras de soporte reforzadas de acero esmerilado"],
-    image: "/kitchen.png"
+    image: "/galeria/barra.jpeg",
+    images: ["/galeria/barra.jpeg", "/galeria/barra1.jpeg"],
+    imageCaptions: [
+      "Desayunador y barra con tablero Live Edge de madera Teca maciza",
+      "Área de barra con soportes flotantes y espacio para cava de vinos"
+    ]
   },
   "repisas": {
     title: "Estanterías Iluminadas",
@@ -157,7 +165,13 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Roble", "Nogal", "Cedro"],
     finishes: ["Barniz mate de poro cerrado", "Aceite cera"],
     features: ["Soportes internos flotantes con capacidad de hasta 35kg", "Luces LED cálidas regulables (CRI > 90) empotradas a ras de la madera", "Cableado de alimentación totalmente oculto en muros"],
-    image: "/kitchen.png"
+    image: "/galeria/estanteria.jpeg",
+    images: ["/galeria/estanteria.jpeg", "/galeria/estanteria1.jpeg", "/galeria/acabados.png"],
+    imageCaptions: [
+      "Repisa flotante de madera noble con tira de iluminación LED integrada",
+      "Módulo de estantería iluminada para almacenaje y decoración",
+      "Detalle de los acabados finos e instalación de herrajes ocultos"
+    ]
   },
   "vestidores": {
     title: "Vestidores Personalizados (Walk-in Closets)",
@@ -167,17 +181,7 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Cedro Aromático (interiores)", "Roble", "Nogal"],
     finishes: ["Laca transparente mate de bajo olor", "Lustrado a mano"],
     features: ["Zapateras con retroiluminación LED integrada", "Cajones con frentes de vidrio templado para fácil visualización", "Espejo de cuerpo entero giratorio con iluminación perimetral"],
-    image: "/bedroom.png"
-  },
-  "organizadores": {
-    title: "Isletas Centrales de Vestidor",
-    category: "A Medida",
-    description: "El elemento central de tu vestidor para organizar joyería, relojes y accesorios finos.",
-    longDescription: "Nuestras isletas centrales son la joya de la corona de los vestidores exclusivos. Ubicadas en el centro del vestidor, ofrecen una superficie superior de vidrio templado que permite ver el primer cajón organizador de joyería, relojes y corbatas, forrado en gamuza o terciopelo. En los laterales inferiores, incorporan cajoneras adicionales, zapateras o banquetas tapizadas integradas.",
-    woods: ["Nogal Negro", "Cedro", "Roble"],
-    finishes: ["Laca de alto brillo o mate satinado", "Cromados de bronce"],
-    features: ["Superficie superior con vidrio templado de seguridad de 10mm", "Organizadores internos de cajón tallados en madera con divisiones ajustables", "Enchufes y puertos de carga usb incorporados en los costados"],
-    image: "/bedroom.png"
+    image: "/galeria/armario_closet.png"
   },
   "tocadores": {
     title: "Tocadores Premium",
@@ -187,7 +191,48 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     woods: ["Nogal", "Cerezo", "Roble Blanco"],
     finishes: ["Poliuretano resistente a químicos y cosméticos", "Barniz mate"],
     features: ["Espejos de alta fidelidad con iluminación regulable inteligente y control táctil", "Cajones con bandejas organizadoras de acrílico extraíbles", "Soporte de secadora y plancha de cabello oculto en cajón lateral"],
-    image: "/bedroom.png"
+    image: "/galeria/tocador_premium.png"
+  },
+  "puertas": {
+    title: "Puertas Principales e Interiores",
+    category: "A Medida",
+    description: "Fabricación de puertas a medida en maderas seleccionadas y melamina con acabados finos.",
+    longDescription: "Diseñamos y fabricamos puertas principales pivotantes de gran formato y puertas interiores que combinan la calidez de la madera maciza (cedro, caoba, roble) y la durabilidad de la melamina de alta densidad. Cada puerta es diseñada de forma personalizada, integrando marcos de cajón macizos, tapajuntas a medida y herrajes premium con sistemas de amortiguación o cerraduras magnéticas.",
+    woods: ["Cedro Andino", "Caoba Peruana", "Roble Estufado", "Melamina MDF de alta densidad"],
+    finishes: ["Poliuretano de alta resistencia", "Barniz marino con filtro UV", "Laqueado texturizado"],
+    features: ["Estructuras sólidas a prueba de deformaciones", "Bisagras y cerraduras magnéticas silenciosas integradas", "Instalación en obra con calibración láser por ebanistas"],
+    image: "/galeria/puerta.jpeg",
+    images: ["/galeria/puerta.jpeg", "/galeria/puerta1.jpeg", "/galeria/puerta2.jpeg"],
+    imageCaptions: [
+      "Puerta Principal Pivotante de gran formato fabricada en Cedro macizo",
+      "Puerta interior con diseño contemporáneo y marcos a medida",
+      "Detalle de puerta principal de madera noble con chapa de seguridad"
+    ]
+  },
+  "escaleras": {
+    title: "Escaleras de Madera",
+    category: "A Medida",
+    description: "Estructuras autoportantes y pasamanos de diseño tallados en maderas macizas nobles.",
+    longDescription: "Diseñamos y fabricamos escaleras de madera maciza que son verdaderas esculturas estructurales en el hogar. Utilizando maderas duras de alta resistencia como el tornillo, caoba o roble, calculamos cada paso para una ergonomía perfecta y ensamblamos la estructura mediante técnicas tradicionales de ebanistería. Se complementan con pasamanos ergonómicos y detalles en acero o vidrio templado.",
+    woods: ["Tornillo Tratado", "Roble Estufado", "Caoba Andina"],
+    finishes: ["Poliuretano de alto tránsito mate", "Barniz marino con filtro UV"],
+    features: ["Pasos ergonómicos con huella antideslizante", "Uniones tradicionales de alta resistencia estructural", "Nivelación láser y montaje en obra por especialistas"],
+    image: "/galeria/escalera.jpeg",
+    images: ["/galeria/escalera.jpeg", "/galeria/escalera1.jpeg"],
+    imageCaptions: [
+      "Escalera autoportante de ebanistería fina con pasamanos de diseño en madera noble",
+      "Detalle de los pasos encajados y estructura de alta resistencia"
+    ]
+  },
+  "ventanas": {
+    title: "Ventanas de Madera a Medida",
+    category: "A Medida",
+    description: "Ventanas y balcones de madera noble con altos estándares de hermeticidad y estética.",
+    longDescription: "Fabricamos e instalamos ventanas y balcones en maderas altamente resistentes a la intemperie, como el tornillo o el cedro. Cada ventana es construida respetando rigurosamente los diseños estéticos del arquitecto y los requerimientos de la obra, ofreciendo un excelente aislamiento acústico y térmico con un sellado hermético superior.",
+    woods: ["Madera Tornillo Tratada", "Cedro Andino"],
+    finishes: ["Barniz marino de alta protección UV", "Poliuretano Mate"],
+    features: ["Sistemas de rieles y cierres herméticos de alta precisión", "Canales de drenaje pluvial integrados en el marco", "Ajuste perfecto en obra adaptado a las condiciones locales"],
+    image: "/galeria/balcon.jpeg"
   }
 };
 

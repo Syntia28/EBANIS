@@ -49,7 +49,7 @@ export default function ServicePage({ params }: PageProps) {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           {/* Breadcrumb / Back button */}
           <Link 
-            href="/#hero" 
+            href="/#inicio" 
             style={{ 
               display: "inline-flex", 
               alignItems: "center", 

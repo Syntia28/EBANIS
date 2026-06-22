@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { use, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "../../../components/Header";
@@ -16,6 +16,16 @@ export default function CollectionPage({ params }: PageProps) {
   const resolvedParams = use(params);
   const categoryKey = resolvedParams.category;
   const product = PRODUCT_DATA[categoryKey];
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [prevCategoryKey, setPrevCategoryKey] = useState<string | null>(null);
+
+  if (categoryKey !== prevCategoryKey) {
+    setPrevCategoryKey(categoryKey);
+    setSelectedImage(null);
+  }
+
+  const activeImage = selectedImage || (product ? product.image : "");
 
   if (!product) {
     return (
@@ -90,10 +100,12 @@ export default function CollectionPage({ params }: PageProps) {
                 }}
               >
                 <Image 
-                  src={product.image} 
+                  key={activeImage}
+                  src={activeImage} 
                   alt={product.title}
                   fill
                   style={{ objectFit: "cover" }}
+                  className="main-image"
                   priority
                 />
                 
@@ -119,6 +131,89 @@ export default function CollectionPage({ params }: PageProps) {
                   <h3 style={{ fontSize: "1.3rem", marginTop: "5px", color: "#fff" }}>Colección {product.category}</h3>
                 </div>
               </div>
+
+              {/* Dynamic Image Caption */}
+              {product.images && product.imageCaptions && (
+                <div className="glass-panel" style={{
+                  padding: "15px 20px",
+                  borderRadius: "6px",
+                  border: "1px solid rgba(197, 165, 95, 0.15)",
+                  background: "rgba(10, 10, 10, 0.4)",
+                  fontSize: "0.9rem",
+                  color: "#d4a94a",
+                  fontStyle: "italic",
+                  lineHeight: 1.4,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  marginTop: "-10px",
+                  marginBottom: "5px"
+                }}>
+                  <span style={{ 
+                    fontFamily: "var(--font-serif)", 
+                    fontWeight: 700,
+                    fontSize: "0.75rem",
+                    color: "#fff",
+                    borderRight: "1px solid rgba(197, 165, 95, 0.3)",
+                    paddingRight: "12px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    flexShrink: 0
+                  }}>
+                    Vista
+                  </span>
+                  <span style={{ color: "hsl(0,0%,85%)" }}>
+                    {product.imageCaptions[product.images.indexOf(activeImage)] || "Mobiliario de colección."}
+                  </span>
+                </div>
+              )}
+
+              {/* Gallery Thumbnails */}
+              {product.images && product.images.length > 1 && (
+                <div style={{
+                  display: "flex",
+                  gap: "12px",
+                  marginTop: "-10px",
+                  marginBottom: "5px",
+                  flexWrap: "wrap"
+                }}>
+                  {product.images.map((imgUrl, idx) => {
+                    const isSelected = activeImage === imgUrl;
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImage(imgUrl)}
+                        className={`thumbnail-btn ${isSelected ? "active" : ""}`}
+                        style={{
+                          position: "relative",
+                          width: "70px",
+                          height: "70px",
+                          borderRadius: "4px",
+                          overflow: "hidden",
+                          background: "none",
+                          border: "2px solid " + (isSelected ? "var(--gold-primary)" : "rgba(255,255,255,0.08)"),
+                          padding: 0,
+                          cursor: "pointer",
+                          transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                          boxShadow: isSelected ? "0 0 15px rgba(197, 165, 95, 0.25)" : "none"
+                        }}
+                      >
+                        <Image
+                          src={imgUrl}
+                          alt={`${product.title} vista ${idx + 1}`}
+                          fill
+                          style={{ 
+                            objectFit: "cover",
+                            opacity: isSelected ? 1 : 0.6,
+                            transition: "opacity 0.3s ease"
+                          }}
+                          className="thumbnail-img"
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Material specifications panel */}
               <div className="glass-panel" style={{ padding: "30px", borderRadius: "8px", display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -238,6 +333,33 @@ export default function CollectionPage({ params }: PageProps) {
         .back-btn:hover {
           color: #fff !important;
           transform: translateX(-4px);
+        }
+        .main-image {
+          animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-panel:hover .main-image {
+          transform: scale(1.05);
+        }
+        .thumbnail-btn:hover {
+          border-color: rgba(197, 165, 95, 0.6) !important;
+          transform: translateY(-2px);
+        }
+        .thumbnail-btn:hover .thumbnail-img {
+          opacity: 1 !important;
+        }
+        .thumbnail-btn.active {
+          transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0.2;
+            filter: blur(4px);
+          }
+          to {
+            opacity: 1;
+            filter: blur(0);
+          }
         }
         @media (min-width: 992px) {
           .product-layout {
