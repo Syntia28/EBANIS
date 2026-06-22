@@ -80,7 +80,7 @@ export default function About() {
               fontSize: "0.8rem",
               fontFamily: "var(--font-serif)",
               letterSpacing: "0.05em",
-              color: "hsl(0,0%,85%)"
+              color: "var(--foreground)"
             }}>
               Establecido desde el <strong style={{ color: "var(--gold-primary)" }}>15 de Marzo, 2021</strong>
             </span>
@@ -121,7 +121,7 @@ export default function About() {
               display: "flex",
               flexDirection: "column",
               gap: "18px",
-              color: "hsl(0,0%,80%)",
+              color: "var(--foreground)",
               fontSize: "0.98rem",
               lineHeight: "1.75",
               fontWeight: 300
@@ -172,7 +172,7 @@ export default function About() {
               </div>
               <div>
                 <h4 style={{ fontSize: "0.9rem", color: "#fff", marginBottom: "4px" }}>Artesanía de Precisión</h4>
-                <p style={{ fontSize: "0.8rem", color: "hsl(0,0%,65%)", lineHeight: 1.4 }}>
+                <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                   Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano.
                 </p>
               </div>
@@ -198,7 +198,7 @@ export default function About() {
               </div>
               <div>
                 <h4 style={{ fontSize: "0.9rem", color: "#fff", marginBottom: "4px" }}>Sostenibilidad Exclusiva</h4>
-                <p style={{ fontSize: "0.8rem", color: "hsl(0,0%,65%)", lineHeight: 1.4 }}>
+                <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                   Maderas nobles de origen legal con manejo forestal y reforestación responsable.
                 </p>
               </div>

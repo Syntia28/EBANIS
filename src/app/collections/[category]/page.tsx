@@ -35,7 +35,7 @@ export default function CollectionPage({ params }: PageProps) {
           <div className="glass-panel" style={{ padding: "50px 30px", maxWidth: "500px", textAlign: "center", borderRadius: "8px" }}>
             <AlertCircle size={48} style={{ color: "var(--gold-primary)", marginBottom: "20px" }} />
             <h1 style={{ fontSize: "1.8rem", marginBottom: "15px", fontFamily: "var(--font-serif)" }}>Colección No Encontrada</h1>
-            <p style={{ color: "hsl(0,0%,75%)", marginBottom: "30px", lineHeight: 1.6 }}>
+            <p style={{ color: "var(--foreground)", marginBottom: "30px", lineHeight: 1.6 }}>
               La colección solicitada no existe o se encuentra actualmente en desarrollo por nuestros diseñadores.
             </p>
             <Link href="/" className="btn-gold" style={{ display: "inline-block" }}>
@@ -162,7 +162,7 @@ export default function CollectionPage({ params }: PageProps) {
                   }}>
                     Vista
                   </span>
-                  <span style={{ color: "hsl(0,0%,85%)" }}>
+                  <span style={{ color: "var(--foreground)" }}>
                     {product.imageCaptions[product.images.indexOf(activeImage)] || "Mobiliario de colección."}
                   </span>
                 </div>
@@ -226,7 +226,7 @@ export default function CollectionPage({ params }: PageProps) {
                     <h5 style={{ fontSize: "0.75rem", color: "#fff", marginBottom: "8px" }}>Maderas Nobles Disponibles</h5>
                     <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" }}>
                       {product.woods.map((wood, idx) => (
-                        <li key={idx} style={{ fontSize: "0.8rem", color: "hsl(0,0%,75%)", display: "flex", alignItems: "center", gap: "6px" }}>
+                        <li key={idx} style={{ fontSize: "0.8rem", color: "var(--foreground)", display: "flex", alignItems: "center", gap: "6px" }}>
                           <Check size={12} style={{ color: "var(--gold-primary)" }} /> {wood}
                         </li>
                       ))}
@@ -237,7 +237,7 @@ export default function CollectionPage({ params }: PageProps) {
                     <h5 style={{ fontSize: "0.75rem", color: "#fff", marginBottom: "8px" }}>Acabados y Tratamientos</h5>
                     <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" }}>
                       {product.finishes.map((finish, idx) => (
-                        <li key={idx} style={{ fontSize: "0.8rem", color: "hsl(0,0%,75%)", display: "flex", alignItems: "center", gap: "6px" }}>
+                        <li key={idx} style={{ fontSize: "0.8rem", color: "var(--foreground)", display: "flex", alignItems: "center", gap: "6px" }}>
                           <Check size={12} style={{ color: "var(--gold-primary)" }} /> {finish}
                         </li>
                       ))}
@@ -264,10 +264,10 @@ export default function CollectionPage({ params }: PageProps) {
                 <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, marginBottom: "20px" }}>
                   {product.title}
                 </h1>
-                <p style={{ fontSize: "1.1rem", color: "hsl(0,0%,85%)", lineHeight: 1.6, fontWeight: 300, marginBottom: "20px" }}>
+                <p style={{ fontSize: "1.1rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300, marginBottom: "20px" }}>
                   {product.description}
                 </p>
-                <div style={{ color: "hsl(0,0%,70%)", fontSize: "0.95rem", lineHeight: 1.7, fontWeight: 300 }} className="long-desc">
+                <div style={{ color: "var(--foreground)", fontSize: "0.95rem", lineHeight: 1.7, fontWeight: 300 }} className="long-desc">
                   <p>{product.longDescription}</p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function CollectionPage({ params }: PageProps) {
                 </h4>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
                   {product.features.map((feature, idx) => (
-                    <li key={idx} style={{ fontSize: "0.85rem", color: "hsl(0,0%,75%)", display: "flex", alignItems: "flex-start", gap: "10px", lineHeight: 1.4 }}>
+                    <li key={idx} style={{ fontSize: "0.85rem", color: "var(--foreground)", display: "flex", alignItems: "flex-start", gap: "10px", lineHeight: 1.4 }}>
                       <span style={{ 
                         background: "rgba(197, 165, 95, 0.1)", 
                         color: "var(--gold-primary)", 
@@ -317,7 +317,7 @@ export default function CollectionPage({ params }: PageProps) {
                 >
                   Cotizar por WhatsApp
                 </a>
-                <span style={{ fontSize: "0.75rem", color: "hsl(0,0%,50%)", textAlign: "center", display: "block" }}>
+                <span style={{ fontSize: "0.75rem", color: "var(--foreground)", textAlign: "center", display: "block" }}>
                   * El proyecto se cotiza a medida de tus espacios. Un ebanista proyectista te responderá de inmediato.
                 </span>
               </div>

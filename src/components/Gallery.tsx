@@ -101,7 +101,7 @@ export default function Gallery() {
           Diseños de <span className="gold-text">Colección</span>
         </h2>
         <p style={{
-          color: "hsl(0,0%,70%)",
+          color: "var(--foreground)",
           maxWidth: "600px",
           margin: "0 auto",
           fontSize: "0.95rem",
@@ -128,12 +128,12 @@ export default function Gallery() {
           { key: "dormitorios-closets", label: "Dormitorios y Closets" },
           { key: "oficina-otros", label: "Oficinas y Otros" }
         ].map((btn) => (
-          <button
+              <button
             key={btn.key}
             onClick={() => setFilter(btn.key)}
             style={{
               background: filter === btn.key ? "var(--gold-metallic)" : "rgba(15, 15, 15, 0.6)",
-              color: filter === btn.key ? "#000" : "hsl(0,0%,85%)",
+                  color: filter === btn.key ? "#000" : "var(--foreground)",
               border: filter === btn.key ? "none" : "1px solid var(--card-border)",
               padding: "8px 20px",
               fontFamily: "var(--font-serif)",
@@ -211,7 +211,7 @@ export default function Gallery() {
               flexGrow: 1
             }}>
               <h3 style={{ fontSize: "1.1rem", color: "var(--foreground)" }}>{project.title}</h3>
-              <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,70%)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.5 }}>
                 {project.description}
               </p>
 
@@ -224,7 +224,7 @@ export default function Gallery() {
                 paddingTop: "15px",
                 borderTop: "1px solid rgba(255,255,255,0.06)",
                 fontSize: "0.75rem",
-                color: "hsl(0,0%,55%)"
+                color: "var(--foreground)"
               }}>
                 <div>
                   <strong style={{ color: "var(--gold-primary)", fontFamily: "var(--font-serif)" }}>Madera:</strong> {project.wood}

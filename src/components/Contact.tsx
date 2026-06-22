@@ -56,7 +56,7 @@ export default function Contact() {
             <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", marginBottom: "15px" }}>
               Comienza tu <span className="gold-text">Proyecto</span>
             </h2>
-            <p style={{ color: "hsl(0,0%,70%)", fontSize: "0.95rem", lineHeight: 1.6, fontWeight: 300 }}>
+            <p style={{ color: "var(--foreground)", fontSize: "0.95rem", lineHeight: 1.6, fontWeight: 300 }}>
               Visítanos en nuestro atelier en Cajamarca para ver muestras de maderas nobles y 
               seleccionar catálogos textiles exclusivos de la mano de nuestros diseñadores.
             </p>
@@ -70,7 +70,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Dirección del Atelier</h4>
-                <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,70%)", lineHeight: 1.4 }}>
+                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                   Psj, Psje. San Isidro 392, <br />
                   Cajamarca 06003, Perú
                 </p>
@@ -83,7 +83,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Contacto Telefónico</h4>
-                <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,70%)" }}>+51 945 876 123</p>
+                <p style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>+51 945 876 123</p>
               </div>
             </div>
 
@@ -93,7 +93,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Correo Electrónico</h4>
-                <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,70%)" }}>proyectos@ebanissoluciones.com</p>
+                <p style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>proyectos@ebanissoluciones.com</p>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Horario de Atención</h4>
-                <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,70%)", lineHeight: 1.4 }}>
+                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                   Lunes a Viernes: 9:00 AM - 6:00 PM <br />
                   Sábados: 9:00 AM - 1:00 PM
                 </p>
@@ -202,7 +202,7 @@ export default function Contact() {
                 gap: "10px"
               }}>
                 <strong>¡Solicitud Enviada con Éxito!</strong>
-                <p style={{ fontSize: "0.75rem", color: "hsl(0,0%,75%)" }}>
+                <p style={{ fontSize: "0.75rem", color: "var(--foreground)" }}>
                   Un ebanista proyectista se pondrá en contacto contigo para programar la llamada técnica.
                 </p>
               </div>

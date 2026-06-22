@@ -82,7 +82,7 @@ export default function ContactoPage() {
               margin: "0 auto 20px"
             }} />
             <p style={{ 
-              color: "hsl(0,0%,75%)", 
+              color: "var(--foreground)", 
               maxWidth: "700px", 
               margin: "0 auto", 
               fontSize: "1.05rem", 
@@ -123,7 +123,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Ubicación</h4>
-                    <p style={{ fontSize: "0.8rem", color: "hsl(0,0%,70%)", lineHeight: 1.4 }}>
+                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                       Psj. San Isidro 392 <br />
                       Cajamarca 06003, Perú
                     </p>
@@ -137,7 +137,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Teléfono & WhatsApp</h4>
-                    <p style={{ fontSize: "0.8rem", color: "hsl(0,0%,70%)" }}>+51 945 876 123</p>
+                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>+51 945 876 123</p>
                     <a 
                       href="https://wa.me/51945876123?text=Hola%20Ebanis%20Soluciones,%20deseo%20co-dise%C3%B1ar%20un%20proyecto." 
                       target="_blank" 
@@ -157,7 +157,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Correo Electrónico</h4>
-                    <p style={{ fontSize: "0.8rem", color: "hsl(0,0%,70%)" }}>proyectos@ebanissoluciones.com</p>
+                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>proyectos@ebanissoluciones.com</p>
                   </div>
                 </div>
 
@@ -168,7 +168,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Horario de Atención</h4>
-                    <p style={{ fontSize: "0.8rem", color: "hsl(0,0%,70%)", lineHeight: 1.4 }}>
+                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                       Lun - Vie: 9:00 AM - 6:00 PM <br />
                       Sábados: 9:00 AM - 1:00 PM
                     </p>
@@ -268,7 +268,7 @@ export default function ContactoPage() {
                     gap: "5px"
                   }}>
                     <strong>¡Solicitud Registrada con Éxito!</strong>
-                    <p style={{ fontSize: "0.75rem", color: "hsl(0,0%,75%)" }}>
+                    <p style={{ fontSize: "0.75rem", color: "var(--foreground)" }}>
                       Un proyectista del Atelier se pondrá en contacto contigo en las próximas 24 horas.
                     </p>
                   </div>
@@ -421,7 +421,7 @@ export default function ContactoPage() {
               <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", marginBottom: "15px" }}>
                 El Proceso de <span className="gold-text">Co-Diseño</span>
               </h2>
-              <p style={{ color: "hsl(0,0%,70%)", maxWidth: "600px", margin: "0 auto", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.6 }}>
+              <p style={{ color: "var(--foreground)", maxWidth: "600px", margin: "0 auto", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.6 }}>
                 Te acompañamos en cada etapa de la materialización de tus ideas, combinando la precisión técnica con la calidez del trabajo artesanal.
               </p>
             </div>
@@ -458,7 +458,7 @@ export default function ContactoPage() {
                   }}>{step.step}</span>
 
                   <h3 style={{ fontSize: "1.1rem", color: "#fff", zIndex: 2 }}>{step.title}</h3>
-                  <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,70%)", lineHeight: 1.6, fontWeight: 300, zIndex: 2 }}>
+                  <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300, zIndex: 2 }}>
                     {step.desc}
                   </p>
                 </div>

@@ -836,7 +836,7 @@ export default function FurnitureViewer() {
             onClick={() => setFocusMode("default")}
             style={{
               background: "transparent",
-              color: "hsl(0,0%,50%)",
+              color: "var(--foreground)",
               border: "none",
               cursor: "pointer",
               fontSize: "0.75rem",
@@ -846,7 +846,7 @@ export default function FurnitureViewer() {
               padding: "8px"
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold-primary)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(0,0%,50%)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--foreground)")}
           >
             Vista General
           </button>

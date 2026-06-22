@@ -72,7 +72,7 @@ export default function Hero() {
             <p style={{
               fontSize: "1.05rem",
               lineHeight: "1.7",
-              color: "hsl(24, 20%, 28%)",
+              color: "var(--foreground)",
               fontWeight: 300,
               maxWidth: "520px"
             }}>
@@ -106,7 +106,7 @@ export default function Hero() {
                 fontWeight: 600,
                 display: "block"
               }}>5+</span>
-              <span style={{ fontSize: "0.7rem", color: "hsl(24, 18%, 38%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Años de Trayectoria</span>
+              <span style={{ fontSize: "0.7rem", color: "var(--foreground)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Años de Trayectoria</span>
             </div>
             <div>
               <span style={{ 
@@ -116,7 +116,7 @@ export default function Hero() {
                 fontWeight: 600,
                 display: "block"
               }}>100%</span>
-              <span style={{ fontSize: "0.7rem", color: "hsl(24, 18%, 38%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Madera Certificada</span>
+              <span style={{ fontSize: "0.7rem", color: "var(--foreground)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Madera Certificada</span>
             </div>
             <div>
               <span style={{ 
@@ -126,7 +126,7 @@ export default function Hero() {
                 fontWeight: 600,
                 display: "block"
               }}>200+</span>
-              <span style={{ fontSize: "0.7rem", color: "hsl(24, 18%, 38%)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Espacios Transformados</span>
+              <span style={{ fontSize: "0.7rem", color: "var(--foreground)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Espacios Transformados</span>
             </div>
           </div>
         </div>

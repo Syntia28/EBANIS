@@ -1,7 +1,7 @@
 :root {
   /* Light warm amber/cream base palette */
   --background: hsl(36, 28%, 93%);
-  --foreground: hsl(24, 20%, 15%);
+  --foreground: #000;
   --card-bg: hsl(36, 30%, 97%);
   --card-border: hsla(35, 45%, 55%, 0.22);
   --card-border-hover: hsla(38, 55%, 50%, 0.45);
@@ -287,10 +287,15 @@ h6 {
 
 .dropdown-col a {
   font-size: 0.8rem;
-  color: hsl(24, 18%, 40%);
+  color: var(--foreground);
   transition: var(--transition-fast);
   display: block;
   padding: 4px 0;
+}
+
+/* Override common inline 'plomo' (lead-gray) colors to black */
+[style*="#6b6254"],[style*="#5a5242"],[style*="#9e9183"],[style*="#4a4338"],[style*="#8a7c65"],[style*="#5e5749"],[style*="#3d3830"],[style*="hsl(24, 18%, 40%)"] {
+  color: var(--foreground) !important;
 }
 
 .dropdown-col a:hover {

@@ -64,7 +64,7 @@ export default function Header() {
             <span style={{
               fontSize: "0.55rem",
               letterSpacing: "0.45em",
-              color: "hsl(24, 15%, 45%)",
+              color: "var(--foreground)",
               fontWeight: 500,
               marginTop: "2px"
             }}>SOLUCIONES</span>
@@ -242,9 +242,9 @@ export default function Header() {
             </div>
             {activeMobileDropdown === "colecciones" && (
               <div style={{ paddingLeft: "15px", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <Link href="/collections/camas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Dormitorio - Camas</Link>
-                <Link href="/collections/comedores" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Área Social - Comedores</Link>
-                <Link href="/collections/escritorios" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Oficinas - Escritorios</Link>
+                <Link href="/collections/camas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Dormitorio - Camas</Link>
+                <Link href="/collections/comedores" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Área Social - Comedores</Link>
+                <Link href="/collections/escritorios" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Oficinas - Escritorios</Link>
               </div>
             )}
           </div>
@@ -260,10 +260,10 @@ export default function Header() {
             </div>
             {activeMobileDropdown === "medida" && (
               <div style={{ paddingLeft: "15px", paddingTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <Link href="/collections/cocinas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Cocinas de Lujo</Link>
-                <Link href="/collections/vestidores" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Walk-in Closets</Link>
-                <Link href="/collections/puertas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Puertas de Madera & Melamina</Link>
-                <Link href="/collections/ventanas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "#a1a1a1" }}>Ventanas a Medida</Link>
+                <Link href="/collections/cocinas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Cocinas de Lujo</Link>
+                <Link href="/collections/vestidores" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Walk-in Closets</Link>
+                <Link href="/collections/puertas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Puertas de Madera & Melamina</Link>
+                <Link href="/collections/ventanas" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>Ventanas a Medida</Link>
               </div>
             )}
           </div>

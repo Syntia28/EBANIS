@@ -25,7 +25,7 @@ export default function ServicePage({ params }: PageProps) {
           <div className="glass-panel" style={{ padding: "50px 30px", maxWidth: "500px", textAlign: "center", borderRadius: "8px" }}>
             <AlertCircle size={48} style={{ color: "var(--gold-primary)", marginBottom: "20px" }} />
             <h1 style={{ fontSize: "1.8rem", marginBottom: "15px", fontFamily: "var(--font-serif)" }}>Servicio No Encontrado</h1>
-            <p style={{ color: "hsl(0,0%,75%)", marginBottom: "30px", lineHeight: 1.6 }}>
+            <p style={{ color: "var(--foreground)", marginBottom: "30px", lineHeight: 1.6 }}>
               El servicio solicitado no existe o se encuentra actualmente inactivo en nuestro atelier.
             </p>
             <Link href="/" className="btn-gold" style={{ display: "inline-block" }}>
@@ -140,7 +140,7 @@ export default function ServicePage({ params }: PageProps) {
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <div>
-                        <p style={{ fontSize: "0.85rem", color: "hsl(0,0%,85%)", lineHeight: 1.4 }}>{step}</p>
+                        <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.4 }}>{step}</p>
                       </div>
                     </div>
                   ))}
@@ -165,10 +165,10 @@ export default function ServicePage({ params }: PageProps) {
                 <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, marginBottom: "20px" }}>
                   {service.title}
                 </h1>
-                <p style={{ fontSize: "1.1rem", color: "hsl(0,0%,85%)", lineHeight: 1.6, fontWeight: 300, marginBottom: "20px" }}>
+                <p style={{ fontSize: "1.1rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300, marginBottom: "20px" }}>
                   {service.description}
                 </p>
-                <div style={{ color: "hsl(0,0%,70%)", fontSize: "0.95rem", lineHeight: 1.7, fontWeight: 300 }} className="long-desc">
+                <div style={{ color: "var(--foreground)", fontSize: "0.95rem", lineHeight: 1.7, fontWeight: 300 }} className="long-desc">
                   <p>{service.longDescription}</p>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default function ServicePage({ params }: PageProps) {
                 </h4>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
                   {service.features.map((feature, idx) => (
-                    <li key={idx} style={{ fontSize: "0.85rem", color: "hsl(0,0%,75%)", display: "flex", alignItems: "flex-start", gap: "10px", lineHeight: 1.4 }}>
+                    <li key={idx} style={{ fontSize: "0.85rem", color: "var(--foreground)", display: "flex", alignItems: "flex-start", gap: "10px", lineHeight: 1.4 }}>
                       <span style={{ 
                         background: "rgba(197, 165, 95, 0.1)", 
                         color: "var(--gold-primary)", 
@@ -218,7 +218,7 @@ export default function ServicePage({ params }: PageProps) {
                 >
                   Consultar Servicio por WhatsApp
                 </a>
-                <span style={{ fontSize: "0.75rem", color: "hsl(0,0%,50%)", textAlign: "center", display: "block" }}>
+                <span style={{ fontSize: "0.75rem", color: "var(--foreground)", textAlign: "center", display: "block" }}>
                   * Asesoría técnica inicial sin costo. Resolvemos tus consultas en tiempo real.
                 </span>
               </div>
