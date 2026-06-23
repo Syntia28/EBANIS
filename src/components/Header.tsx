@@ -74,7 +74,7 @@ const NAV_ITEMS = [
           { label: "Modelado y Diseño 3D", href: "/services/diseno-3d" },
           { label: "Ebanistería de Precisión", href: "/services/ebanisteria" },
           { label: "Instalación Profesional", href: "/services/instalacion" },
-          { label: "Trabajos Personalizados", href: "/contacto" },
+          { label: "Trabajos Personalizados", href: "/services/personalizados" },
         ],
       },
     ],
@@ -84,9 +84,9 @@ const NAV_ITEMS = [
 ];
 
 export default function Header() {
-  const [scrolled,         setScrolled]         = useState(false);
-  const [mobileOpen,       setMobileOpen]        = useState(false);
-  const [mobileExpanded,   setMobileExpanded]    = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 24);
@@ -103,7 +103,7 @@ export default function Header() {
           background: scrolled
             ? "rgba(255, 252, 243, 0.88)"
             : "rgba(255, 252, 243, 0.55)",
-          backdropFilter:       "blur(44px) saturate(1.8)",
+          backdropFilter: "blur(44px) saturate(1.8)",
           WebkitBackdropFilter: "blur(44px) saturate(1.8)",
           borderBottom: scrolled
             ? "1px solid rgba(197,165,95,0.25)"
@@ -170,8 +170,8 @@ export default function Header() {
                       color: "var(--fg-muted)", padding: "0 16px", height: "100%",
                       transition: "color 0.2s ease",
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.color = "var(--foreground)")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}
+                      onMouseEnter={e => (e.currentTarget.style.color = "var(--foreground)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}
                     >
                       {item.label}
                       <ChevronDown size={12} style={{ opacity: 0.5, transition: "transform 0.3s" }} />
@@ -188,7 +188,7 @@ export default function Header() {
                             <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "var(--gold-primary)", display: "inline-block", flexShrink: 0 }} />
                             {col.group}
                           </h4>
-                           <ul>
+                          <ul>
                             {col.items.map((it) => (
                               <li key={it.label}>
                                 <Link href={it.href} style={{
@@ -197,8 +197,8 @@ export default function Header() {
                                   padding: "5px 10px", borderRadius: "8px",
                                   transition: "all 0.2s ease", textDecoration: "none",
                                 }}
-                                onMouseEnter={e => { e.currentTarget.style.color = "var(--foreground)"; e.currentTarget.style.background = "rgba(197, 165, 95, 0.1)"; }}
-                                onMouseLeave={e => { e.currentTarget.style.color = "var(--fg-muted)"; e.currentTarget.style.background = "transparent"; }}
+                                  onMouseEnter={e => { e.currentTarget.style.color = "var(--foreground)"; e.currentTarget.style.background = "rgba(197, 165, 95, 0.1)"; }}
+                                  onMouseLeave={e => { e.currentTarget.style.color = "var(--fg-muted)"; e.currentTarget.style.background = "transparent"; }}
                                 >
                                   <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(197,165,95,0.6)", flexShrink: 0, display: "inline-block" }} />
                                   {it.label}
@@ -220,8 +220,8 @@ export default function Header() {
                       transition: "color 0.2s ease", textDecoration: "none",
                       position: "relative",
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.color = "var(--foreground)")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}
+                      onMouseEnter={e => (e.currentTarget.style.color = "var(--foreground)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}
                     >
                       {item.label}
                     </Link>
@@ -301,15 +301,15 @@ export default function Header() {
                       </button>
                       {mobileExpanded === item.label && (
                         <div style={{ padding: "12px 0 8px 16px", display: "flex", flexDirection: "column", gap: "6px" }}>
-                           {item.children.flatMap(col => col.items.map(it => (
+                          {item.children.flatMap(col => col.items.map(it => (
                             <Link key={it.label} href={it.href} onClick={() => setMobileOpen(false)} style={{
                               fontSize: "0.82rem", color: "var(--fg-muted)",
                               textDecoration: "none", padding: "6px 10px", borderRadius: "8px",
                               transition: "all 0.2s",
                               display: "block"
                             }}
-                            onMouseEnter={e => { e.currentTarget.style.color = "var(--foreground)"; e.currentTarget.style.background = "rgba(197,165,95,0.1)"; }}
-                            onMouseLeave={e => { e.currentTarget.style.color = "var(--fg-muted)"; e.currentTarget.style.background = "transparent"; }}
+                              onMouseEnter={e => { e.currentTarget.style.color = "var(--foreground)"; e.currentTarget.style.background = "rgba(197,165,95,0.1)"; }}
+                              onMouseLeave={e => { e.currentTarget.style.color = "var(--fg-muted)"; e.currentTarget.style.background = "transparent"; }}
                             >{it.label}</Link>
                           )))}
                         </div>

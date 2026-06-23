@@ -287,5 +287,22 @@ export const SERVICES_DATA: Record<string, ServiceDetails> = {
       "Garantía estructural completa sobre la instalación"
     ],
     image: "/kitchen.png"
+  },
+  "personalizados": {
+    title: "Trabajos Personalizados a Medida",
+    description: "Proyectos únicos diseñados desde cero para adaptarse a cualquier espacio o visión creativa.",
+    longDescription: "Cada cliente tiene una visión única. En Ebanis Soluciones nos especializamos en hacer realidad proyectos que no encajan en ningún catálogo estándar: escaleras de madera maciza, paneles decorativos, estructuras de balcón, muebles de exterior tratados, revestimientos en madera para paredes, o cualquier pieza de ebanistería que tu imaginación y tu espacio demanden. Nuestro equipo de diseñadores y ebanistas trabaja contigo desde el primer boceto hasta la instalación final, garantizando un resultado de lujo adaptado 100% a tus necesidades.",
+    process: [
+      "Reunión de co-diseño para entender la visión, espacio y requerimientos técnicos.",
+      "Elaboración de planos y modelado 3D del proyecto personalizado.",
+      "Selección de materiales nobles (maderas macizas, herrajes, acabados) con el cliente.",
+      "Fabricación artesanal en taller y entrega con instalación profesional incluida."
+    ],
+    features: [
+      "Diseño 100% original, sin piezas de catálogo estándar",
+      "Asesoría técnica completa durante todo el proceso creativo",
+      "Garantía de satisfacción y acabados de lujo artesanal"
+    ],
+    image: "/galeria/escalera.jpeg"
   }
 };
