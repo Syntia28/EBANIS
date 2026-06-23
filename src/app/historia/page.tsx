@@ -113,15 +113,15 @@ export default function HistoriaPage() {
                 alignItems: "center",
                 gap: "12px"
               }}>
-                <History size={16} style={{ color: "var(--gold-primary)" }} />
+                <History size={16} style={{ color: "rgba(209, 171, 82, 1)" }} />
                 <span style={{
                   fontSize: "0.8rem",
                   fontFamily: "var(--font-serif)",
                   letterSpacing: "0.05em",
-                  color: "var(--foreground)"
+                  color: "rgba(255, 255, 255, 1)"
                 }}>
-                  Atelier Fundado el <strong style={{ color: "var(--gold-primary)" }}>15 de Marzo, 2021</strong>
-                </span>
+                  Atelier Fundado el <strong style={{ color: "rgba(220, 186, 51, 1)" }}>15 de Marzo, 2021</strong>
+                </span>|
               </div>
             </div>
 
@@ -204,7 +204,7 @@ export default function HistoriaPage() {
                     <Hammer size={18} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "4px" }}>Artesanía de Precisión</h4>
+                    <h4 style={{ fontSize: "0.85rem", color: "#0a0101ff", marginBottom: "4px" }}>Artesanía de Precisión</h4>
                     <p style={{ fontSize: "0.75rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                       Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano.
                     </p>
@@ -230,7 +230,7 @@ export default function HistoriaPage() {
                     <Trees size={18} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "4px" }}>Sostenibilidad Exclusiva</h4>
+                    <h4 style={{ fontSize: "0.85rem", color: "#0f0f0fff", marginBottom: "4px" }}>Sostenibilidad Exclusiva</h4>
                     <p style={{ fontSize: "0.75rem", color: "var(--foreground)", lineHeight: 1.4 }}>
                       Maderas nobles de origen legal con manejo forestal y reforestación responsable.
                     </p>
@@ -275,7 +275,7 @@ export default function HistoriaPage() {
               {/* Card 1 - Passion */}
               <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease" }}>
                 <div style={{ color: "var(--gold-primary)", width: "fit-content" }}><Heart size={24} /></div>
-                <h3 style={{ fontSize: "1.1rem", color: "#fff" }}>Pasión por la Madera</h3>
+                <h3 style={{ fontSize: "1.1rem", color: "#0c0101ff" }}>Pasión por la Madera</h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300 }}>
                   Cada pieza de madera es única. Estudiamos sus vetas, nudos y comportamiento para aplicar la técnica de ensamblado y el aceite de acabado que mejor resalten su belleza orgánica innata.
                 </p>
@@ -284,7 +284,7 @@ export default function HistoriaPage() {
               {/* Card 2 - Local Craft */}
               <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease" }}>
                 <div style={{ color: "var(--gold-primary)", width: "fit-content" }}><Award size={24} /></div>
-                <h3 style={{ fontSize: "1.1rem", color: "#fff" }}>Maestría Ebanista</h3>
+                <h3 style={{ fontSize: "1.1rem", color: "#0d0000ff" }}>Maestría Ebanista</h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300 }}>
                   Trabajamos con artesanos locales de Cajamarca, rescatando técnicas tradicionales de ensamble de madera maciza (como la caja y espiga y cola de milano) para garantizar muebles que duren por generaciones.
                 </p>
@@ -293,7 +293,7 @@ export default function HistoriaPage() {
               {/* Card 3 - Sustainability */}
               <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease" }}>
                 <div style={{ color: "var(--gold-primary)", width: "fit-content" }}><Trees size={24} /></div>
-                <h3 style={{ fontSize: "1.1rem", color: "#fff" }}>Maderas Certificadas</h3>
+                <h3 style={{ fontSize: "1.1rem", color: "#0a0000ff" }}>Maderas Certificadas</h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300 }}>
                   Adquirimos madera exclusivamente de concesiones forestales reguladas y certificadas FSC®. Así, nos aseguramos de que el abastecimiento proteja el futuro ecológico de los bosques del Perú.
                 </p>
@@ -304,8 +304,6 @@ export default function HistoriaPage() {
 
         </div>
       </main>
-
-      <Footer />
 
       <style jsx>{`
         @keyframes spin {
@@ -336,6 +334,7 @@ export default function HistoriaPage() {
           }
         }
       `}</style>
+      <Footer />
     </div>
   );
 }

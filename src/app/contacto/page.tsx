@@ -53,13 +53,13 @@ export default function ContactoPage() {
 
       <main style={{ flexGrow: 1, padding: "140px 20px 80px 20px", position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          
+
           {/* Hero Section */}
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span style={{ 
-              fontFamily: "var(--font-serif)", 
-              fontSize: "0.85rem", 
-              color: "var(--gold-primary)", 
+            <span style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.85rem",
+              color: "var(--gold-primary)",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               display: "block",
@@ -67,11 +67,11 @@ export default function ContactoPage() {
             }}>
               Atelier Cajamarca
             </span>
-            <h1 style={{ 
-              fontSize: "clamp(2.5rem, 5vw, 3.8rem)", 
-              lineHeight: 1.1, 
+            <h1 style={{
+              fontSize: "clamp(2.5rem, 5vw, 3.8rem)",
+              lineHeight: 1.1,
               marginBottom: "20px",
-              fontFamily: "var(--font-serif)" 
+              fontFamily: "var(--font-serif)"
             }}>
               Contacto & <span className="gold-text">Asesoría</span>
             </h1>
@@ -81,15 +81,15 @@ export default function ContactoPage() {
               background: "linear-gradient(90deg, transparent, var(--gold-primary), transparent)",
               margin: "0 auto 20px"
             }} />
-            <p style={{ 
-              color: "var(--foreground)", 
-              maxWidth: "700px", 
-              margin: "0 auto", 
-              fontSize: "1.05rem", 
+            <p style={{
+              color: "var(--foreground)",
+              maxWidth: "700px",
+              margin: "0 auto",
+              fontSize: "1.05rem",
               fontWeight: 300,
-              lineHeight: 1.7 
+              lineHeight: 1.7
             }}>
-              Visítanos en nuestro atelier de diseño o solicita una llamada técnica con un proyectista. 
+              Visítanos en nuestro atelier de diseño o solicita una llamada técnica con un proyectista.
               Juntos daremos forma a tus espacios con maderas nobles certificadas y la maestría del tallado a mano.
             </p>
           </div>
@@ -102,13 +102,13 @@ export default function ContactoPage() {
             alignItems: "start",
             marginBottom: "80px"
           }} className="contacto-grid">
-            
+
             {/* Left Column: Contact Cards & Styled Map */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-              <h2 style={{ 
-                fontSize: "1.4rem", 
-                fontFamily: "var(--font-serif)", 
-                borderBottom: "1px solid rgba(197,165,95,0.15)", 
+              <h2 style={{
+                fontSize: "1.4rem",
+                fontFamily: "var(--font-serif)",
+                borderBottom: "1px solid rgba(197,165,95,0.15)",
                 paddingBottom: "12px",
                 color: "#fff"
               }}>
@@ -124,7 +124,7 @@ export default function ContactoPage() {
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Ubicación</h4>
                     <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                      Psj. San Isidro 392 <br />
+                      Av. Mártires de Uchuraccay N°2420 Barrio San Martin <br />
                       Cajamarca 06003, Perú
                     </p>
                   </div>
@@ -137,11 +137,11 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Teléfono & WhatsApp</h4>
-                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>+51 945 876 123</p>
-                    <a 
-                      href="https://wa.me/51945876123?text=Hola%20Ebanis%20Soluciones,%20deseo%20co-dise%C3%B1ar%20un%20proyecto." 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>+51 976 781 459</p>
+                    <a
+                      href="https://wa.me/51976781459?text=Hola%20Ebanis%20Soluciones,%20deseo%20co-dise%C3%B1ar%20un%20proyecto."
+                      target="_blank"
+                      rel="noopener noreferrer"
                       style={{ fontSize: "0.75rem", color: "var(--gold-primary)", textDecoration: "none", display: "block", marginTop: "5px" }}
                       className="card-link"
                     >
@@ -157,7 +157,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Correo Electrónico</h4>
-                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>proyectos@ebanissoluciones.com</p>
+                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>ebanissoluciones@gmail.com</p>
                   </div>
                 </div>
 
@@ -198,8 +198,8 @@ export default function ContactoPage() {
                   className="map-iframe"
                   title="Atelier de Diseño Ebanis Soluciones"
                 />
-                
-                <a 
+
+                <a
                   href="https://maps.google.com/?q=Atelier+de+Dise%C3%B1o+Ebanis+Soluciones,+Psje.+San+Isidro+392,+Cajamarca+06003,+Peru"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -233,17 +233,17 @@ export default function ContactoPage() {
 
             {/* Right Column: Premium Form */}
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-              <h2 style={{ 
-                fontSize: "1.4rem", 
-                fontFamily: "var(--font-serif)", 
-                borderBottom: "1px solid rgba(197,165,95,0.15)", 
+              <h2 style={{
+                fontSize: "1.4rem",
+                fontFamily: "var(--font-serif)",
+                borderBottom: "1px solid rgba(197,165,95,0.15)",
                 paddingBottom: "12px",
                 color: "#fff"
               }}>
                 Solicitud de Co-Diseño
               </h2>
 
-              <form 
+              <form
                 onSubmit={handleSubmit}
                 className="glass-panel"
                 style={{
@@ -277,8 +277,8 @@ export default function ContactoPage() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }} className="form-row">
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Nombre Completo</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -297,8 +297,8 @@ export default function ContactoPage() {
 
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Número de Celular</label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -318,8 +318,8 @@ export default function ContactoPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Correo Electrónico</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -338,7 +338,7 @@ export default function ContactoPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Línea de Interés</label>
-                  <select 
+                  <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     style={{
@@ -362,7 +362,7 @@ export default function ContactoPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Detalla tus Ideas y Espacio</label>
-                  <textarea 
+                  <textarea
                     rows={4}
                     required
                     value={formData.message}
@@ -381,13 +381,13 @@ export default function ContactoPage() {
                   />
                 </div>
 
-                <button 
-                  type="submit" 
-                  className="btn-gold" 
-                  style={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
+                <button
+                  type="submit"
+                  className="btn-gold"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     gap: "10px",
                     marginTop: "10px",
                     cursor: "pointer",
@@ -401,16 +401,16 @@ export default function ContactoPage() {
           </div>
 
           {/* Co-Design Process Guide Section */}
-          <div style={{ 
-            borderTop: "1px solid rgba(197,165,95,0.15)", 
+          <div style={{
+            borderTop: "1px solid rgba(197,165,95,0.15)",
             paddingTop: "60px",
             position: "relative"
           }}>
             <div style={{ textAlign: "center", marginBottom: "45px" }}>
-              <span style={{ 
-                fontFamily: "var(--font-serif)", 
-                fontSize: "0.75rem", 
-                color: "var(--gold-primary)", 
+              <span style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.75rem",
+                color: "var(--gold-primary)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 display: "block",
@@ -432,7 +432,7 @@ export default function ContactoPage() {
               gap: "25px"
             }} className="process-grid">
               {processSteps.map((step, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="glass-panel process-card"
                   style={{

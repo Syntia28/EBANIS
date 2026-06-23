@@ -1,240 +1,229 @@
 "use client";
 
 import React from "react";
-import { Hammer, Trees, History } from "lucide-react";
+import { Hammer, Trees, History, Sparkles } from "lucide-react";
+
+const PILLARS = [
+  { icon: <Hammer size={20} />,   title: "Artesanía de Precisión",  desc: "Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano." },
+  { icon: <Trees size={20} />,    title: "Sostenibilidad Exclusiva", desc: "Maderas nobles de origen legal con manejo forestal y reforestación responsable." },
+  { icon: <Sparkles size={20} />, title: "Diseño Personalizado",     desc: "Cada pieza es única, creada desde cero para adaptarse a tu espacio y visión." },
+];
 
 export default function About() {
   return (
     <section
       id="about"
       style={{
-        padding: "100px 20px",
-        background: "rgba(8, 8, 8, 0.5)",
-        borderTop: "1px solid var(--card-border)",
-        borderBottom: "1px solid var(--card-border)",
-        position: "relative"
+        padding: "110px 20px",
+        position: "relative", overflow: "hidden",
+        borderTop: "1px solid rgba(197,165,95,0.15)",
       }}
     >
+      {/* Ambient warm glow */}
       <div style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        gap: "60px",
-        alignItems: "center"
-      }} className="about-grid">
+        position: "absolute", top: "-10%", left: "-5%",
+        width: "55vw", height: "55vw",
+        background: "radial-gradient(circle, hsla(40,80%,74%,0.45) 0%, transparent 65%)",
+        filter: "blur(90px)", pointerEvents: "none", zIndex: 0,
+        mixBlendMode: "multiply",
+      }} />
+      <div style={{
+        position: "absolute", bottom: "-5%", right: "-5%",
+        width: "45vw", height: "45vw",
+        background: "radial-gradient(circle, hsla(22,70%,72%,0.38) 0%, transparent 65%)",
+        filter: "blur(90px)", pointerEvents: "none", zIndex: 0,
+        mixBlendMode: "multiply",
+      }} />
 
-        {/* Left: Brand Identity Showcase (Large Logo) */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px" }}>
-          <div className="glass-panel logo-container" style={{
-            position: "relative",
-            width: "300px",
-            height: "300px",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: "1px solid rgba(197, 165, 95, 0.2)",
-            background: "radial-gradient(circle, rgba(20,18,15,0.85) 0%, rgba(10,9,8,0.98) 100%)",
-            boxShadow: "0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(197, 165, 95, 0.03)",
-            transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-            padding: "45px"
-          }}>
-            <img 
-              src="/logo/ebanis.png" 
-              alt="Logo Ebanis" 
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.3))"
-              }}
-              className="large-logo"
-            />
-            {/* Elegant outer rotating border */}
+      <div
+        className="about-grid"
+        style={{
+          maxWidth: "1280px", margin: "0 auto",
+          position: "relative", zIndex: 1,
+          display: "grid", gridTemplateColumns: "1fr",
+          gap: "70px", alignItems: "center",
+        }}
+      >
+        {/* LEFT: Brand visual */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "28px" }}>
+          <div style={{ position: "relative", width: "280px", height: "280px" }}>
+            {/* Outer glow */}
             <div style={{
-              position: "absolute",
-              top: "-5px",
-              left: "-5px",
-              right: "-5px",
-              bottom: "-5px",
-              border: "1px dashed rgba(197, 165, 95, 0.25)",
-              borderRadius: "50%",
-              pointerEvents: "none",
-              animation: "spin 40s linear infinite"
+              position: "absolute", inset: "-22px", borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(197,165,95,0.18) 0%, transparent 70%)",
+              animation: "pulseRing 4s ease-in-out infinite",
             }} />
+            {/* Rotating dashed ring */}
+            <div style={{
+              position: "absolute", inset: "-8px",
+              border: "1px dashed rgba(197,165,95,0.3)",
+              borderRadius: "50%", animation: "spin 40s linear infinite",
+            }} />
+            <div style={{
+              position: "absolute", inset: "-3px",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderLeftColor: "rgba(197,165,95,0.15)",
+              borderRightColor: "rgba(197,165,95,0.15)",
+              borderBottomColor: "rgba(197,165,95,0.15)",
+              borderTopColor: "rgba(197,165,95,0.55)",
+              borderRadius: "50%",
+              animation: "spinReverse 22s linear infinite",
+            }} />
+            {/* Main circle — warm light glass */}
+            <div style={{
+              width: "280px", height: "280px", borderRadius: "50%",
+              background: "rgba(255,252,244,0.72)",
+              backdropFilter: "blur(40px) saturate(1.6)",
+              WebkitBackdropFilter: "blur(40px) saturate(1.6)",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderLeftColor: "rgba(255,255,255,0.95)",
+              borderRightColor: "rgba(255,255,255,0.95)",
+              borderTopColor: "rgba(255,255,255,1)",
+              borderBottomColor: "rgba(197,165,95,0.22)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              padding: "52px",
+              boxShadow: "0 16px 60px rgba(100,60,10,0.14), 0 0 0 1px rgba(255,255,255,0.7) inset, 0 1px 0 rgba(255,255,255,0.98) inset",
+            }}>
+              <img
+                src="/logo/ebanis.png" alt="Logo Ebanis"
+                className="about-logo-img"
+                style={{
+                  width: "100%", height: "100%", objectFit: "contain",
+                  filter: "drop-shadow(0 4px 12px rgba(100,60,10,0.2))",
+                  transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+                }}
+              />
+            </div>
           </div>
 
-          {/* Foundational plaque */}
-          <div className="glass-panel" style={{
-            padding: "16px 28px",
-            borderRadius: "30px",
-            border: "1px solid rgba(255,255,255,0.06)",
-            background: "rgba(15, 15, 15, 0.8)",
-            display: "flex",
-            alignItems: "center",
-            gap: "12px"
+          {/* Founded badge */}
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: "10px",
+            background: "rgba(255,252,244,0.72)",
+            backdropFilter: "blur(24px)",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            borderLeftColor: "rgba(255,255,255,0.9)",
+            borderRightColor: "rgba(255,255,255,0.9)",
+            borderTopColor: "rgba(255,255,255,0.98)",
+            borderBottomColor: "rgba(197,165,95,0.22)",
+            borderRadius: "999px", padding: "11px 24px",
+            boxShadow: "0 4px 20px rgba(100,60,10,0.1), 0 1px 0 rgba(255,255,255,0.98) inset",
           }}>
-            <History size={16} style={{ color: "var(--gold-primary)" }} />
-            <span style={{
-              fontSize: "0.8rem",
-              fontFamily: "var(--font-serif)",
-              letterSpacing: "0.05em",
-              color: "var(--foreground)"
-            }}>
-              Establecido desde el <strong style={{ color: "var(--gold-primary)" }}>15 de Marzo, 2021</strong>
+            <History size={14} style={{ color: "var(--gold-primary)" }} />
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "0.75rem", color: "var(--fg-muted)", letterSpacing: "0.05em" }}>
+              Fundada en{" "}<strong style={{ color: "var(--gold-primary)" }}>Cajamarca — 15 Mar, 2021</strong>
             </span>
           </div>
         </div>
 
-        {/* Right: Narrative & Essence details */}
+        {/* RIGHT: Content */}
         <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+          {/* Eyebrow */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div style={{ flex: "0 0 28px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(197,165,95,0.7))" }} />
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "0.72rem", color: "var(--gold-primary)", letterSpacing: "0.3em", textTransform: "uppercase" }}>Nuestra Esencia</span>
+            <div style={{ flex: "0 0 28px", height: "1px", background: "linear-gradient(90deg, rgba(197,165,95,0.7), transparent)" }} />
+          </div>
+
           <div>
-            <span style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.85rem",
-              color: "var(--gold-primary)",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              display: "block",
-              marginBottom: "8px"
-            }}>
-              Nuestra Esencia
-            </span>
-            <h2 style={{
-              fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
-              lineHeight: 1.15,
-              marginBottom: "20px",
-              fontFamily: "var(--font-serif)"
-            }}>
-              Ebanistería fina con <br />
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontFamily: "var(--font-serif)", lineHeight: 1.12, marginBottom: "16px" }}>
+              <span style={{ color: "var(--foreground)" }}>Ebanistería fina con</span>{" "}<br />
               <span className="gold-text">alma y precisión</span>
             </h2>
-            <div style={{
-              width: "60px",
-              height: "2px",
-              background: "var(--gold-primary)",
-              marginBottom: "25px"
-            }} />
-            
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "18px",
-              color: "var(--foreground)",
-              fontSize: "0.98rem",
-              lineHeight: "1.75",
-              fontWeight: 300
-            }} className="narrative-text">
+            <div style={{ width: "52px", height: "2px", borderRadius: "2px", background: "var(--gold-primary)", marginBottom: "24px", opacity: 0.7 }} />
+
+            <div className="narrative-text" style={{ display: "flex", flexDirection: "column", gap: "16px", color: "var(--fg-muted)", fontSize: "0.96rem", lineHeight: 1.78, fontWeight: 300 }}>
               <p>
-                Fundada el 15 de marzo de 2021 en la histórica ciudad de Cajamarca, Perú,
+                Fundada el{" "}<span style={{ color: "var(--foreground)", fontWeight: 500 }}>15 de marzo de 2021</span>{" "}en la histórica ciudad de Cajamarca, Perú,
                 Ebanis se ha establecido como un referente de diseño, elegancia y excelencia en la fabricación de mobiliario a medida.
-                Lo que comenzó como un apasionado taller de carpintería ha evolucionado en una firma especializada en transformar espacios residenciales y corporativos.
               </p>
               <p>
-                Nos especializamos en la fusión perfecta de la carpintería tradicional en maderas finas (como cedro, tornillo, pino) y la
-                versatilidad de la melamina de alta calidad. Diseñamos y fabricamos
-                puertas, ventanas, cocinas integrales, dormitorios, closets y mobiliario de oficina,
-                cuidando meticulosamente cada veta, línea y acabado para que coincida con tu visión de un espacio ideal.
+                Nos especializamos en la fusión perfecta de carpintería tradicional en maderas finas
+                (cedro, tornillo, pino) y melamina de alta calidad — diseñando cocinas integrales,
+                dormitorios, closets y mobiliario de oficina con acabados impecables.
               </p>
               <p>
-                En Ebanis creemos que el mobiliario es la columna vertebral que define la energía de tu entorno. Por ello,
-                combinamos un diseño 100% personalizado, precios competitivos y un catálogo versátil adaptado tanto a proyectos
-                del hogar como a los requerimientos técnicos y estéticos de arquitectos y diseñadores.
+                En Ebanis creemos que el mobiliario es la columna vertebral que define la energía de tu entorno.
+                Por ello, combinamos diseño 100% personalizado con precios competitivos, adaptados tanto a hogares
+                como a los requerimientos técnicos de arquitectos y diseñadores.
               </p>
             </div>
           </div>
 
-          {/* Pillars: Precision & Sustainability */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "20px",
-            marginTop: "10px"
-          }}>
-            <div className="glass-panel pillar-card" style={{
-              padding: "20px",
-              borderRadius: "6px",
-              border: "1px solid rgba(255,255,255,0.05)",
-              display: "flex",
-              gap: "15px",
-              alignItems: "flex-start",
-              transition: "all 0.3s ease"
-            }}>
-              <div style={{
-                background: "rgba(197, 165, 95, 0.08)",
-                padding: "10px",
-                borderRadius: "4px",
-                color: "var(--gold-primary)",
-                flexShrink: 0
-              }}>
-                <Hammer size={20} />
+          {/* Pillars */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", marginTop: "8px" }}>
+            {PILLARS.map((p) => (
+              <div
+                key={p.title}
+                className="pillar-card"
+                style={{
+                  padding: "20px", borderRadius: "18px",
+                  background: "rgba(255,252,244,0.62)",
+                  backdropFilter: "blur(24px) saturate(1.6)",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                  borderLeftColor: "rgba(255,255,255,0.9)",
+                  borderRightColor: "rgba(255,255,255,0.9)",
+                  borderTopColor: "rgba(255,255,255,0.98)",
+                  borderBottomColor: "rgba(197,165,95,0.2)",
+                  display: "flex", flexDirection: "column", gap: "12px",
+                  transition: "all 0.45s cubic-bezier(0.16,1,0.3,1)",
+                  boxShadow: "0 4px 18px rgba(100,60,10,0.08), 0 1px 0 rgba(255,255,255,0.98) inset",
+                  position: "relative", overflow: "hidden",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "rgba(255,252,244,0.85)";
+                  el.style.borderBottomColor = "rgba(197,165,95,0.38)";
+                  el.style.transform = "translateY(-5px)";
+                  el.style.boxShadow = "0 12px 36px rgba(100,60,10,0.14), 0 1px 0 rgba(255,255,255,1) inset";
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "rgba(255,252,244,0.62)";
+                  el.style.borderBottomColor = "rgba(197,165,95,0.2)";
+                  el.style.transform = "none";
+                  el.style.boxShadow = "0 4px 18px rgba(100,60,10,0.08), 0 1px 0 rgba(255,255,255,0.98) inset";
+                }}
+              >
+                {/* Specular */}
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, transparent 50%)",
+                  borderRadius: "18px", pointerEvents: "none",
+                }} />
+                <div style={{
+                  width: "42px", height: "42px", borderRadius: "12px",
+                  background: "rgba(197,165,95,0.12)",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                  borderLeftColor: "rgba(197,165,95,0.25)",
+                  borderRightColor: "rgba(197,165,95,0.25)",
+                  borderBottomColor: "rgba(197,165,95,0.25)",
+                  borderTopColor: "rgba(255,255,255,0.8)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "var(--gold-primary)", position: "relative",
+                }}>
+                  {p.icon}
+                </div>
+                <div style={{ position: "relative" }}>
+                  <h4 style={{ fontSize: "0.82rem", fontFamily: "var(--font-serif)", color: "var(--foreground)", marginBottom: "6px", letterSpacing: "0.06em" }}>{p.title}</h4>
+                  <p style={{ fontSize: "0.78rem", color: "var(--fg-muted)", lineHeight: 1.55 }}>{p.desc}</p>
+                </div>
               </div>
-              <div>
-                <h4 style={{ fontSize: "0.9rem", color: "#fff", marginBottom: "4px" }}>Artesanía de Precisión</h4>
-                <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                  Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano.
-                </p>
-              </div>
-            </div>
-
-            <div className="glass-panel pillar-card" style={{
-              padding: "20px",
-              borderRadius: "6px",
-              border: "1px solid rgba(255,255,255,0.05)",
-              display: "flex",
-              gap: "15px",
-              alignItems: "flex-start",
-              transition: "all 0.3s ease"
-            }}>
-              <div style={{
-                background: "rgba(197, 165, 95, 0.08)",
-                padding: "10px",
-                borderRadius: "4px",
-                color: "var(--gold-primary)",
-                flexShrink: 0
-              }}>
-                <Trees size={20} />
-              </div>
-              <div>
-                <h4 style={{ fontSize: "0.9rem", color: "#fff", marginBottom: "4px" }}>Sostenibilidad Exclusiva</h4>
-                <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                  Maderas nobles de origen legal con manejo forestal y reforestación responsable.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-
       </div>
 
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .logo-container:hover {
-          border-color: rgba(197, 165, 95, 0.4) !important;
-          box-shadow: 0 20px 45px rgba(197, 165, 95, 0.12) !important;
-          transform: scale(1.02) translateY(-4px);
-        }
-        .logo-container:hover .large-logo {
-          transform: scale(1.04);
-        }
-        .large-logo {
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .pillar-card:hover {
-          border-color: rgba(197, 165, 95, 0.35) !important;
-          transform: translateY(-2px);
-          background: rgba(255, 255, 255, 0.02) !important;
-        }
-        @media (min-width: 992px) {
-          .about-grid {
-            grid-template-columns: 0.95fr 1.05fr !important;
-            gap: 80px !important;
-          }
-        }
+      <style>{`
+        @keyframes spin        { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+        @keyframes spinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        @keyframes pulseRing   { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+        .about-logo-img:hover  { transform: scale(1.05) !important; }
       `}</style>
     </section>
   );

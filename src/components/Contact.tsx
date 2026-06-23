@@ -21,301 +21,375 @@ export default function Contact() {
     }, 4000);
   };
 
+  const contactItems = [
+    {
+      icon: <MapPin size={18} />,
+      title: "Dirección ",
+      content: "Av. Mártires de Uchuraccay N°2420 Barrio San Martin,\n Cajamarca 06003, Perú",
+      multiline: true
+    },
+    {
+      icon: <Phone size={18} />,
+      title: "Contacto Telefónico",
+      content: "+51 976 781 459",
+      multiline: false
+    },
+    {
+      icon: <Mail size={18} />,
+      title: "Correo Electrónico",
+      content: "ebanissoluciones@gmail.com",
+      multiline: false
+    },
+    {
+      icon: <Clock size={18} />,
+      title: "Horario de Atención",
+      content: "Lunes a Viernes: 9:00 AM - 6:00 PM\nSábados: 9:00 AM - 1:00 PM",
+      multiline: true
+    }
+  ];
+
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       style={{
-        padding: "100px 20px",
-        background: "rgba(10, 10, 10, 0.4)",
-        borderTop: "1px solid var(--card-border)",
-        position: "relative"
+        position: "relative",
+        overflow: "hidden",
+        padding: "120px 20px 100px"
       }}
     >
+      {/* Mesh Gradient Background for Contact */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 0,
+        pointerEvents: "none",
+        background: `
+          radial-gradient(ellipse at 10% 30%, hsla(38, 80%, 35%, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 90% 70%, hsla(280, 60%, 22%, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 10%, hsla(200, 65%, 20%, 0.12) 0%, transparent 45%),
+          var(--bg-base)
+        `,
+        opacity: 0.9
+      }} aria-hidden />
+
+      {/* Animated mesh orbs */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 0,
+        pointerEvents: "none",
+        overflow: "hidden"
+      }} aria-hidden>
+        {[
+          { w: "55%", h: "55%", t: "-10%", l: "-5%", c: "hsla(38, 80%, 38%, 0.22)", blur: 100, anim: "meshMove1 26s infinite alternate ease-in-out" },
+          { w: "45%", h: "45%", t: "60%", r: "-5%", c: "hsla(280, 60%, 30%, 0.18)", blur: 90, anim: "meshMove2 32s infinite alternate ease-in-out" },
+        ].map((orb, i) => (
+          <div key={i} style={{
+            position: "absolute",
+            width: orb.w,
+            height: orb.h,
+            top: orb.t,
+            left: (orb as { l?: string }).l,
+            right: (orb as { r?: string }).r,
+            background: `radial-gradient(circle, ${orb.c} 0%, transparent 70%)`,
+            filter: `blur(${orb.blur}px)`,
+            borderRadius: "50%",
+            opacity: 0.55,
+            mixBlendMode: "normal",
+            animation: orb.anim
+          }} />
+        ))}
+      </div>
+
       <div style={{
         maxWidth: "1200px",
         margin: "0 auto",
+        position: "relative",
+        zIndex: 1,
         display: "grid",
         gridTemplateColumns: "1fr",
         gap: "60px"
       }} className="contact-grid">
-        
-        {/* Left Column: Info & Map */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "35px" }}>
+
+        {/* ── Left: Info & Map ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
           <div>
-            <span style={{ 
-              fontFamily: "var(--font-serif)", 
-              fontSize: "0.85rem", 
-              color: "var(--gold-primary)", 
-              letterSpacing: "0.25em",
+            <span style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.78rem",
+              color: "var(--gold-primary)",
+              letterSpacing: "0.3em",
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "10px"
+              marginBottom: "14px"
             }}>
               ¿Dónde encontrarnos?
             </span>
-            <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", marginBottom: "15px" }}>
+            <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", marginBottom: "16px", lineHeight: 1.05 }}>
               Comienza tu <span className="gold-text">Proyecto</span>
             </h2>
-            <p style={{ color: "var(--foreground)", fontSize: "0.95rem", lineHeight: 1.6, fontWeight: 300 }}>
-              Visítanos en nuestro atelier en Cajamarca para ver muestras de maderas nobles y 
+            <p style={{ color: "var(--fg-muted)", fontSize: "0.95rem", lineHeight: 1.7, fontWeight: 300 }}>
+              Visítanos en nuestro atelier en Cajamarca para ver muestras de maderas nobles y
               seleccionar catálogos textiles exclusivos de la mano de nuestros diseñadores.
             </p>
           </div>
 
-          {/* Contact Cards */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <div style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-              <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px" }}>
-                <MapPin size={20} />
+          {/* Contact Info Cards */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+            {contactItems.map((item, i) => (
+              <div key={i} style={{
+                display: "flex",
+                gap: "16px",
+                alignItems: "flex-start",
+                padding: "16px 20px",
+                borderRadius: "18px",
+                background: "rgba(255, 255, 255, 0.04)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                borderBottom: "1px solid rgba(240, 192, 80, 0.15)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06) inset",
+                transition: "all 0.3s ease"
+              }} className="contact-info-card">
+                <div style={{
+                  color: "var(--gold-primary)",
+                  padding: "10px",
+                  background: "rgba(197, 165, 95, 0.12)",
+                  borderRadius: "12px",
+                  flexShrink: 0,
+                  border: "1px solid rgba(197, 165, 95, 0.2)"
+                }}>
+                  {item.icon}
+                </div>
+                <div>
+                  <h4 style={{ fontSize: "0.78rem", color: "var(--foreground)", marginBottom: "4px", letterSpacing: "0.04em" }}>
+                    {item.title}
+                  </h4>
+                  <p style={{ fontSize: "0.85rem", color: "var(--fg-muted)", lineHeight: 1.5, whiteSpace: "pre-line" }}>
+                    {item.content}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Dirección del Atelier</h4>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                  Psj, Psje. San Isidro 392, <br />
-                  Cajamarca 06003, Perú
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-              <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px" }}>
-                <Phone size={20} />
-              </div>
-              <div>
-                <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Contacto Telefónico</h4>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>+51 945 876 123</p>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-              <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px" }}>
-                <Mail size={20} />
-              </div>
-              <div>
-                <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Correo Electrónico</h4>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)" }}>proyectos@ebanissoluciones.com</p>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "15px", alignItems: "flex-start" }}>
-              <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px" }}>
-                <Clock size={20} />
-              </div>
-              <div>
-                <h4 style={{ fontSize: "0.8rem", color: "#fff", marginBottom: "4px" }}>Horario de Atención</h4>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                  Lunes a Viernes: 9:00 AM - 6:00 PM <br />
-                  Sábados: 9:00 AM - 1:00 PM
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Styled Map Box */}
-          <div className="glass-panel" style={{
+          {/* Map */}
+          <div style={{
             position: "relative",
             width: "100%",
-            height: "300px",
-            borderRadius: "6px",
+            height: "260px",
+            borderRadius: "24px",
             overflow: "hidden",
-            border: "1px solid var(--card-border)",
-            background: "#0c0b0a",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow: "0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.06) inset"
           }}>
             <iframe
               src="https://maps.google.com/maps?q=Atelier%20de%20Dise%C3%B1o%20Ebanis%20Soluciones,%20Psje.%20San%20Isidro%20392,%20Cajamarca%2006003,%20Peru&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
-              style={{
-                border: 0,
-                display: "block"
-              }}
+              style={{ border: 0, display: "block", filter: "grayscale(0.6) invert(0.92) hue-rotate(180deg) saturate(1.2) contrast(1.1)" }}
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="map-iframe"
               title="Atelier de Diseño Ebanis Soluciones"
-            ></iframe>
-            
-            {/* Float badge to open map directly */}
-            <a 
-              href="https://maps.google.com/?q=Atelier+de+Dise%C3%B1o+Ebanis+Soluciones,+Psje.+San+Isidro+392,+Cajamarca+06003,+Peru"
+            />
+            <a
+              href="https://maps.google.com/?q=Atelier+de+Diseño+Ebanis+Soluciones,+Psje.+San+Isidro+392,+Cajamarca+06003,+Peru"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 position: "absolute",
-                bottom: "15px",
-                right: "15px",
-                background: "rgba(10, 10, 10, 0.85)",
-                backdropFilter: "blur(4px)",
-                border: "1px solid var(--gold-primary)",
-                color: "var(--gold-primary)",
+                bottom: "14px",
+                right: "14px",
+                background: "rgba(10, 10, 12, 0.75)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                color: "var(--gold-light)",
                 padding: "8px 16px",
-                fontSize: "0.75rem",
+                borderRadius: "999px",
+                fontSize: "0.7rem",
                 fontFamily: "var(--font-serif)",
-                letterSpacing: "0.05em",
+                letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 textDecoration: "none",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "6px",
-                borderRadius: "4px",
                 transition: "all 0.3s ease",
-                zIndex: 5
+                boxShadow: "0 4px 12px rgba(0,0,0,0.2)"
               }}
               className="map-badge"
             >
-              <MapPin size={12} /> Ver en Google Maps
+              <MapPin size={11} /> Ver en Maps
             </a>
           </div>
         </div>
 
-        {/* Right Column: Premium Form */}
+        {/* ── Right: Liquid Glass Form ── */}
         <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
-          <form 
+          <form
             onSubmit={handleSubmit}
-            className="glass-panel"
+            id="contact-form"
             style={{
-              padding: "40px 30px",
               width: "100%",
-              maxWidth: "500px",
+              maxWidth: "520px",
+              borderRadius: "32px",
+              padding: "40px 36px",
               display: "flex",
               flexDirection: "column",
-              gap: "24px"
+              gap: "22px",
+              /* Liquid Glass */
+              background: "rgba(255, 255, 255, 0.055)",
+              backdropFilter: "blur(40px) saturate(2.2) brightness(1.08)",
+              WebkitBackdropFilter: "blur(40px) saturate(2.2) brightness(1.08)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              borderBottom: "1px solid rgba(240, 192, 80, 0.25)",
+              boxShadow: "0 24px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255,255,255,0.06) inset, 0 1px 0 rgba(255,255,255,0.15) inset",
+              position: "relative",
+              overflow: "hidden"
             }}
           >
-            <h3 style={{ fontSize: "1.2rem", borderBottom: "1px solid rgba(197,165,95,0.15)", paddingBottom: "10px", color: "#fff" }}>
-              Solicitud de Asesoría
-            </h3>
+            {/* Form specular shine */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.04) 35%, transparent 55%)",
+              borderRadius: "32px",
+              pointerEvents: "none",
+              zIndex: 0
+            }} />
 
-            {submitted ? (
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <h3 style={{
+                fontSize: "1.15rem",
+                borderBottom: "1px solid rgba(240, 192, 80, 0.18)",
+                paddingBottom: "14px",
+                color: "var(--foreground)",
+                marginBottom: "0"
+              }}>
+                Solicitud de Asesoría
+              </h3>
+            </div>
+
+            {submitted && (
               <div style={{
+                position: "relative",
+                zIndex: 1,
                 padding: "20px",
-                border: "1px solid var(--gold-primary)",
-                background: "rgba(197,165,95,0.05)",
-                color: "var(--gold-primary)",
+                border: "1px solid rgba(240, 192, 80, 0.35)",
+                background: "rgba(240, 192, 80, 0.06)",
+                color: "var(--gold-light)",
                 fontSize: "0.9rem",
                 textAlign: "center",
-                borderRadius: "4px",
+                borderRadius: "18px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "10px"
+                gap: "8px",
+                backdropFilter: "blur(8px)"
               }}>
                 <strong>¡Solicitud Enviada con Éxito!</strong>
-                <p style={{ fontSize: "0.75rem", color: "var(--foreground)" }}>
-                  Un ebanista proyectista se pondrá en contacto contigo para programar la llamada técnica.
+                <p style={{ fontSize: "0.75rem", color: "var(--fg-muted)" }}>
+                  Un ebanista proyectista se pondrá en contacto contigo para la llamada técnica.
                 </p>
               </div>
-            ) : null}
+            )}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "0.7rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Nombre Completo</label>
-              <input 
-                type="text" 
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  border: "1px solid var(--card-border)",
-                  padding: "12px",
-                  color: "#fff",
-                  fontSize: "0.9rem",
-                  fontFamily: "inherit"
-                }}
-                placeholder="Escribe tu nombre..."
-              />
-            </div>
+            {/* Form Fields */}
+            {[
+              { label: "Nombre Completo", key: "name", type: "text", placeholder: "Escribe tu nombre..." },
+              { label: "Correo Electrónico", key: "email", type: "email", placeholder: "ejemplo@correo.com" }
+            ].map(({ label, key, type, placeholder }) => (
+              <div key={key} style={{ display: "flex", flexDirection: "column", gap: "7px", position: "relative", zIndex: 1 }}>
+                <label style={{ fontSize: "0.68rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.12em", fontFamily: "var(--font-serif)" }}>
+                  {label}
+                </label>
+                <input
+                  type={type}
+                  required
+                  value={formData[key as keyof typeof formData]}
+                  onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
+                  className="contact-input"
+                  placeholder={placeholder}
+                  id={`contact-${key}`}
+                />
+              </div>
+            ))}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "0.7rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Correo Electrónico</label>
-              <input 
-                type="email" 
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  border: "1px solid var(--card-border)",
-                  padding: "12px",
-                  color: "#fff",
-                  fontSize: "0.9rem",
-                  fontFamily: "inherit"
-                }}
-                placeholder="ejemplo@correo.com"
-              />
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "0.7rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Tipo de Proyecto</label>
-              <select 
+            <div style={{ display: "flex", flexDirection: "column", gap: "7px", position: "relative", zIndex: 1 }}>
+              <label style={{ fontSize: "0.68rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.12em", fontFamily: "var(--font-serif)" }}>
+                Tipo de Proyecto
+              </label>
+              <select
                 value={formData.projectType}
                 onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                style={{
-                  background: "rgba(20, 20, 20, 0.95)",
-                  border: "1px solid var(--card-border)",
-                  padding: "12px",
-                  color: "#fff",
-                  fontSize: "0.9rem",
-                  fontFamily: "inherit",
-                  cursor: "pointer"
-                }}
+                className="contact-input"
+                id="contact-project-type"
+                style={{ cursor: "pointer", background: "rgba(255, 255, 255, 0.04)" }}
               >
-                <option value="living">Muebles de Sala / Comedor</option>
-                <option value="bedroom">Dormitorio a Medida</option>
-                <option value="kitchen">Mueble de Cocina Lujo</option>
-                <option value="closet">Walk-in Closet / Vestidor</option>
-                <option value="custom">Otro Proyecto Personalizado</option>
+                <option value="living" style={{ background: "var(--bg-surface)", color: "var(--foreground)" }}>Muebles de Sala / Comedor</option>
+                <option value="bedroom" style={{ background: "var(--bg-surface)", color: "var(--foreground)" }}>Dormitorio a Medida</option>
+                <option value="kitchen" style={{ background: "var(--bg-surface)", color: "var(--foreground)" }}>Mueble de Cocina Lujo</option>
+                <option value="closet" style={{ background: "var(--bg-surface)", color: "var(--foreground)" }}>Walk-in Closet / Vestidor</option>
+                <option value="custom" style={{ background: "var(--bg-surface)", color: "var(--foreground)" }}>Otro Proyecto Personalizado</option>
               </select>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "0.7rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Cuéntanos sobre tu espacio</label>
-              <textarea 
+            <div style={{ display: "flex", flexDirection: "column", gap: "7px", position: "relative", zIndex: 1 }}>
+              <label style={{ fontSize: "0.68rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.12em", fontFamily: "var(--font-serif)" }}>
+                Cuéntanos sobre tu espacio
+              </label>
+              <textarea
                 rows={4}
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  border: "1px solid var(--card-border)",
-                  padding: "12px",
-                  color: "#fff",
-                  fontSize: "0.9rem",
-                  fontFamily: "inherit",
-                  resize: "none"
-                }}
+                className="contact-input"
+                id="contact-message"
                 placeholder="Describe qué muebles necesitas y las dimensiones aproximadas..."
+                style={{ resize: "none" }}
               />
             </div>
 
-            <button type="submit" className="btn-gold" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
-              Enviar Mensaje <Send size={16} />
+            <button
+              type="submit"
+              id="contact-submit-btn"
+              className="btn-gold"
+              style={{
+                position: "relative",
+                zIndex: 1,
+                width: "100%",
+                justifyContent: "center"
+              }}
+            >
+              Enviar Mensaje <Send size={15} />
             </button>
           </form>
         </div>
-
       </div>
 
       <style jsx>{`
-        .map-iframe {
-          filter: grayscale(1) invert(0.92) contrast(1.15) opacity(0.7);
-          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .map-iframe:hover {
-          filter: grayscale(0.15) invert(0) contrast(1) opacity(1);
+        .contact-info-card:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          border-color: rgba(240, 192, 80, 0.25) !important;
+          transform: translateX(4px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.1) inset !important;
         }
         .map-badge:hover {
-          color: #000 !important;
-          border-color: transparent !important;
           background: var(--gold-metallic) !important;
+          color: hsl(30, 25%, 8%) !important;
+          border-color: transparent !important;
           transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(197, 165, 95, 0.35);
         }
         @media (min-width: 992px) {
           .contact-grid {
             grid-template-columns: 1fr 1fr !important;
-            gap: 80px !important;
+            gap: 70px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          section#contact {
+            padding: 80px 16px 70px !important;
           }
         }
       `}</style>
