@@ -3,6 +3,16 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
 
 export default function DerechosReservados() {
   return (
@@ -17,7 +27,13 @@ export default function DerechosReservados() {
         margin: "0 auto",
         color: "var(--foreground)"
       }}>
-        <div style={{ textAlign: "center", marginBottom: "56px" }}>
+        {/* Title Block (Animate on Load) */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          style={{ textAlign: "center", marginBottom: "56px" }}
+        >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "14px" }}>
             <div style={{ flex: "0 0 36px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(197,165,95,0.6))" }} />
             <span style={{ fontFamily: "var(--font-serif)", fontSize: "0.7rem", color: "var(--gold-primary)", letterSpacing: "0.3em", textTransform: "uppercase" }}>
@@ -29,21 +45,27 @@ export default function DerechosReservados() {
           <h1 style={{ fontSize: "clamp(2.2rem, 4vw, 3rem)", lineHeight: 1.1, marginBottom: "18px", color: "var(--foreground)" }}>
             Derechos <span className="gold-text">Reservados</span>
           </h1>
-        </div>
+        </motion.div>
 
-        <div style={{
-          background: "rgba(255, 252, 244, 0.65)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          border: "1px solid rgba(255,255,255,0.8)",
-          borderBottomColor: "rgba(197,165,95,0.3)",
-          borderRadius: "24px",
-          padding: "48px 5vw",
-          boxShadow: "0 8px 32px rgba(100,60,10,0.08)",
-          lineHeight: 1.8,
-          fontSize: "0.95rem",
-          color: "var(--fg-muted)"
-        }}>
+        {/* Legal Text Panel (Animate on Load/Scroll) */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          style={{
+            background: "rgba(255, 252, 244, 0.65)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(255,255,255,0.8)",
+            borderBottomColor: "rgba(197,165,95,0.3)",
+            borderRadius: "24px",
+            padding: "48px 5vw",
+            boxShadow: "0 8px 32px rgba(100,60,10,0.08)",
+            lineHeight: 1.8,
+            fontSize: "0.95rem",
+            color: "var(--fg-muted)"
+          }}
+        >
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.4rem", color: "var(--gold-dark)", marginBottom: "16px", marginTop: 0 }}>
             1. Propiedad Intelectual
           </h2>
@@ -75,7 +97,7 @@ export default function DerechosReservados() {
           <p style={{ fontSize: "0.85rem", fontStyle: "italic", textAlign: "center", marginTop: "48px", color: "var(--fg-subtle)" }}>
             Última actualización: {new Date().toLocaleDateString("es-PE", { year: "numeric", month: "long", day: "numeric" })}
           </p>
-        </div>
+        </motion.div>
       </main>
 
       <Footer />

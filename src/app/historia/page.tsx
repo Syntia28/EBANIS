@@ -4,6 +4,16 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { History, Hammer, Trees, Award, Heart } from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
 
 export default function HistoriaPage() {
   return (
@@ -13,8 +23,13 @@ export default function HistoriaPage() {
       <main style={{ flexGrow: 1, padding: "140px 20px 80px 20px", position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-          {/* Hero Section */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
+          {/* Hero Section (Animate on Load) */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            style={{ textAlign: "center", marginBottom: "60px" }}
+          >
             <span style={{
               fontFamily: "var(--font-serif)",
               fontSize: "0.85rem",
@@ -51,23 +66,29 @@ export default function HistoriaPage() {
               Desde nuestros inicios en Cajamarca, nos hemos dedicado a honrar el oficio de la ebanistería.
               Creamos piezas únicas que fusionan la nobleza de la madera maciza con la modernidad del co-diseño digital.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Narrative & Logo Grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "60px",
-            alignItems: "center",
-            marginBottom: "80px"
-          }} className="about-grid">
-
+          {/* Narrative & Logo Grid (Animate on Scroll) */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-12%" }}
+            variants={fadeUp}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              gap: "60px",
+              alignItems: "center",
+              marginBottom: "80px"
+            }}
+            className="about-grid"
+          >
             {/* Left: Brand Identity Showcase (Large Logo) */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "25px" }}>
               <div className="glass-panel logo-container" style={{
                 position: "relative",
-                width: "300px",
-                height: "300px",
+                width: "380px",
+                height: "380px",
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
@@ -76,7 +97,7 @@ export default function HistoriaPage() {
                 background: "radial-gradient(circle, rgba(20,18,15,0.85) 0%, rgba(10,9,8,0.98) 100%)",
                 boxShadow: "0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(197, 165, 95, 0.03)",
                 transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                padding: "45px"
+                padding: "56px"
               }}>
                 <img
                   src="/logo/ebanis.png"
@@ -121,7 +142,7 @@ export default function HistoriaPage() {
                   color: "rgba(255, 255, 255, 1)"
                 }}>
                   Atelier Fundado el <strong style={{ color: "rgba(220, 186, 51, 1)" }}>15 de Marzo, 2021</strong>
-                </span>|
+                </span>
               </div>
             </div>
 
@@ -192,7 +213,8 @@ export default function HistoriaPage() {
                   display: "flex",
                   gap: "15px",
                   alignItems: "flex-start",
-                  transition: "all 0.3s ease"
+                  transition: "all 0.3s ease",
+                  cursor: "pointer"
                 }}>
                   <div style={{
                     background: "rgba(197, 165, 95, 0.08)",
@@ -204,8 +226,8 @@ export default function HistoriaPage() {
                     <Hammer size={18} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#0a0101ff", marginBottom: "4px" }}>Artesanía de Precisión</h4>
-                    <p style={{ fontSize: "0.75rem", color: "var(--foreground)", lineHeight: 1.4 }}>
+                    <h4 style={{ fontSize: "0.85rem", color: "var(--foreground)", marginBottom: "4px" }}>Artesanía de Precisión</h4>
+                    <p style={{ fontSize: "0.75rem", color: "var(--fg-muted)", lineHeight: 1.4, fontWeight: 300 }}>
                       Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano.
                     </p>
                   </div>
@@ -218,7 +240,8 @@ export default function HistoriaPage() {
                   display: "flex",
                   gap: "15px",
                   alignItems: "flex-start",
-                  transition: "all 0.3s ease"
+                  transition: "all 0.3s ease",
+                  cursor: "pointer"
                 }}>
                   <div style={{
                     background: "rgba(197, 165, 95, 0.08)",
@@ -230,22 +253,28 @@ export default function HistoriaPage() {
                     <Trees size={18} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#0f0f0fff", marginBottom: "4px" }}>Sostenibilidad Exclusiva</h4>
-                    <p style={{ fontSize: "0.75rem", color: "var(--foreground)", lineHeight: 1.4 }}>
+                    <h4 style={{ fontSize: "0.85rem", color: "var(--foreground)", marginBottom: "4px" }}>Sostenibilidad Exclusiva</h4>
+                    <p style={{ fontSize: "0.75rem", color: "var(--fg-muted)", lineHeight: 1.4, fontWeight: 300 }}>
                       Maderas nobles de origen legal con manejo forestal y reforestación responsable.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Ethics and Commitment Section */}
-          <div style={{
-            borderTop: "1px solid rgba(197,165,95,0.15)",
-            paddingTop: "60px",
-            position: "relative"
-          }}>
+          {/* Ethics and Commitment Section (Animate on Scroll) */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-12%" }}
+            variants={fadeUp}
+            style={{
+              borderTop: "1px solid rgba(197,165,95,0.15)",
+              paddingTop: "60px",
+              position: "relative"
+            }}
+          >
             <div style={{ textAlign: "center", marginBottom: "45px" }}>
               <span style={{
                 fontFamily: "var(--font-serif)",
@@ -261,7 +290,7 @@ export default function HistoriaPage() {
               <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", marginBottom: "15px" }}>
                 Nuestro Compromiso <span className="gold-text">Ético</span>
               </h2>
-              <p style={{ color: "var(--foreground)", maxWidth: "600px", margin: "0 auto", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.6 }}>
+              <p style={{ color: "var(--fg-muted)", maxWidth: "600px", margin: "0 auto", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.6 }}>
                 Crear muebles a medida no es solo un trabajo de carpintería; es la preservación de una tradición y el respeto por los recursos naturales de nuestra región.
               </p>
             </div>
@@ -273,34 +302,34 @@ export default function HistoriaPage() {
             }} className="ethics-grid">
 
               {/* Card 1 - Passion */}
-              <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease" }}>
+              <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease", cursor: "pointer" }}>
                 <div style={{ color: "var(--gold-primary)", width: "fit-content" }}><Heart size={24} /></div>
-                <h3 style={{ fontSize: "1.1rem", color: "#0c0101ff" }}>Pasión por la Madera</h3>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300 }}>
+                <h3 style={{ fontSize: "1.1rem", color: "var(--foreground)" }}>Pasión por la Madera</h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--fg-muted)", lineHeight: 1.6, fontWeight: 300 }}>
                   Cada pieza de madera es única. Estudiamos sus vetas, nudos y comportamiento para aplicar la técnica de ensamblado y el aceite de acabado que mejor resalten su belleza orgánica innata.
                 </p>
               </div>
 
               {/* Card 2 - Local Craft */}
-              <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease" }}>
+              <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease", cursor: "pointer" }}>
                 <div style={{ color: "var(--gold-primary)", width: "fit-content" }}><Award size={24} /></div>
-                <h3 style={{ fontSize: "1.1rem", color: "#0d0000ff" }}>Maestría Ebanista</h3>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300 }}>
+                <h3 style={{ fontSize: "1.1rem", color: "var(--foreground)" }}>Maestría Ebanista</h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--fg-muted)", lineHeight: 1.6, fontWeight: 300 }}>
                   Trabajamos con artesanos locales de Cajamarca, rescatando técnicas tradicionales de ensamble de madera maciza (como la caja y espiga y cola de milano) para garantizar muebles que duren por generaciones.
                 </p>
               </div>
 
               {/* Card 3 - Sustainability */}
-              <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease" }}>
+              <div className="glass-panel pillar-card" style={{ padding: "30px 25px", borderRadius: "6px", border: "1px solid var(--card-border)", display: "flex", flexDirection: "column", gap: "15px", transition: "all 0.3s ease", cursor: "pointer" }}>
                 <div style={{ color: "var(--gold-primary)", width: "fit-content" }}><Trees size={24} /></div>
-                <h3 style={{ fontSize: "1.1rem", color: "#0a0000ff" }}>Maderas Certificadas</h3>
-                <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300 }}>
+                <h3 style={{ fontSize: "1.1rem", color: "var(--foreground)" }}>Maderas Certificadas</h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--fg-muted)", lineHeight: 1.6, fontWeight: 300 }}>
                   Adquirimos madera exclusivamente de concesiones forestales reguladas y certificadas FSC®. Así, nos aseguramos de que el abastecimiento proteja el futuro ecológico de los bosques del Perú.
                 </p>
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </main>

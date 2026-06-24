@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const categoryLabels: Record<string, string> = {
   "puertas-ventanas":    "Puertas & Ventanas",
@@ -27,6 +28,39 @@ const CATEGORIES = [
   { key:"oficina-otros",      label:"Oficinas & Otros" },
 ];
 
+const headerVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+const filterContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const filterItemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
 export default function Gallery() {
   const [filter,  setFilter]  = useState("all");
 
@@ -34,7 +68,7 @@ export default function Gallery() {
 
   return (
     <section
-      id="catalog"
+      id="gallery"
       className="gallery-mesh-wrapper"
     >
       {/* Warm animated orbs */}
@@ -47,7 +81,13 @@ export default function Gallery() {
       <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "56px" }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-12%" }}
+          variants={headerVariants}
+          style={{ textAlign: "center", marginBottom: "56px" }}
+        >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "14px" }}>
             <div style={{ flex: "0 0 36px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(197,165,95,0.6))" }} />
             <span style={{ fontFamily: "var(--font-serif)", fontSize: "0.7rem", color: "var(--gold-primary)", letterSpacing: "0.3em", textTransform: "uppercase" }}>
@@ -63,15 +103,22 @@ export default function Gallery() {
             Cada pieza representa una solución única y personalizada, confeccionada con
             precisión y acabados de lujo para espacios sofisticados.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filter Pills */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginBottom: "52px", flexWrap: "wrap" }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-12%" }}
+          variants={filterContainerVariants}
+          style={{ display: "flex", justifyContent: "center", gap: "8px", marginBottom: "52px", flexWrap: "wrap" }}
+        >
           {CATEGORIES.map(cat => {
             const active = filter === cat.key;
             return (
-              <button
+              <motion.button
                 key={cat.key}
+                variants={filterItemVariants}
                 id={`gallery-filter-${cat.key}`}
                 onClick={() => setFilter(cat.key)}
                 style={{
@@ -99,20 +146,29 @@ export default function Gallery() {
                 }}
               >
                 {cat.label}
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(360px, 360px))", gap: "28px", justifyContent: "center" }}>
-          {filtered.map(project => {
-            return (
-              <div
-                key={project.id}
-                id={`project-card-${project.id}`}
-                className="gallery-card-wrap animate pop"
-              >
+        <motion.div
+          layout
+          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(360px, 360px))", gap: "28px", justifyContent: "center" }}
+        >
+          <AnimatePresence mode="popLayout">
+            {filtered.map(project => {
+              return (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.9, y: 25 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 25 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
+                  key={project.id}
+                  id={`project-card-${project.id}`}
+                  className="gallery-card-wrap"
+                >
                 {/* Overlay Container (Slides Left on Hover) */}
                 <div className="gallery-card-overlay">
                   
@@ -167,10 +223,11 @@ export default function Gallery() {
                     Cotizar
                   </a>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       <style>{`

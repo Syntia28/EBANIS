@@ -1,16 +1,44 @@
 "use client";
 
-import React, { use, useState, useEffect } from "react";
+import React, { use, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { PRODUCT_DATA } from "../../../data/products";
 import { ChevronLeft, Check, Sparkles, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface PageProps {
   params: Promise<{ category: string }>;
 }
+
+const leftColVariants = {
+  hidden: { opacity: 0, x: -35 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const rightColVariants = {
+  hidden: { opacity: 0, x: 35 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
 
 export default function CollectionPage({ params }: PageProps) {
   const resolvedParams = use(params);
@@ -58,25 +86,31 @@ export default function CollectionPage({ params }: PageProps) {
       <main style={{ flexGrow: 1, padding: "140px 20px 80px 20px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           {/* Breadcrumb / Back button */}
-          <Link 
-            href="/#catalog" 
-            style={{ 
-              display: "inline-flex", 
-              alignItems: "center", 
-              gap: "8px", 
-              color: "var(--gold-primary)", 
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.85rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              marginBottom: "35px",
-              cursor: "pointer",
-              transition: "var(--transition-fast)"
-            }}
-            className="back-btn"
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <ChevronLeft size={16} /> Volver a Colecciones
-          </Link>
+            <Link 
+              href="/#gallery" 
+              style={{ 
+                display: "inline-flex", 
+                alignItems: "center", 
+                gap: "8px", 
+                color: "var(--gold-primary)", 
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginBottom: "35px",
+                cursor: "pointer",
+                transition: "var(--transition-fast)"
+              }}
+              className="back-btn"
+            >
+              <ChevronLeft size={16} /> Volver a Colecciones
+            </Link>
+          </motion.div>
 
           {/* Product Detail Layout */}
           <div style={{
@@ -86,8 +120,13 @@ export default function CollectionPage({ params }: PageProps) {
             alignItems: "start"
           }} className="product-layout">
             
-            {/* Left Column: Visual representation */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+            {/* Left Column: Visual representation (Animate from Left) */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={leftColVariants}
+              style={{ display: "flex", flexDirection: "column", gap: "25px" }}
+            >
               <div 
                 className="glass-panel" 
                 style={{
@@ -245,10 +284,15 @@ export default function CollectionPage({ params }: PageProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right Column: Descriptions & Details */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+            {/* Right Column: Descriptions & Details (Animate from Right) */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={rightColVariants}
+              style={{ display: "flex", flexDirection: "column", gap: "30px" }}
+            >
               <div>
                 <span style={{ 
                   fontFamily: "var(--font-serif)", 
@@ -300,7 +344,12 @@ export default function CollectionPage({ params }: PageProps) {
               </div>
 
               {/* Quote action button */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+              >
                 <a 
                   href={whatsAppLink} 
                   target="_blank" 
@@ -320,8 +369,8 @@ export default function CollectionPage({ params }: PageProps) {
                 <span style={{ fontSize: "0.75rem", color: "var(--foreground)", textAlign: "center", display: "block" }}>
                   * El proyecto se cotiza a medida de tus espacios. Un ebanista proyectista te responderá de inmediato.
                 </span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
           </div>
         </div>

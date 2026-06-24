@@ -127,32 +127,32 @@ export default function Header() {
           padding: "0 28px", height: "72px",
         }}>
           {/* LOGO */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "14px", textDecoration: "none" }}>
             <div style={{
-              width: "42px", height: "42px",
-              borderRadius: "12px",
+              width: "54px", height: "54px",
+              borderRadius: "14px",
               background: "rgba(255, 253, 248, 0.75)",
               backdropFilter: "blur(12px)",
               borderWidth: "1px",
               borderStyle: "solid",
               borderLeftColor: "rgba(255,255,255,0.95)",
               borderRightColor: "rgba(255,255,255,0.95)",
-              borderTopColor: "rgba(255,255,255,0.95)",
+              borderTopColor: "rgba(255,255,255,1)",
               borderBottomColor: "rgba(197,165,95,0.3)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 2px 12px rgba(100,60,10,0.12), 0 1px 0 rgba(255,255,255,0.98) inset",
-              padding: "6px",
+              boxShadow: "0 2px 14px rgba(100,60,10,0.12), 0 1px 0 rgba(255,255,255,0.98) inset",
+              padding: "8px",
             }}>
               <img src="/logo/ebanis.png" alt="Ebanis" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
             </div>
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
               <span style={{
-                fontFamily: "var(--font-serif)", fontSize: "1.15rem",
+                fontFamily: "var(--font-serif)", fontSize: "1.3rem",
                 fontWeight: 700, letterSpacing: "0.18em",
                 background: "linear-gradient(135deg, hsl(38,80%,38%) 0%, hsl(32,70%,28%) 50%, hsl(38,75%,40%) 100%)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               }}>EBANIS</span>
-              <span style={{ fontSize: "0.5rem", letterSpacing: "0.55em", color: "var(--fg-subtle)", marginTop: "3px", fontWeight: 500 }}>SOLUCIONES</span>
+              <span style={{ fontSize: "0.58rem", letterSpacing: "0.55em", color: "var(--fg-subtle)", marginTop: "4px", fontWeight: 500 }}>SOLUCIONES</span>
             </div>
           </Link>
 

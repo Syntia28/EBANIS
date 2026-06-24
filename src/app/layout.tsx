@@ -3,6 +3,7 @@ import { Cinzel, Montserrat } from "next/font/google";
 import "./globals.css";
 import AnimatedBackground from "../components/AnimatedBackground";
 import AnimatedPhoto from "../components/AnimatedPhoto";
+import Script from "next/script";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -39,6 +40,13 @@ export default function RootLayout({
         {/* Animated photographic layer (Ken Burns) */}
         <AnimatedPhoto />
         <div className="site-content">{children}</div>
+
+        {/* UserWay Accessibility Widget */}
+        <Script
+          src="https://cdn.userway.org/widget.js"
+          data-account="au1j2fECe0"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

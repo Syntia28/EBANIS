@@ -3,7 +3,50 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { MapPin, Phone, Mail, Clock, Send, Sparkles, ChevronRight } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Send,
+  Sofa,
+  ChefHat,
+  BedDouble,
+  Layers,
+  Wine,
+  Sparkles
+} from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1] as const
+    }
+  }
+};
 
 export default function ContactoPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +57,8 @@ export default function ContactoPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +68,15 @@ export default function ContactoPage() {
       setFormData({ name: "", email: "", phone: "", projectType: "living", message: "" });
     }, 4000);
   };
+
+  const projectTypes = [
+    { value: "living", label: "Sala & Comedor", icon: Sofa, desc: "Centros de TV, mesas y aparadores" },
+    { value: "kitchen", label: "Cocinas de Lujo", icon: ChefHat, desc: "Reposteros y tableros premium" },
+    { value: "bedroom", label: "Dormitorios", icon: BedDouble, desc: "Camas premium y veladores" },
+    { value: "closet", label: "Closets & Vestidores", icon: Layers, desc: "Walk-in closets y armarios" },
+    { value: "bar", label: "Barras & Bares", icon: Wine, desc: "Barras y cavas a medida" },
+    { value: "custom", label: "Ebanistería Especial", icon: Sparkles, desc: "Proyectos únicos tallados a mano" }
+  ];
 
   const processSteps = [
     {
@@ -47,424 +101,607 @@ export default function ContactoPage() {
     }
   ];
 
+  const renderInput = (
+    id: string,
+    label: string,
+    type: string,
+    value: string,
+    key: "name" | "email" | "phone" | "message",
+    placeholder: string
+  ) => {
+    const isFocused = focusedField === key;
+    const hasValue = value.length > 0;
+    const isFloating = isFocused || hasValue;
+
+    if (type === "textarea") {
+      return (
+        <div style={{ position: "relative", width: "100%", marginTop: "8px" }} key={key}>
+          <label style={{
+            position: "absolute",
+            left: "16px",
+            top: isFloating ? "0px" : "18px",
+            transform: isFloating ? "translateY(-50%) scale(0.85)" : "translateY(0) scale(1)",
+            transformOrigin: "left top",
+            background: "#fbf9f4", // Fondo idéntico al del contenedor del formulario
+            padding: "0 8px",
+            color: isFocused ? "rgba(180, 130, 40, 1)" : "#8a857c",
+            fontSize: "0.75rem",
+            fontFamily: "var(--font-serif)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+            pointerEvents: "none",
+            zIndex: 10
+          }}>
+            {label}
+          </label>
+          <textarea
+            id={id}
+            rows={4}
+            required
+            value={value}
+            onFocus={() => setFocusedField(key)}
+            onBlur={() => setFocusedField(null)}
+            onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
+            style={{
+              width: "100%",
+              background: "#fff",
+              border: isFocused ? "1.5px solid rgba(180, 130, 40, 0.6)" : "1px solid rgba(0, 0, 0, 0.06)",
+              borderRadius: "14px",
+              padding: "16px",
+              color: "#333",
+              fontSize: "0.9rem",
+              fontFamily: "var(--font-sans)",
+              outline: "none",
+              resize: "none",
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+              boxShadow: isFocused
+                ? "0 4px 12px rgba(180, 130, 40, 0.08)"
+                : "0 2px 4px rgba(0,0,0,0.02)",
+            }}
+            placeholder={isFocused ? placeholder : ""}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div style={{ position: "relative", width: "100%", marginTop: "8px" }} key={key}>
+        <label style={{
+          position: "absolute",
+          left: "16px",
+          top: isFloating ? "0px" : "50%",
+          transform: "translateY(-50%)" + (isFloating ? " translateY(-14px) scale(0.85)" : ""),
+          transformOrigin: "left top",
+          background: "#fbf9f4", // Fondo idéntico al del contenedor del formulario
+          padding: "0 8px",
+          color: isFocused ? "rgba(180, 130, 40, 1)" : "#8a857c",
+          fontSize: "0.75rem",
+          fontFamily: "var(--font-serif)",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+          pointerEvents: "none",
+          zIndex: 10
+        }}>
+          {label}
+        </label>
+        <input
+          id={id}
+          type={type}
+          required
+          value={value}
+          onFocus={() => setFocusedField(key)}
+          onBlur={() => setFocusedField(null)}
+          onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
+          style={{
+            width: "100%",
+            background: "#fff",
+            border: isFocused ? "1.5px solid rgba(180, 130, 40, 0.6)" : "1px solid rgba(0, 0, 0, 0.06)",
+            borderRadius: "14px",
+            padding: "16px",
+            color: "#333",
+            fontSize: "0.9rem",
+            fontFamily: "var(--font-sans)",
+            outline: "none",
+            transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+            boxShadow: isFocused
+              ? "0 4px 12px rgba(180, 130, 40, 0.08)"
+              : "0 2px 4px rgba(0,0,0,0.02)",
+          }}
+          placeholder={isFocused ? placeholder : ""}
+        />
+      </div>
+    );
+  };
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", position: "relative" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", position: "relative", overflow: "hidden", background: "#f5ece1" }}>
       <Header />
 
       <main style={{ flexGrow: 1, padding: "140px 20px 80px 20px", position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-          {/* Hero Section */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.85rem",
-              color: "var(--gold-primary)",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              display: "block",
-              marginBottom: "12px"
-            }}>
-              Atelier Cajamarca
-            </span>
-            <h1 style={{
-              fontSize: "clamp(2.5rem, 5vw, 3.8rem)",
-              lineHeight: 1.1,
-              marginBottom: "20px",
-              fontFamily: "var(--font-serif)"
-            }}>
-              Contacto & <span className="gold-text">Asesoría</span>
-            </h1>
-            <div style={{
-              width: "80px",
-              height: "1px",
-              background: "linear-gradient(90deg, transparent, var(--gold-primary), transparent)",
-              margin: "0 auto 20px"
-            }} />
-            <p style={{
-              color: "var(--foreground)",
-              maxWidth: "700px",
-              margin: "0 auto",
-              fontSize: "1.05rem",
-              fontWeight: 300,
-              lineHeight: 1.7
-            }}>
-              Visítanos en nuestro atelier de diseño o solicita una llamada técnica con un proyectista.
-              Juntos daremos forma a tus espacios con maderas nobles certificadas y la maestría del tallado a mano.
-            </p>
-          </div>
-
           {/* Grid Layout: Contact info & Form */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "50px",
-            alignItems: "start",
-            marginBottom: "80px"
-          }} className="contacto-grid">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-12%" }}
+            variants={fadeUp}
+            style={{
+              alignItems: "start",
+              marginBottom: "80px"
+            }}
+            className="contacto-grid"
+          >
+            {/* Left Column: Title, Cards & Styled Map */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 
-            {/* Left Column: Contact Cards & Styled Map */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-              <h2 style={{
-                fontSize: "1.4rem",
-                fontFamily: "var(--font-serif)",
-                borderBottom: "1px solid rgba(197,165,95,0.15)",
-                paddingBottom: "12px",
-                color: "#fff"
-              }}>
-                Datos del Atelier
-              </h2>
-
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "20px" }}>
-                {/* Card 1 - Address */}
-                <div className="glass-panel" style={{ padding: "20px", borderRadius: "6px", display: "flex", gap: "15px" }}>
-                  <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px", height: "fit-content" }}>
-                    <MapPin size={18} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Ubicación</h4>
-                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                      Av. Mártires de Uchuraccay N°2420 Barrio San Martin <br />
-                      Cajamarca 06003, Perú
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card 2 - Phone */}
-                <div className="glass-panel" style={{ padding: "20px", borderRadius: "6px", display: "flex", gap: "15px" }}>
-                  <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px", height: "fit-content" }}>
-                    <Phone size={18} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Teléfono & WhatsApp</h4>
-                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>+51 976 781 459</p>
-                    <a
-                      href="https://wa.me/51976781459?text=Hola%20Ebanis%20Soluciones,%20deseo%20co-dise%C3%B1ar%20un%20proyecto."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ fontSize: "0.75rem", color: "var(--gold-primary)", textDecoration: "none", display: "block", marginTop: "5px" }}
-                      className="card-link"
-                    >
-                      Escríbenos directamente →
-                    </a>
-                  </div>
-                </div>
-
-                {/* Card 3 - Email */}
-                <div className="glass-panel" style={{ padding: "20px", borderRadius: "6px", display: "flex", gap: "15px" }}>
-                  <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px", height: "fit-content" }}>
-                    <Mail size={18} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Correo Electrónico</h4>
-                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)" }}>ebanissoluciones@gmail.com</p>
-                  </div>
-                </div>
-
-                {/* Card 4 - Hours */}
-                <div className="glass-panel" style={{ padding: "20px", borderRadius: "6px", display: "flex", gap: "15px" }}>
-                  <div style={{ color: "var(--gold-primary)", padding: "10px", background: "rgba(197,165,95,0.06)", borderRadius: "4px", height: "fit-content" }}>
-                    <Clock size={18} />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: "0.85rem", color: "#fff", marginBottom: "5px" }}>Horario de Atención</h4>
-                    <p style={{ fontSize: "0.8rem", color: "var(--foreground)", lineHeight: 1.4 }}>
-                      Lun - Vie: 9:00 AM - 6:00 PM <br />
-                      Sábados: 9:00 AM - 1:00 PM
-                    </p>
-                  </div>
-                </div>
+              <div>
+                <h1 style={{
+                  fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+                  lineHeight: 1.1,
+                  marginBottom: "12px",
+                  fontFamily: "var(--font-serif)",
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                  color: "#1a1a1a"
+                }}>
+                  COMIENZA TU <br /><span style={{ color: "#d9a13c" }}>PROYECTO</span>
+                </h1>
+                <p style={{
+                  color: "#5c574f",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  fontWeight: 400,
+                  margin: 0
+                }}>
+                  Visítanos en nuestro atelier en Cajamarca para ver muestras de maderas nobles y seleccionar catálogos textiles exclusivos de la mano de nuestros diseñadores.
+                </p>
               </div>
 
-              {/* Styled Google Map */}
-              <div className="glass-panel" style={{
-                position: "relative",
-                width: "100%",
-                height: "320px",
-                borderRadius: "6px",
-                overflow: "hidden",
-                border: "1px solid var(--card-border)",
-                background: "#0c0b0a",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
-              }}>
-                <iframe
-                  src="https://maps.google.com/maps?q=Atelier%20de%20Dise%C3%B1o%20Ebanis%20Soluciones,%20Psje.%20San%20Isidro%20392,%20Cajamarca%2006003,%20Peru&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, display: "block" }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="map-iframe"
-                  title="Atelier de Diseño Ebanis Soluciones"
-                />
+              {/* Atelier contact details cards & Map stacked vertically (cards on top, map below) */}
+              <div 
+                style={{ 
+                  display: "flex", 
+                  flexDirection: "column", 
+                  gap: "24px"
+                }}
+              >
+                {/* Contact Cards Stack (Enlarged) */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                  {/* Card 1 - Address */}
+                  <div
+                    className="contact-card-interactive"
+                    style={{
+                      padding: "16px 20px",
+                      borderRadius: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "16px",
+                      background: "rgba(255, 255, 255, 0.55)",
+                      boxShadow: "0 6px 25px rgba(0, 0, 0, 0.03)",
+                      flexGrow: 1
+                    }}
+                  >
+                    <div style={{ color: "#fff", padding: "10px", background: "#b08742", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: "0.78rem", color: "#1a1a1a", fontWeight: "bold", marginBottom: "3px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Dirección</h4>
+                      <p style={{ fontSize: "0.88rem", color: "#5c574f", lineHeight: 1.4, margin: 0 }}>
+                        Av. Mártires de Uchuraccay N°2420 Barrio San Martin, Cajamarca
+                      </p>
+                    </div>
+                  </div>
 
-                <a
-                  href="https://maps.google.com/?q=Atelier+de+Dise%C3%B1o+Ebanis+Soluciones,+Psje.+San+Isidro+392,+Cajamarca+06003,+Peru"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {/* Card 2 - Phone */}
+                  <div
+                    className="contact-card-interactive"
+                    style={{
+                      padding: "16px 20px",
+                      borderRadius: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "16px",
+                      background: "rgba(255, 255, 255, 0.55)",
+                      boxShadow: "0 6px 25px rgba(0, 0, 0, 0.03)",
+                      flexGrow: 1
+                    }}
+                  >
+                    <div style={{ color: "#fff", padding: "10px", background: "#b08742", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Phone size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: "0.78rem", color: "#1a1a1a", fontWeight: "bold", marginBottom: "3px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Contacto Telefónico</h4>
+                      <p style={{ fontSize: "0.88rem", color: "#5c574f", margin: 0 }}>+51 976 781 459</p>
+                    </div>
+                  </div>
+
+                  {/* Card 3 - Email */}
+                  <div
+                    className="contact-card-interactive"
+                    style={{
+                      padding: "16px 20px",
+                      borderRadius: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "16px",
+                      background: "rgba(255, 255, 255, 0.55)",
+                      boxShadow: "0 6px 25px rgba(0, 0, 0, 0.03)",
+                      flexGrow: 1
+                    }}
+                  >
+                    <div style={{ color: "#fff", padding: "10px", background: "#b08742", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Mail size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: "0.78rem", color: "#1a1a1a", fontWeight: "bold", marginBottom: "3px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Correo Electrónico</h4>
+                      <p style={{ fontSize: "0.88rem", color: "#5c574f", margin: 0 }}>ebanissoluciones@gmail.com</p>
+                    </div>
+                  </div>
+
+                  {/* Card 4 - Hours */}
+                  <div
+                    className="contact-card-interactive"
+                    style={{
+                      padding: "16px 20px",
+                      borderRadius: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "16px",
+                      background: "rgba(255, 255, 255, 0.55)",
+                      boxShadow: "0 6px 25px rgba(0, 0, 0, 0.03)",
+                      flexGrow: 1
+                    }}
+                  >
+                    <div style={{ color: "#fff", padding: "10px", background: "#b08742", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Clock size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: "0.78rem", color: "#1a1a1a", fontWeight: "bold", marginBottom: "3px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Horario de Atención</h4>
+                      <p style={{ fontSize: "0.88rem", color: "#5c574f", lineHeight: 1.4, margin: 0 }}>
+                        Lun - Vie: 9 AM - 6 PM | Sáb: 9 AM - 1 PM
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Google Map (Below Cards) */}
+                <div
                   style={{
-                    position: "absolute",
-                    bottom: "15px",
-                    right: "15px",
-                    background: "rgba(10, 10, 10, 0.85)",
-                    backdropFilter: "blur(4px)",
-                    border: "1px solid var(--gold-primary)",
-                    color: "var(--gold-primary)",
-                    padding: "8px 16px",
-                    fontSize: "0.75rem",
-                    fontFamily: "var(--font-serif)",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                    textDecoration: "none",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    borderRadius: "4px",
-                    transition: "all 0.3s ease",
-                    zIndex: 5
+                    borderRadius: "24px",
+                    overflow: "hidden",
+                    background: "#fff",
+                    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.04)",
+                    padding: "12px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "12px"
                   }}
-                  className="map-badge"
                 >
-                  <MapPin size={12} /> Ver en Google Maps
-                </a>
+                  <div style={{ padding: "6px 8px 0px 8px" }}>
+                    <span style={{ fontSize: "0.65rem", color: "#b08742", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", fontWeight: 700 }}>
+                      Ubicación Oficial
+                    </span>
+                    <h3 style={{ fontSize: "0.88rem", color: "#1a1a1a", marginTop: "2px", marginBottom: 0, fontWeight: 600 }}>
+                      Av. Mártires de Uchuraccay N°2420, Cajamarca
+                    </h3>
+                  </div>
+
+                  <div style={{ width: "100%", height: "240px", overflow: "hidden", borderRadius: "16px", position: "relative" }}>
+                    <iframe
+                      src="https://maps.google.com/maps?q=Av.%20M%C3%A1rtires%20de%20Uchuraccay%20N%C2%B02420,%20Barrio%20San%20Martin,%20Cajamarca%2006003,%20Peru&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0, display: "block", position: "absolute", inset: 0 }}
+                      allowFullScreen={false}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Atelier de Diseño Ebanis Soluciones"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Column: Premium Form */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-              <h2 style={{
-                fontSize: "1.4rem",
-                fontFamily: "var(--font-serif)",
-                borderBottom: "1px solid rgba(197,165,95,0.15)",
-                paddingBottom: "12px",
-                color: "#fff"
-              }}>
-                Solicitud de Co-Diseño
-              </h2>
-
+            {/* Right Column: Premium Form Container (Soft light cream asset look) */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <form
                 onSubmit={handleSubmit}
-                className="glass-panel"
+                id="contact-form"
                 style={{
-                  padding: "40px 30px",
-                  borderRadius: "6px",
+                  padding: "40px 35px",
+                  borderRadius: "32px",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "20px"
+                  gap: "24px",
+                  background: "#fbf9f4", // Fondo claro y cálido como en la imagen
+                  boxShadow: "0 25px 60px rgba(50, 30, 10, 0.08)",
+                  position: "relative"
                 }}
               >
+                <h2 style={{
+                  fontSize: "1.15rem",
+                  fontFamily: "var(--font-serif)",
+                  color: "#1a1a1a",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                  margin: 0
+                }}>
+                  Solicitud de Asesoría
+                </h2>
+
                 {submitted && (
                   <div style={{
-                    padding: "15px 20px",
-                    border: "1px solid var(--gold-primary)",
-                    background: "rgba(197,165,95,0.05)",
-                    color: "var(--gold-primary)",
+                    padding: "14px",
+                    border: "1px solid #b08742",
+                    background: "rgba(176,135,66,0.05)",
+                    color: "#b08742",
                     fontSize: "0.85rem",
                     textAlign: "center",
-                    borderRadius: "4px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "5px"
+                    borderRadius: "12px"
                   }}>
-                    <strong>¡Solicitud Registrada con Éxito!</strong>
-                    <p style={{ fontSize: "0.75rem", color: "var(--foreground)" }}>
-                      Un proyectista del Atelier se pondrá en contacto contigo en las próximas 24 horas.
-                    </p>
+                    <strong>¡Solicitud Registrada!</strong> Nos comunicaremos pronto.
                   </div>
                 )}
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }} className="form-row">
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Nombre Completo</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{
-                        background: "rgba(255, 255, 255, 0.02)",
-                        border: "1px solid var(--card-border)",
-                        padding: "12px",
-                        color: "#fff",
-                        fontSize: "0.85rem",
-                        fontFamily: "inherit",
-                        borderRadius: "4px"
-                      }}
-                      placeholder="Ej. Juan Pérez"
-                    />
+                <div style={{ position: "relative" }}>
+                  {renderInput("contact-name", "Nombre Completo", "text", formData.name, "name", "")}
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="form-row">
+                  {renderInput("contact-phone", "Celular", "tel", formData.phone, "phone", "")}
+                  {renderInput("contact-email", "Correo", "email", formData.email, "email", "")}
+                </div>
+
+                {/* Custom Project Selector Card Grid */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <label style={{
+                    fontSize: "0.68rem",
+                    color: "#b08742",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    fontWeight: 700,
+                    paddingLeft: "2px"
+                  }}>
+                    Tipo de Proyecto
+                  </label>
+
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+                    gap: "10px",
+                  }}>
+                    {projectTypes.map((item) => {
+                      const Icon = item.icon;
+                      const isSelected = formData.projectType === item.value;
+                      return (
+                        <button
+                          key={item.value}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, projectType: item.value })}
+                          style={{
+                            background: isSelected ? "#fff" : "rgba(0, 0, 0, 0.015)",
+                            border: isSelected ? "1.5px solid #b08742" : "1px solid rgba(0, 0, 0, 0.04)",
+                            borderRadius: "14px",
+                            padding: "14px 8px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            textAlign: "center",
+                            gap: "6px",
+                            cursor: "pointer",
+                            boxShadow: isSelected ? "0 8px 20px rgba(176, 135, 66, 0.08)" : "none",
+                            outline: "none"
+                          }}
+                          className="project-selector-card"
+                        >
+                          <div style={{ color: isSelected ? "#b08742" : "#8a857c" }}>
+                            <Icon size={18} />
+                          </div>
+                          <div>
+                            <span style={{
+                              display: "block",
+                              fontSize: "0.7rem",
+                              fontWeight: "bold",
+                              color: "#1a1a1a",
+                              textTransform: "uppercase",
+                              marginBottom: "1px"
+                            }}>
+                              {item.label}
+                            </span>
+                            <span style={{
+                              display: "block",
+                              fontSize: "0.58rem",
+                              color: "#8a857c",
+                              lineHeight: 1.2,
+                              fontWeight: 400
+                            }}>
+                              {item.desc}
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Número de Celular</label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      style={{
-                        background: "rgba(255, 255, 255, 0.02)",
-                        border: "1px solid var(--card-border)",
-                        padding: "12px",
-                        color: "#fff",
-                        fontSize: "0.85rem",
-                        fontFamily: "inherit",
-                        borderRadius: "4px"
-                      }}
-                      placeholder="Ej. +51 999 999 999"
-                    />
-                  </div>
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Correo Electrónico</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    style={{
-                      background: "rgba(255, 255, 255, 0.02)",
-                      border: "1px solid var(--card-border)",
-                      padding: "12px",
-                      color: "#fff",
-                      fontSize: "0.85rem",
-                      fontFamily: "inherit",
-                      borderRadius: "4px"
-                    }}
-                    placeholder="ejemplo@correo.com"
-                  />
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Línea de Interés</label>
-                  <select
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    style={{
-                      background: "rgba(10, 10, 10, 0.95)",
-                      border: "1px solid var(--card-border)",
-                      padding: "12px",
-                      color: "#fff",
-                      fontSize: "0.85rem",
-                      fontFamily: "inherit",
-                      cursor: "pointer",
-                      borderRadius: "4px"
-                    }}
-                  >
-                    <option value="living">Muebles de Sala / Comedor</option>
-                    <option value="bedroom">Dormitorio a Medida (Camas, Closets)</option>
-                    <option value="kitchen">Muebles de Cocina Premium</option>
-                    <option value="bar">Barras & Desayunadores</option>
-                    <option value="custom">Trabajos Especiales de Ebanistería</option>
-                  </select>
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <label style={{ fontSize: "0.65rem", color: "var(--gold-primary)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Detalla tus Ideas y Espacio</label>
-                  <textarea
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{
-                      background: "rgba(255, 255, 255, 0.02)",
-                      border: "1px solid var(--card-border)",
-                      padding: "12px",
-                      color: "#fff",
-                      fontSize: "0.85rem",
-                      fontFamily: "inherit",
-                      resize: "none",
-                      borderRadius: "4px"
-                    }}
-                    placeholder="Cuéntanos las medidas de tu espacio, estilo deseado, etc..."
-                  />
+                <div style={{ position: "relative" }}>
+                  {renderInput("contact-message", "Cuéntanos sobre tu espacio", "textarea", formData.message, "message", "")}
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-gold"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "10px",
-                    marginTop: "10px",
+                    gap: "8px",
+                    background: "#b08742",
+                    color: "#fff",
+                    border: "none",
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
                     cursor: "pointer",
-                    fontSize: "0.9rem"
+                    fontSize: "0.85rem",
+                    borderRadius: "14px",
+                    padding: "16px",
+                    width: "100%",
+                    boxShadow: "0 6px 20px rgba(176, 135, 66, 0.25)"
                   }}
+                  className="btn-gold"
                 >
-                  Agendar Asesoría Gratuita <Send size={14} />
+                  Enviar Mensaje <Send size={13} />
                 </button>
               </form>
             </div>
-          </div>
+          </motion.div>
 
           {/* Co-Design Process Guide Section */}
-          <div style={{
-            borderTop: "1px solid rgba(197,165,95,0.15)",
-            paddingTop: "60px",
-            position: "relative"
-          }}>
-            <div style={{ textAlign: "center", marginBottom: "45px" }}>
-              <span style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "0.75rem",
-                color: "var(--gold-primary)",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                display: "block",
-                marginBottom: "8px"
-              }}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-12%" }}
+            variants={fadeUp}
+            style={{
+              borderTop: "1px solid rgba(0,0,0,0.06)",
+              paddingTop: "60px",
+              position: "relative"
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: "50px" }}>
+              <span style={{ fontSize: "0.75rem", color: "#b08742", letterSpacing: "0.2em", textTransform: "uppercase", display: "block", marginBottom: "8px", fontWeight: 600 }}>
                 Metodología Ebanis
               </span>
-              <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", marginBottom: "15px" }}>
-                El Proceso de <span className="gold-text">Co-Diseño</span>
+              <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", marginBottom: "15px", color: "#1a1a1a" }}>
+                El Proceso de <span style={{ color: "#b08742" }}>Co-Diseño</span>
               </h2>
-              <p style={{ color: "var(--foreground)", maxWidth: "600px", margin: "0 auto", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.6 }}>
+              <p style={{ color: "#5c574f", maxWidth: "600px", margin: "0 auto", fontSize: "0.9rem", lineHeight: 1.6 }}>
                 Te acompañamos en cada etapa de la materialización de tus ideas, combinando la precisión técnica con la calidez del trabajo artesanal.
               </p>
             </div>
 
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "25px"
-            }} className="process-grid">
-              {processSteps.map((step, idx) => (
-                <div
-                  key={idx}
-                  className="glass-panel process-card"
-                  style={{
-                    padding: "30px 25px",
-                    borderRadius: "6px",
-                    position: "relative",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "12px",
-                    border: "1px solid var(--card-border)",
-                    transition: "all 0.3s ease"
-                  }}
-                >
-                  <span style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "2.5rem",
-                    fontWeight: 700,
-                    color: "rgba(197,165,95,0.15)",
-                    lineHeight: 1,
-                    position: "absolute",
-                    top: "20px",
-                    right: "25px"
-                  }}>{step.step}</span>
+            <div style={{ position: "relative", padding: "20px 0" }}>
+              <div
+                className="timeline-line-desktop"
+                style={{
+                  position: "absolute",
+                  top: "40px",
+                  left: "12%",
+                  right: "12%",
+                  height: "1px",
+                  background: "linear-gradient(90deg, rgba(176, 135, 66, 0.1) 0%, #b08742 50%, rgba(176, 135, 66, 0.1) 100%)",
+                  zIndex: 1,
+                }}
+              />
 
-                  <h3 style={{ fontSize: "1.1rem", color: "#fff", zIndex: 2 }}>{step.title}</h3>
-                  <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.6, fontWeight: 300, zIndex: 2 }}>
-                    {step.desc}
-                  </p>
-                </div>
-              ))}
+              <motion.div
+                variants={staggerContainer}
+                style={{
+                  position: "relative",
+                  zIndex: 2
+                }}
+                className="timeline-grid"
+              >
+                {processSteps.map((step, idx) => {
+                  const isHovered = hoveredStepIndex === idx;
+                  const isAdjacent = hoveredStepIndex !== null && Math.abs(hoveredStepIndex - idx) === 1;
+                  
+                  // Compute dynamic scale and y translation for OS Dock animation
+                  let scale = 1;
+                  let yOffset = 0;
+                  if (hoveredStepIndex !== null) {
+                    if (isHovered) {
+                      scale = 1.12;
+                      yOffset = -8;
+                    } else if (isAdjacent) {
+                      scale = 1.04;
+                      yOffset = -3;
+                    } else {
+                      scale = 0.96;
+                      yOffset = 0;
+                    }
+                  }
+
+                  return (
+                    <motion.div key={idx} variants={itemVariants} style={{ position: "relative" }}>
+                      <motion.div 
+                        style={{ 
+                          display: "flex", 
+                          flexDirection: "column", 
+                          alignItems: "center",
+                          cursor: "pointer"
+                        }} 
+                        className="timeline-item"
+                        onMouseEnter={() => setHoveredStepIndex(idx)}
+                        onMouseLeave={() => setHoveredStepIndex(null)}
+                        animate={{ scale, y: yOffset }}
+                        transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                      >
+                        <div style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background: isHovered ? "#b08742" : "#fff",
+                          border: "2px solid #b08742",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: 700,
+                          fontSize: "1rem",
+                          color: isHovered ? "#fff" : "#b08742",
+                          boxShadow: isHovered 
+                            ? "0 6px 20px rgba(176, 135, 66, 0.35)" 
+                            : isAdjacent 
+                              ? "0 4px 12px rgba(176, 135, 66, 0.18)"
+                              : "0 4px 15px rgba(176, 135, 66, 0.1)",
+                          zIndex: 3,
+                          marginBottom: "12px",
+                          transition: "background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease"
+                        }}>
+                          {step.step}
+                        </div>
+
+                        <div
+                          className="process-card-premium"
+                          style={{
+                            padding: "16px 12px",
+                            borderRadius: "12px",
+                            textAlign: "center",
+                            boxShadow: isHovered
+                              ? "0 15px 35px rgba(50, 30, 10, 0.08)"
+                              : "0 8px 24px rgba(0, 0, 0, 0.02)",
+                            width: "100%",
+                            background: "#fff",
+                            border: isHovered 
+                              ? "1px solid rgba(176, 135, 66, 0.25)" 
+                              : "1px solid rgba(0, 0, 0, 0.03)",
+                            transition: "border-color 0.25s ease, box-shadow 0.25s ease"
+                          }}
+                        >
+                          <h3 style={{ 
+                            fontSize: "0.85rem", 
+                            color: isHovered ? "#b08742" : "#1a1a1a", 
+                            marginBottom: "4px", 
+                            fontWeight: 600,
+                            transition: "color 0.25s ease"
+                          }}>
+                            {step.title}
+                          </h3>
+                          <p style={{ fontSize: "0.74rem", color: "#5c574f", lineHeight: 1.5, margin: 0 }}>
+                            {step.desc}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </main>
@@ -472,45 +709,57 @@ export default function ContactoPage() {
       <Footer />
 
       <style jsx>{`
-        .map-iframe {
-          filter: grayscale(1) invert(0.92) contrast(1.15) opacity(0.7);
-          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        .btn-route-maps:hover, .btn-gold:hover {
+          opacity: 0.92;
+          transform: translateY(-1px);
         }
-        .map-iframe:hover {
-          filter: grayscale(0.15) invert(0) contrast(1) opacity(1);
+        .project-selector-card:hover {
+          background: #fff !important;
+          border-color: #b08742 !important;
         }
-        .map-badge:hover {
-          color: #000 !important;
-          border-color: transparent !important;
-          background: var(--gold-metallic) !important;
+        .contact-card-interactive {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card-interactive:hover {
           transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(197, 165, 95, 0.35);
+          box-shadow: 0 14px 35px rgba(0, 0, 0, 0.06) !important;
         }
-        .card-link {
-          transition: color 0.3s ease, padding-left 0.3s ease;
+
+        :global(.contacto-grid) {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          gap: 50px !important;
         }
-        .card-link:hover {
-          color: #fff !important;
-          padding-left: 4px;
+        :global(.timeline-grid) {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          gap: 35px !important;
         }
-        .process-card:hover {
-          border-color: var(--gold-primary) !important;
-          transform: translateY(-4px);
-          box-shadow: 0 8px 25px rgba(197, 165, 95, 0.05);
-        }
-        @media (min-width: 992px) {
-          .contacto-grid {
-            grid-template-columns: 1.1fr 1fr !important;
+
+        @media (min-width: 768px) {
+          :global(.contacto-grid) {
+            grid-template-columns: 1.1fr 0.9fr !important;
             gap: 60px !important;
           }
-          .process-grid {
+          :global(.timeline-grid) {
             grid-template-columns: repeat(4, 1fr) !important;
+            gap: 20px !important;
+          }
+          .timeline-line-desktop {
+            display: block !important;
           }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
+          .timeline-line-desktop {
+            display: none !important;
+          }
           .form-row {
             grid-template-columns: 1fr !important;
             gap: 15px !important;
+          }
+          .cards-map-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
           }
         }
       `}</style>

@@ -6,11 +6,39 @@ import Image from "next/image";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { SERVICES_DATA } from "../../../data/products";
-import { ChevronLeft, Sparkles, AlertCircle, ArrowRight } from "lucide-react";
+import { ChevronLeft, Sparkles, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface PageProps {
   params: Promise<{ service: string }>;
 }
+
+const leftColVariants = {
+  hidden: { opacity: 0, x: -35 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const rightColVariants = {
+  hidden: { opacity: 0, x: 35 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
+  }
+};
 
 export default function ServicePage({ params }: PageProps) {
   const resolvedParams = use(params);
@@ -48,25 +76,31 @@ export default function ServicePage({ params }: PageProps) {
       <main style={{ flexGrow: 1, padding: "140px 20px 80px 20px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           {/* Breadcrumb / Back button */}
-          <Link 
-            href="/#inicio" 
-            style={{ 
-              display: "inline-flex", 
-              alignItems: "center", 
-              gap: "8px", 
-              color: "var(--gold-primary)", 
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.85rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              marginBottom: "35px",
-              cursor: "pointer",
-              transition: "var(--transition-fast)"
-            }}
-            className="back-btn"
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <ChevronLeft size={16} /> Volver al Inicio
-          </Link>
+            <Link 
+              href="/#inicio" 
+              style={{ 
+                display: "inline-flex", 
+                alignItems: "center", 
+                gap: "8px", 
+                color: "var(--gold-primary)", 
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginBottom: "35px",
+                cursor: "pointer",
+                transition: "var(--transition-fast)"
+              }}
+              className="back-btn"
+            >
+              <ChevronLeft size={16} /> Volver al Inicio
+            </Link>
+          </motion.div>
 
           {/* Service Detail Layout */}
           <div style={{
@@ -76,8 +110,13 @@ export default function ServicePage({ params }: PageProps) {
             alignItems: "start"
           }} className="product-layout">
             
-            {/* Left Column: Visual & Process Steps */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+            {/* Left Column: Visual & Process Steps (Animate from Left) */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={leftColVariants}
+              style={{ display: "flex", flexDirection: "column", gap: "25px" }}
+            >
               <div 
                 className="glass-panel" 
                 style={{
@@ -140,16 +179,21 @@ export default function ServicePage({ params }: PageProps) {
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <div>
-                        <p style={{ fontSize: "0.85rem", color: "var(--foreground)", lineHeight: 1.4 }}>{step}</p>
+                        <p style={{ fontSize: "0.85rem", color: "var(--fg-muted)", lineHeight: 1.4, fontWeight: 300 }}>{step}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right Column: Descriptions & Features */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+            {/* Right Column: Descriptions & Features (Animate from Right) */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={rightColVariants}
+              style={{ display: "flex", flexDirection: "column", gap: "30px" }}
+            >
               <div>
                 <span style={{ 
                   fontFamily: "var(--font-serif)", 
@@ -201,7 +245,12 @@ export default function ServicePage({ params }: PageProps) {
               </div>
 
               {/* Consultation action button */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+              >
                 <a 
                   href={whatsAppLink} 
                   target="_blank" 
@@ -221,8 +270,8 @@ export default function ServicePage({ params }: PageProps) {
                 <span style={{ fontSize: "0.75rem", color: "var(--foreground)", textAlign: "center", display: "block" }}>
                   * Asesoría técnica inicial sin costo. Resolvemos tus consultas en tiempo real.
                 </span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
           </div>
         </div>

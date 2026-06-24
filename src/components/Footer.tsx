@@ -2,6 +2,19 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const footerContainerVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +23,6 @@ export default function Footer() {
     <footer className="footer-mesh-wrapper" style={{
       fontFamily: "var(--font-sans, Inter, sans-serif)",
       color: "var(--foreground)",
-      background: "hsl(38, 30%, 95%)",
       position: "relative",
     }}>
       {/* ── Mesh Gradient Background ── */}
@@ -24,26 +36,32 @@ export default function Footer() {
         background: "linear-gradient(90deg, transparent 0%, rgba(240,192,80,0.35) 20%, rgba(255,220,120,0.7) 50%, rgba(240,192,80,0.35) 80%, transparent 100%)",
       }} />
 
-      {/* ── Main Grid ── */}
-      <div style={{
-        position: "relative",
-        zIndex: 1,
-        display: "grid",
-        gridTemplateColumns: "1.6fr 1fr 1.4fr",
-        gap: "32px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        padding: "64px 40px 52px",
-      }} className="footer-grid">
-
+      {/* ── Main Grid (Animate on scroll) ── */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-5%" }}
+        variants={footerContainerVariants}
+        style={{
+          position: "relative",
+          zIndex: 1,
+          display: "grid",
+          gridTemplateColumns: "1.6fr 1fr 1.4fr",
+          gap: "32px",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "64px 40px 52px",
+        }}
+        className="footer-grid"
+      >
         {/* Col 1 — Brand */}
         <div style={{ paddingRight: "40px", borderRight: "1px solid rgba(197, 165, 95, 0.18)" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "20px" }}>
             <div style={{
-              width: "68px",
-              height: "68px",
+              width: "82px",
+              height: "82px",
               flexShrink: 0,
-              borderRadius: "16px",
+              borderRadius: "20px",
               overflow: "hidden",
               background: "rgba(255, 255, 255, 0.45)",
               backdropFilter: "blur(10px)",
@@ -52,10 +70,10 @@ export default function Footer() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(100, 60, 10, 0.08)"
+              boxShadow: "0 6px 16px rgba(100, 60, 10, 0.08)"
             }}>
               <img
-                src="/logo/ebanislogo.png"
+                src="/logo/ebanis.png"
                 alt="Ebanis Logo"
                 style={{ width: "80%", height: "80%", objectFit: "contain" }}
               />
@@ -63,7 +81,7 @@ export default function Footer() {
             <div>
               <div style={{
                 fontFamily: "var(--font-serif, 'Cormorant Garamond', Georgia, serif)",
-                fontSize: "1.35rem",
+                fontSize: "1.55rem",
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 background: "linear-gradient(135deg, #c88a20 0%, #a06018 50%, #7a4a10 100%)",
@@ -72,7 +90,7 @@ export default function Footer() {
               }}>
                 EBANIS
               </div>
-              <div style={{ fontSize: "0.72rem", color: "var(--fg-muted)", marginTop: "5px", letterSpacing: "0.05em" }}>
+              <div style={{ fontSize: "0.78rem", color: "var(--fg-muted)", marginTop: "6px", letterSpacing: "0.05em" }}>
                 Muebles que transforman espacios
               </div>
             </div>
@@ -202,7 +220,7 @@ export default function Footer() {
             Contactar
           </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* ── Bottom Bar ── */}
       <div style={{

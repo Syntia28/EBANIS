@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Hammer, Trees, History, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const PILLARS = [
   { icon: <Hammer size={20} />,   title: "Artesanía de Precisión",  desc: "Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano." },
@@ -9,88 +10,179 @@ const PILLARS = [
   { icon: <Sparkles size={20} />, title: "Diseño Personalizado",     desc: "Cada pieza es única, creada desde cero para adaptarse a tu espacio y visión." },
 ];
 
+const contentContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const textFadeUpVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+const visualEntryVariants = {
+  hidden: { opacity: 0, scale: 0.92, y: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+const pillarsGridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 export default function About() {
   return (
     <section
       id="about"
       style={{
         padding: "110px 20px",
-        position: "relative", overflow: "hidden",
+        position: "relative",
+        overflow: "hidden",
         borderTop: "1px solid rgba(197,165,95,0.15)",
       }}
     >
       {/* Ambient warm glow */}
-      <div style={{
-        position: "absolute", top: "-10%", left: "-5%",
-        width: "55vw", height: "55vw",
-        background: "radial-gradient(circle, hsla(40,80%,74%,0.45) 0%, transparent 65%)",
-        filter: "blur(90px)", pointerEvents: "none", zIndex: 0,
-        mixBlendMode: "multiply",
-      }} />
-      <div style={{
-        position: "absolute", bottom: "-5%", right: "-5%",
-        width: "45vw", height: "45vw",
-        background: "radial-gradient(circle, hsla(22,70%,72%,0.38) 0%, transparent 65%)",
-        filter: "blur(90px)", pointerEvents: "none", zIndex: 0,
-        mixBlendMode: "multiply",
-      }} />
+      <div
+        style={{
+          position: "absolute",
+          top: "-10%",
+          left: "-5%",
+          width: "55vw",
+          height: "55vw",
+          background: "radial-gradient(circle, hsla(40,80%,74%,0.45) 0%, transparent 65%)",
+          filter: "blur(90px)",
+          pointerEvents: "none",
+          zIndex: 0,
+          mixBlendMode: "multiply",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-5%",
+          right: "-5%",
+          width: "45vw",
+          height: "45vw",
+          background: "radial-gradient(circle, hsla(22,70%,72%,0.38) 0%, transparent 65%)",
+          filter: "blur(90px)",
+          pointerEvents: "none",
+          zIndex: 0,
+          mixBlendMode: "multiply",
+        }}
+      />
 
       <div
         className="about-grid"
         style={{
-          maxWidth: "1280px", margin: "0 auto",
-          position: "relative", zIndex: 1,
-          display: "grid", gridTemplateColumns: "1fr",
-          gap: "70px", alignItems: "center",
+          maxWidth: "1280px",
+          margin: "0 auto",
+          position: "relative",
+          zIndex: 1,
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: "70px",
+          alignItems: "center",
         }}
       >
-        {/* LEFT: Brand visual */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "28px" }}>
-          <div style={{ position: "relative", width: "280px", height: "280px" }}>
+        {/* LEFT: Brand visual (Scroll triggered) */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-12%" }}
+          variants={visualEntryVariants}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "28px" }}
+        >
+          <div style={{ position: "relative", width: "360px", height: "360px" }}>
             {/* Outer glow */}
-            <div style={{
-              position: "absolute", inset: "-22px", borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(197,165,95,0.18) 0%, transparent 70%)",
-              animation: "pulseRing 4s ease-in-out infinite",
-            }} />
+            <div
+              style={{
+                position: "absolute",
+                inset: "-22px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(197,165,95,0.18) 0%, transparent 70%)",
+                animation: "pulseRing 4s ease-in-out infinite",
+              }}
+            />
             {/* Rotating dashed ring */}
-            <div style={{
-              position: "absolute", inset: "-8px",
-              border: "1px dashed rgba(197,165,95,0.3)",
-              borderRadius: "50%", animation: "spin 40s linear infinite",
-            }} />
-            <div style={{
-              position: "absolute", inset: "-3px",
-              borderWidth: "1px",
-              borderStyle: "solid",
-              borderLeftColor: "rgba(197,165,95,0.15)",
-              borderRightColor: "rgba(197,165,95,0.15)",
-              borderBottomColor: "rgba(197,165,95,0.15)",
-              borderTopColor: "rgba(197,165,95,0.55)",
-              borderRadius: "50%",
-              animation: "spinReverse 22s linear infinite",
-            }} />
+            <div
+              style={{
+                position: "absolute",
+                inset: "-8px",
+                border: "1px dashed rgba(197,165,95,0.3)",
+                borderRadius: "50%",
+                animation: "spin 40s linear infinite",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: "-3px",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderLeftColor: "rgba(197,165,95,0.15)",
+                borderRightColor: "rgba(197,165,95,0.15)",
+                borderBottomColor: "rgba(197,165,95,0.15)",
+                borderTopColor: "rgba(197,165,95,0.55)",
+                borderRadius: "50%",
+                animation: "spinReverse 22s linear infinite",
+              }}
+            />
             {/* Main circle — warm light glass */}
-            <div style={{
-              width: "280px", height: "280px", borderRadius: "50%",
-              background: "rgba(255,252,244,0.72)",
-              backdropFilter: "blur(40px) saturate(1.6)",
-              WebkitBackdropFilter: "blur(40px) saturate(1.6)",
-              borderWidth: "1px",
-              borderStyle: "solid",
-              borderLeftColor: "rgba(255,255,255,0.95)",
-              borderRightColor: "rgba(255,255,255,0.95)",
-              borderTopColor: "rgba(255,255,255,1)",
-              borderBottomColor: "rgba(197,165,95,0.22)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              padding: "52px",
-              boxShadow: "0 16px 60px rgba(100,60,10,0.14), 0 0 0 1px rgba(255,255,255,0.7) inset, 0 1px 0 rgba(255,255,255,0.98) inset",
-            }}>
+            <div
+              style={{
+                width: "360px",
+                height: "360px",
+                borderRadius: "50%",
+                background: "rgba(255,252,244,0.72)",
+                backdropFilter: "blur(40px) saturate(1.6)",
+                WebkitBackdropFilter: "blur(40px) saturate(1.6)",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderLeftColor: "rgba(255,255,255,0.95)",
+                borderRightColor: "rgba(255,255,255,0.95)",
+                borderTopColor: "rgba(255,255,255,1)",
+                borderBottomColor: "rgba(197,165,95,0.22)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "68px",
+                boxShadow:
+                  "0 18px 65px rgba(100,60,10,0.14), 0 0 0 1px rgba(255,255,255,0.7) inset, 0 1px 0 rgba(255,255,255,0.98) inset",
+              }}
+            >
               <img
-                src="/logo/ebanis.png" alt="Logo Ebanis"
+                src="/logo/ebanis.png"
+                alt="Logo Ebanis"
                 className="about-logo-img"
                 style={{
-                  width: "100%", height: "100%", objectFit: "contain",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
                   filter: "drop-shadow(0 4px 12px rgba(100,60,10,0.2))",
                   transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
                 }}
@@ -99,46 +191,121 @@ export default function About() {
           </div>
 
           {/* Founded badge */}
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "10px",
-            background: "rgba(255,252,244,0.72)",
-            backdropFilter: "blur(24px)",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderLeftColor: "rgba(255,255,255,0.9)",
-            borderRightColor: "rgba(255,255,255,0.9)",
-            borderTopColor: "rgba(255,255,255,0.98)",
-            borderBottomColor: "rgba(197,165,95,0.22)",
-            borderRadius: "999px", padding: "11px 24px",
-            boxShadow: "0 4px 20px rgba(100,60,10,0.1), 0 1px 0 rgba(255,255,255,0.98) inset",
-          }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "rgba(255,252,244,0.72)",
+              backdropFilter: "blur(24px)",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderLeftColor: "rgba(255,255,255,0.9)",
+              borderRightColor: "rgba(255,255,255,0.9)",
+              borderTopColor: "rgba(255,255,255,0.98)",
+              borderBottomColor: "rgba(197,165,95,0.22)",
+              borderRadius: "999px",
+              padding: "11px 24px",
+              boxShadow: "0 4px 20px rgba(100,60,10,0.1), 0 1px 0 rgba(255,255,255,0.98) inset",
+            }}
+          >
             <History size={14} style={{ color: "var(--gold-primary)" }} />
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "0.75rem", color: "var(--fg-muted)", letterSpacing: "0.05em" }}>
-              Fundada en{" "}<strong style={{ color: "var(--gold-primary)" }}>Cajamarca — 15 Mar, 2021</strong>
+            <span
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.75rem",
+                color: "var(--fg-muted)",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Fundada en{" "}
+              <strong style={{ color: "var(--gold-primary)" }}>Cajamarca — 15 Mar, 2021</strong>
             </span>
           </div>
-        </div>
+        </motion.div>
 
-        {/* RIGHT: Content */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+        {/* RIGHT: Content (Scroll triggered container) */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-12%" }}
+          variants={contentContainerVariants}
+          style={{ display: "flex", flexDirection: "column", gap: "30px" }}
+        >
           {/* Eyebrow */}
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <div style={{ flex: "0 0 28px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(197,165,95,0.7))" }} />
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "0.72rem", color: "var(--gold-primary)", letterSpacing: "0.3em", textTransform: "uppercase" }}>Nuestra Esencia</span>
-            <div style={{ flex: "0 0 28px", height: "1px", background: "linear-gradient(90deg, rgba(197,165,95,0.7), transparent)" }} />
-          </div>
+          <motion.div
+            variants={textFadeUpVariants}
+            style={{ display: "flex", alignItems: "center", gap: "12px" }}
+          >
+            <div
+              style={{
+                flex: "0 0 28px",
+                height: "1px",
+                background: "linear-gradient(90deg, transparent, rgba(197,165,95,0.7))",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.72rem",
+                color: "var(--gold-primary)",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+              }}
+            >
+              Nuestra Esencia
+            </span>
+            <div
+              style={{
+                flex: "0 0 28px",
+                height: "1px",
+                background: "linear-gradient(90deg, rgba(197,165,95,0.7), transparent)",
+              }}
+            />
+          </motion.div>
 
-          <div>
-            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontFamily: "var(--font-serif)", lineHeight: 1.12, marginBottom: "16px" }}>
-              <span style={{ color: "var(--foreground)" }}>Ebanistería fina con</span>{" "}<br />
+          <motion.div variants={textFadeUpVariants}>
+            <h2
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontFamily: "var(--font-serif)",
+                lineHeight: 1.12,
+                marginBottom: "16px",
+              }}
+            >
+              <span style={{ color: "var(--foreground)" }}>Ebanistería fina con</span> <br />
               <span className="gold-text">alma y precisión</span>
             </h2>
-            <div style={{ width: "52px", height: "2px", borderRadius: "2px", background: "var(--gold-primary)", marginBottom: "24px", opacity: 0.7 }} />
+            <div
+              style={{
+                width: "52px",
+                height: "2px",
+                borderRadius: "2px",
+                background: "var(--gold-primary)",
+                marginBottom: "24px",
+                opacity: 0.7,
+              }}
+            />
 
-            <div className="narrative-text" style={{ display: "flex", flexDirection: "column", gap: "16px", color: "var(--fg-muted)", fontSize: "0.96rem", lineHeight: 1.78, fontWeight: 300 }}>
+            <div
+              className="narrative-text"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+                color: "var(--fg-muted)",
+                fontSize: "0.96rem",
+                lineHeight: 1.78,
+                fontWeight: 300,
+              }}
+            >
               <p>
-                Fundada el{" "}<span style={{ color: "var(--foreground)", fontWeight: 500 }}>15 de marzo de 2021</span>{" "}en la histórica ciudad de Cajamarca, Perú,
-                Ebanis se ha establecido como un referente de diseño, elegancia y excelencia en la fabricación de mobiliario a medida.
+                Fundada el{" "}
+                <span style={{ color: "var(--foreground)", fontWeight: 500 }}>
+                  15 de marzo de 2021
+                </span>{" "}
+                en la histórica ciudad de Cajamarca, Perú, Ebanis se ha establecido como un referente
+                de diseño, elegancia y excelencia en la fabricación de mobiliario a medida.
               </p>
               <p>
                 Nos especializamos en la fusión perfecta de carpintería tradicional en maderas finas
@@ -146,21 +313,39 @@ export default function About() {
                 dormitorios, closets y mobiliario de oficina con acabados impecables.
               </p>
               <p>
-                En Ebanis creemos que el mobiliario es la columna vertebral que define la energía de tu entorno.
-                Por ello, combinamos diseño 100% personalizado con precios competitivos, adaptados tanto a hogares
-                como a los requerimientos técnicos de arquitectos y diseñadores.
+                En Ebanis creemos que el mobiliario es la columna vertebral que define la energía de tu
+                entorno. Por ello, combinamos diseño 100% personalizado con precios competitivos,
+                adaptados tanto a hogares como a los requerimientos técnicos de arquitectos y
+                diseñadores.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Pillars */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", marginTop: "8px" }}>
+          {/* Pillars Staggered Grid */}
+          <motion.div
+            variants={pillarsGridVariants}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: "16px",
+              marginTop: "8px",
+            }}
+          >
             {PILLARS.map((p) => (
-              <div
+              <motion.div
                 key={p.title}
                 className="pillar-card"
+                variants={textFadeUpVariants}
+                whileHover={{
+                  y: -6,
+                  backgroundColor: "rgba(255,252,244,0.85)",
+                  borderBottomColor: "rgba(197,165,95,0.38)",
+                  boxShadow: "0 12px 36px rgba(100,60,10,0.14), 0 1px 0 rgba(255,255,255,1) inset",
+                }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
                 style={{
-                  padding: "20px", borderRadius: "18px",
+                  padding: "20px",
+                  borderRadius: "18px",
                   background: "rgba(255,252,244,0.62)",
                   backdropFilter: "blur(24px) saturate(1.6)",
                   borderWidth: "1px",
@@ -169,54 +354,66 @@ export default function About() {
                   borderRightColor: "rgba(255,255,255,0.9)",
                   borderTopColor: "rgba(255,255,255,0.98)",
                   borderBottomColor: "rgba(197,165,95,0.2)",
-                  display: "flex", flexDirection: "column", gap: "12px",
-                  transition: "all 0.45s cubic-bezier(0.16,1,0.3,1)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
                   boxShadow: "0 4px 18px rgba(100,60,10,0.08), 0 1px 0 rgba(255,255,255,0.98) inset",
-                  position: "relative", overflow: "hidden",
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "rgba(255,252,244,0.85)";
-                  el.style.borderBottomColor = "rgba(197,165,95,0.38)";
-                  el.style.transform = "translateY(-5px)";
-                  el.style.boxShadow = "0 12px 36px rgba(100,60,10,0.14), 0 1px 0 rgba(255,255,255,1) inset";
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "rgba(255,252,244,0.62)";
-                  el.style.borderBottomColor = "rgba(197,165,95,0.2)";
-                  el.style.transform = "none";
-                  el.style.boxShadow = "0 4px 18px rgba(100,60,10,0.08), 0 1px 0 rgba(255,255,255,0.98) inset";
+                  position: "relative",
+                  overflow: "hidden",
+                  cursor: "pointer",
                 }}
               >
                 {/* Specular */}
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, transparent 50%)",
-                  borderRadius: "18px", pointerEvents: "none",
-                }} />
-                <div style={{
-                  width: "42px", height: "42px", borderRadius: "12px",
-                  background: "rgba(197,165,95,0.12)",
-                  borderWidth: "1px",
-                  borderStyle: "solid",
-                  borderLeftColor: "rgba(197,165,95,0.25)",
-                  borderRightColor: "rgba(197,165,95,0.25)",
-                  borderBottomColor: "rgba(197,165,95,0.25)",
-                  borderTopColor: "rgba(255,255,255,0.8)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "var(--gold-primary)", position: "relative",
-                }}>
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, transparent 50%)",
+                    borderRadius: "18px",
+                    pointerEvents: "none",
+                  }}
+                />
+                <div
+                  style={{
+                    width: "42px",
+                    height: "42px",
+                    borderRadius: "12px",
+                    background: "rgba(197,165,95,0.12)",
+                    borderWidth: "1px",
+                    borderStyle: "solid",
+                    borderLeftColor: "rgba(197,165,95,0.25)",
+                    borderRightColor: "rgba(197,165,95,0.25)",
+                    borderBottomColor: "rgba(197,165,95,0.25)",
+                    borderTopColor: "rgba(255,255,255,0.8)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--gold-primary)",
+                    position: "relative",
+                  }}
+                >
                   {p.icon}
                 </div>
                 <div style={{ position: "relative" }}>
-                  <h4 style={{ fontSize: "0.82rem", fontFamily: "var(--font-serif)", color: "var(--foreground)", marginBottom: "6px", letterSpacing: "0.06em" }}>{p.title}</h4>
-                  <p style={{ fontSize: "0.78rem", color: "var(--fg-muted)", lineHeight: 1.55 }}>{p.desc}</p>
+                  <h4
+                    style={{
+                      fontSize: "0.82rem",
+                      fontFamily: "var(--font-serif)",
+                      color: "var(--foreground)",
+                      marginBottom: "6px",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    {p.title}
+                  </h4>
+                  <p style={{ fontSize: "0.78rem", color: "var(--fg-muted)", lineHeight: 1.55 }}>
+                    {p.desc}
+                  </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       <style>{`

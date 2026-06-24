@@ -4,6 +4,7 @@ import React from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import About from "../components/About";
+import Catalogs from "../components/Catalogs";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -18,6 +19,7 @@ export default function Home() {
       <main style={{ position: "relative", zIndex: 2 }}>
         <Hero />
         <About />
+        <Catalogs />
         <Gallery />
         <Contact />
       </main>
