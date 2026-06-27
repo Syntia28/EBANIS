@@ -159,6 +159,7 @@ export default function About() {
                 width: "360px",
                 height: "360px",
                 borderRadius: "50%",
+                position: "relative",
                 background: "rgba(0, 0, 0, 0.92)",
                 backdropFilter: "blur(40px) saturate(1.6)",
                 WebkitBackdropFilter: "blur(40px) saturate(1.6)",

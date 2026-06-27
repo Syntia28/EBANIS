@@ -75,6 +75,14 @@ export default function WhyUs() {
     return () => clearInterval(interval);
   }, []);
 
+  // Sync muted imperatively to avoid SSR hydration mismatch.
+  // React does not serialize the `muted` attribute correctly during SSR.
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
   const handleToggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (videoRef.current) {
@@ -234,7 +242,6 @@ export default function WhyUs() {
             {BENEFITS.map((benefit) => (
               <motion.div
                 key={benefit.title}
-                variants={itemVariants}
                 whileHover={{
                   x: 8,
                   backgroundColor: "rgba(255, 253, 248, 0.8)",
@@ -458,7 +465,6 @@ export default function WhyUs() {
                   ref={videoRef}
                   src="/video/video.mp4"
                   loop
-                  muted={isMuted}
                   autoPlay
                   playsInline
                   style={{
