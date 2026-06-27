@@ -4,6 +4,7 @@ import React from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import About from "../components/About";
+import WhyUs from "../components/WhyUs";
 import Catalogs from "../components/Catalogs";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
       <main style={{ position: "relative", zIndex: 2 }}>
         <Hero />
         <About />
+        <WhyUs />
         <Catalogs />
         <Gallery />
         <Contact />

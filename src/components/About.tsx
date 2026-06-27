@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Hammer, Trees, History, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 const PILLARS = [
-  { icon: <Hammer size={20} />,   title: "Artesanía de Precisión",  desc: "Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano." },
-  { icon: <Trees size={20} />,    title: "Sostenibilidad Exclusiva", desc: "Maderas nobles de origen legal con manejo forestal y reforestación responsable." },
-  { icon: <Sparkles size={20} />, title: "Diseño Personalizado",     desc: "Cada pieza es única, creada desde cero para adaptarse a tu espacio y visión." },
+  { icon: <Hammer size={20} />, title: "Artesanía de Precisión", desc: "Cortes perfectos, uniones ocultas y acabados finos y sedosos tallados a mano." },
+  { icon: <Trees size={20} />, title: "Sostenibilidad Exclusiva", desc: "Maderas nobles de origen legal con manejo forestal y reforestación responsable." },
+  { icon: <Sparkles size={20} />, title: "Diseño Personalizado", desc: "Cada pieza es única, creada desde cero para adaptarse a tu espacio y visión." },
 ];
 
 const contentContainerVariants = {
@@ -88,7 +89,7 @@ export default function About() {
           right: "-5%",
           width: "45vw",
           height: "45vw",
-          background: "radial-gradient(circle, hsla(22,70%,72%,0.38) 0%, transparent 65%)",
+          background: "radial-gradient(circle, hsla(24, 92%, 50%, 0.38) 0%, transparent 65%)",
           filter: "blur(90px)",
           pointerEvents: "none",
           zIndex: 0,
@@ -124,7 +125,7 @@ export default function About() {
                 position: "absolute",
                 inset: "-22px",
                 borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(197,165,95,0.18) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(8, 5, 0, 0.18) 0%, transparent 70%)",
                 animation: "pulseRing 4s ease-in-out infinite",
               }}
             />
@@ -133,7 +134,7 @@ export default function About() {
               style={{
                 position: "absolute",
                 inset: "-8px",
-                border: "1px dashed rgba(197,165,95,0.3)",
+                border: "1px dashed rgba(11, 8, 0, 0.3)",
                 borderRadius: "50%",
                 animation: "spin 40s linear infinite",
               }}
@@ -145,9 +146,9 @@ export default function About() {
                 borderWidth: "1px",
                 borderStyle: "solid",
                 borderLeftColor: "rgba(197,165,95,0.15)",
-                borderRightColor: "rgba(197,165,95,0.15)",
-                borderBottomColor: "rgba(197,165,95,0.15)",
-                borderTopColor: "rgba(197,165,95,0.55)",
+                borderRightColor: "rgba(5, 0, 3, 0.15)",
+                borderBottomColor: "rgba(17, 12, 1, 0.15)",
+                borderTopColor: "rgba(15, 10, 0, 0.55)",
                 borderRadius: "50%",
                 animation: "spinReverse 22s linear infinite",
               }}
@@ -158,7 +159,7 @@ export default function About() {
                 width: "360px",
                 height: "360px",
                 borderRadius: "50%",
-                background: "rgba(255,252,244,0.72)",
+                background: "rgba(0, 0, 0, 0.92)",
                 backdropFilter: "blur(40px) saturate(1.6)",
                 WebkitBackdropFilter: "blur(40px) saturate(1.6)",
                 borderWidth: "1px",
@@ -166,7 +167,7 @@ export default function About() {
                 borderLeftColor: "rgba(255,255,255,0.95)",
                 borderRightColor: "rgba(255,255,255,0.95)",
                 borderTopColor: "rgba(255,255,255,1)",
-                borderBottomColor: "rgba(197,165,95,0.22)",
+                borderBottomColor: "rgba(15, 10, 0, 0.22)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -175,15 +176,15 @@ export default function About() {
                   "0 18px 65px rgba(100,60,10,0.14), 0 0 0 1px rgba(255,255,255,0.7) inset, 0 1px 0 rgba(255,255,255,0.98) inset",
               }}
             >
-              <img
+              <Image
                 src="/logo/ebanis.png"
                 alt="Logo Ebanis"
                 className="about-logo-img"
+                fill
+                sizes="360px"
                 style={{
-                  width: "100%",
-                  height: "100%",
                   objectFit: "contain",
-                  filter: "drop-shadow(0 4px 12px rgba(100,60,10,0.2))",
+                  filter: "drop-shadow(0 4px 12px rgba(1, 1, 0, 0.2))",
                   transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
                 }}
               />
@@ -196,17 +197,17 @@ export default function About() {
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              background: "rgba(255,252,244,0.72)",
+              background: "rgba(0, 0, 0, 0.88)",
               backdropFilter: "blur(24px)",
               borderWidth: "1px",
               borderStyle: "solid",
-              borderLeftColor: "rgba(255,255,255,0.9)",
+              borderLeftColor: "rgba(13, 0, 0, 0.9)",
               borderRightColor: "rgba(255,255,255,0.9)",
               borderTopColor: "rgba(255,255,255,0.98)",
-              borderBottomColor: "rgba(197,165,95,0.22)",
+              borderBottomColor: "rgba(15, 10, 1, 0.22)",
               borderRadius: "999px",
               padding: "11px 24px",
-              boxShadow: "0 4px 20px rgba(100,60,10,0.1), 0 1px 0 rgba(255,255,255,0.98) inset",
+              boxShadow: "0 4px 20px rgba(11, 6, 0, 0.1), 0 1px 0 rgba(3, 0, 0, 0.98) inset",
             }}
           >
             <History size={14} style={{ color: "var(--gold-primary)" }} />
@@ -214,7 +215,7 @@ export default function About() {
               style={{
                 fontFamily: "var(--font-serif)",
                 fontSize: "0.75rem",
-                color: "var(--fg-muted)",
+                color: "rgba(255, 255, 255, 0.88)",
                 letterSpacing: "0.05em",
               }}
             >
@@ -241,7 +242,7 @@ export default function About() {
               style={{
                 flex: "0 0 28px",
                 height: "1px",
-                background: "linear-gradient(90deg, transparent, rgba(197,165,95,0.7))",
+                background: "linear-gradient(90deg, transparent, rgba(31, 21, 1, 0.7))",
               }}
             />
             <span
@@ -259,7 +260,7 @@ export default function About() {
               style={{
                 flex: "0 0 28px",
                 height: "1px",
-                background: "linear-gradient(90deg, rgba(197,165,95,0.7), transparent)",
+                background: "linear-gradient(90deg, rgba(9, 9, 8, 0.7), transparent)",
               }}
             />
           </motion.div>
@@ -339,7 +340,7 @@ export default function About() {
                 whileHover={{
                   y: -6,
                   backgroundColor: "rgba(255,252,244,0.85)",
-                  borderBottomColor: "rgba(197,165,95,0.38)",
+                  borderBottomColor: "rgba(19, 13, 0, 0.38)",
                   boxShadow: "0 12px 36px rgba(100,60,10,0.14), 0 1px 0 rgba(255,255,255,1) inset",
                 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
@@ -381,9 +382,9 @@ export default function About() {
                     background: "rgba(197,165,95,0.12)",
                     borderWidth: "1px",
                     borderStyle: "solid",
-                    borderLeftColor: "rgba(197,165,95,0.25)",
-                    borderRightColor: "rgba(197,165,95,0.25)",
-                    borderBottomColor: "rgba(197,165,95,0.25)",
+                    borderLeftColor: "rgba(16, 11, 1, 0.25)",
+                    borderRightColor: "rgba(13, 9, 0, 0.25)",
+                    borderBottomColor: "rgba(18, 13, 1, 0.25)",
                     borderTopColor: "rgba(255,255,255,0.8)",
                     display: "flex",
                     alignItems: "center",
