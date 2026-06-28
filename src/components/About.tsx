@@ -159,7 +159,6 @@ export default function About() {
                 width: "360px",
                 height: "360px",
                 borderRadius: "50%",
-                position: "relative",
                 background: "rgba(0, 0, 0, 0.92)",
                 backdropFilter: "blur(40px) saturate(1.6)",
                 WebkitBackdropFilter: "blur(40px) saturate(1.6)",
@@ -221,7 +220,7 @@ export default function About() {
               }}
             >
               Fundada en{" "}
-              <strong style={{ color: "var(--gold-primary)" }}>Cajamarca — 15 Mar, 2021</strong>
+              <strong style={{ color: "rgba(239, 211, 26, 0.88)" }}>Cajamarca — 15 Mar, 2021</strong>
             </span>
           </div>
         </motion.div>
