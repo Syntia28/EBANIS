@@ -59,6 +59,7 @@ const NAV_ITEMS = [
         group: "Carpintería Fina",
         items: [
           { label: "Puertas Principales", href: "/collections/puertas" },
+          { label: "Pisos de Madera Premium", href: "/collections/pisos" },
           { label: "Escaleras de Madera", href: "/collections/escaleras" },
           { label: "Ventanas a Medida", href: "/collections/ventanas" },
         ],

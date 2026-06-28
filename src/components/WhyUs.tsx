@@ -61,9 +61,12 @@ export default function WhyUs() {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState("10:15");
+  const [isHydrated, setIsHydrated] = useState(false);
 
   // Keep simulated time updated on the phone status bar
   useEffect(() => {
+    setIsHydrated(true);
+
     const updateTime = () => {
       const now = new Date();
       const hrs = String(now.getHours()).padStart(2, "0");
@@ -461,19 +464,29 @@ export default function WhyUs() {
                   background: "#1c1815",
                 }}
               >
-                <video
-                  ref={videoRef}
-                  src="/video/video.mp4"
-                  loop
-                  autoPlay
-                  playsInline
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    pointerEvents: "none",
-                  }}
-                />
+                {isHydrated ? (
+                  <video
+                    ref={videoRef}
+                    src="/video/video.mp4"
+                    loop
+                    autoPlay
+                    playsInline
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      pointerEvents: "none",
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      background: "linear-gradient(135deg, #1c1815 0%, #0d0b0a 100%)",
+                    }}
+                  />
+                )}
 
                 {/* Glass Glare Overlay Line (Diagonal) */}
                 <div

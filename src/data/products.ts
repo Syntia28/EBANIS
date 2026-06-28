@@ -202,11 +202,27 @@ export const PRODUCT_DATA: Record<string, ProductDetails> = {
     finishes: ["Poliuretano de alta resistencia", "Barniz marino con filtro UV", "Laqueado texturizado"],
     features: ["Estructuras sólidas a prueba de deformaciones", "Bisagras y cerraduras magnéticas silenciosas integradas", "Instalación en obra con calibración láser por ebanistas"],
     image: "/galeria/puerta.jpeg",
-    images: ["/galeria/puerta.jpeg", "/galeria/puerta1.jpeg", "/galeria/puerta2.jpeg"],
+    images: ["/galeria/puerta.jpeg", "/galeria/puerta1.jpeg", "/galeria/puerta2.jpeg", "/galeria/puerta3.jpeg"],
     imageCaptions: [
       "Puerta Principal Pivotante de gran formato fabricada en Cedro macizo",
       "Puerta interior con diseño contemporáneo y marcos a medida",
-      "Detalle de puerta principal de madera noble con chapa de seguridad"
+      "Detalle de puerta principal de madera noble con chapa de seguridad",
+      "Puerta de alto diseño con acabado fino y instalación impecable"
+    ]
+  },
+  "pisos": {
+    title: "Pisos de Madera Premium",
+    category: "A Medida",
+    description: "Pisios a medida en madera noble para dar calidez, continuidad y elegancia a cada espacio.",
+    longDescription: "Creamos pisos de madera a medida que combinan durabilidad, precisión y belleza natural. Diseñados para interiores residenciales y comerciales, cada piso se adapta al espacio con un acabado refinado que resalta la veta, la textura y la personalidad de la madera. La instalación se realiza con nivelación precisa para lograr una superficie uniforme, elegante y de larga duración.",
+    woods: ["Roble", "Teca", "Cedro Andino"],
+    finishes: ["Aceite natural", "Barniz mate de alto tránsito", "Pulido profesional"],
+    features: ["Instalación a medida con ajuste milimétrico", "Acabados resistentes al desgaste diario", "Texturas y vetas naturales destacadas en cada pieza"],
+    image: "/galeria/piso.jpeg",
+    images: ["/galeria/piso.jpeg", "/galeria/instalacion.jpeg"],
+    imageCaptions: [
+      "Piso de madera a medida con acabado elegante y textura natural",
+      "Instalación profesional en obra con precisión y detalle final"
     ]
   },
   "escaleras": {
@@ -286,7 +302,7 @@ export const SERVICES_DATA: Record<string, ServiceDetails> = {
       "Uso de tecnología de nivelación láser de alta precisión",
       "Garantía estructural completa sobre la instalación"
     ],
-    image: "/kitchen.png"
+    image: "/galeria/instalacion.jpeg"
   },
   "personalizados": {
     title: "Trabajos Personalizados a Medida",
