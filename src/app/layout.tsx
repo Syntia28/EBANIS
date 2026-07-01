@@ -6,9 +6,9 @@ import AnimatedPhoto from "../components/AnimatedPhoto";
 import Script from "next/script";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ebanis.pe";
-const pageTitle = "Ebanis Soluciones | Muebles a Medida y Ebanistería Premium";
+const pageTitle = "Ebanis Soluciones | Muebles a Medida y Ebanistería Premium en Cajamarca";
 const pageDescription =
-  "Ebanis Soluciones crea muebles a medida, ebanistería fina y diseños exclusivos en Cajamarca para hogares y negocios con estilo y funcionalidad.";
+  "Ebanis Soluciones: Las mejores carpinterías y ebanistería fina en Cajamarca. Diseñamos y fabricamos muebles a medida de madera maciza premium, cocinas de lujo, closets y puertas de alta gama para hogares con estilo.";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -30,12 +30,28 @@ export const metadata: Metadata = {
   },
   description: pageDescription,
   keywords: [
-    "ebanistería cajamarca",
-    "muebles a medida",
-    "cocinas a medida",
+    "mejores carpinterias",
+    "muebles premium cajamarca",
+    "ebanistería fina cajamarca",
+    "muebles a medida cajamarca",
+    "carpintería en cajamarca",
+    "muebles de madera maciza",
+    "cocinas de lujo peru",
+    "puertas pivotantes de madera",
     "closets personalizados",
-    "diseño de interiores",
-    "muebles premium",
+    "diseno de interiores cajamarca",
+    "carpintero a domicilio cajamarca",
+    "muebles de melamina premium",
+    "carpinteria de madera fina",
+    "carpinterias cerca de mi",
+    "ebanista artesano cajamarca",
+    "muebles de cocina modernos",
+    "remodelacion de cocinas cajamarca",
+    "closets de melamina modernos",
+    "muebles de oficina cajamarca",
+    "diseño de muebles 3d",
+    "carpinteria en madera tornillo",
+    "muebles de cedro peru",
   ],
   authors: [{ name: "Ebanis Soluciones" }],
   alternates: {
